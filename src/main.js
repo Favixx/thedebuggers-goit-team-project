@@ -1,0 +1,8 @@
+import './js/api_defaults.js'
+import './js/charactares_list.js'
+import './js/hero_slider.js'
+import './js/modal_charactares.js'
+import './js/modal_comics.js'
+import './js/random_charactares.js'
+import './js/search.js'
+import './js/sorting_of_list.js'
