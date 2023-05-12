@@ -5,7 +5,7 @@
   |============================
 */
 /*Базові імпорти стилів*/
-
+@import url('../../node_modules/modern-normalize/modern-normalize.css');
 @import url('./reset.css');
 @import url('./header.css');
 @import url('./hero_index.css');
@@ -45,7 +45,9 @@ body {
   background-color: #0C0B0B;
   letter-spacing: 0.02em;
 }
-
+img{
+  display: block;
+}
 :root {
     --color-blue: #34387F;
     --color-title-and-text: #FAFAFA;
