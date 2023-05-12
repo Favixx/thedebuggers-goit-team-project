@@ -37,15 +37,21 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-size: 14px;
   line-height: calc(18 / 14);
-  background-color: #fafafa;
+  background-color: #0C0B0B;
+  letter-spacing: 0.02em;
 }
 
-/* :root {
-
-} */
+:root {
+    --color-blue: #34387F;
+    --color-title-and-text: #FAFAFA;
+    --color-characters-modal-window: #171717;
+    --color-character-spider-man: #600404;
+    --color-character-hulk: #5B7F3C;
+    --color-character-black-panther: #34387F;
+}
 
 .container {
   margin: 0 auto;
