@@ -9,10 +9,10 @@
 @import url('./reset.css');
 @import url('./header.css');
 @import url('./hero_index.css');
-@import url('./hero_charactares.css');
-@import url('./random_charactares.css');
+@import url('./hero_characters.css');
+@import url('./random_characters.css');
 @import url('./search_and_sort.css');
-@import url('./charactares_list.css');
+@import url('./characters_list.css');
 @import url('./footer.css');
 
 /*Імпорти стилів модальних вікон*/
