@@ -1,0 +1,101 @@
+.hero-charactares{
+    background-image: url(../img/mob/hero-mob.jpg);
+    background-size: cover;
+    background-position: center;
+    height: 509px;
+    max-width: 375px;
+    margin: 0 auto;
+    padding-top: 220px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.home-button-character {
+    background-color: transparent;
+    border: 1px solid #FAFAFA80;
+    color: var(--color-title-and-text);
+    font-size: 12px;
+    font-weight: 500;
+    line-height: calc(16/12);
+    text-transform: uppercase;
+    border-radius: 1000px;
+    padding: 10px 20px;
+    width: 131px;
+    height: 36px;
+    display: inline-block;
+    
+    /* white-space: nowrap;
+    position: absolute;
+    bottom: 20px;
+    right: 20px; */
+    margin-top: auto;
+    margin-block: auto 20px;
+    align-self: end;
+}
+
+.sub-title-characters {
+    font-size: 18px;
+    line-height: 1.6;
+    text-transform: uppercase;
+
+    color: #ffffffb3;
+    margin-bottom: 14px;
+}
+.main-title-characters {
+    font-weight: 500;
+    font-size: 60px;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    max-width: 100%;
+    margin-bottom: 16px;
+
+    color: var(--color-title-and-text);
+}
+.description-title-characters{
+    font-size: 16px;
+    line-height: 1.25;
+    letter-spacing: 0.02em;
+
+    color: var(--color-title-and-text);
+}
+
+@media screen and (min-width: 767.98px){
+    .hero-charactares{
+        background-image: url(../img/tab/hero-tab.jpg);
+        height: 780px;
+        max-width: 768px;
+        padding-top: 278px;
+    }
+    .home-button-character{
+        bottom: 32px;
+        right: 32px;
+    }
+    .sub-title-characters {
+        margin-bottom: 27px;
+    }
+    .main-title-characters {
+        font-size: 128px;
+    }
+    .description-title-characters{
+        max-width: 469px;
+        margin-left: 88px;
+    }
+}
+@media screen and (min-width: 1199.98px){
+    .hero-charactares{
+        background-image: url(../img/deskt/hero-deskt.jpg);
+        height: 880px;
+        max-width: 1440px;
+    }
+    .home-button-character{
+        bottom: 64px;
+        right: 32px;
+    }
+    .sub-title-characters {
+        margin-bottom: 16px;
+    }
+    .main-title-characters {
+        font-size: 150px;
+    }
+}
