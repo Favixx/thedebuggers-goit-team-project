@@ -1,5 +1,5 @@
 .hero-charactares{
-    margin-top: -57px;
+    margin-top: -75px;
 }
 .container-hero-characters{
     background-image: url(../img/mob/hero-mob.jpg);
@@ -57,7 +57,7 @@
 
 @media screen and (min-width: 767.98px){
     .hero-charactares{
-        margin-top: -61px;
+        margin-top: -89px;
     }
     .container-hero-characters{
         background-image: url(../img/tab/hero-tab.jpg);
