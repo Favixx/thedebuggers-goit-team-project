@@ -1,37 +1,16 @@
 .hero-charactares{
+    margin-top: -57px;
+}
+.container-hero-characters{
     background-image: url(../img/mob/hero-mob.jpg);
     background-size: cover;
-    background-position: center;
+    background-position: center;   
     height: 509px;
-    max-width: 375px;
     margin: 0 auto;
     padding-top: 220px;
     position: relative;
     display: flex;
     flex-direction: column;
-}
-
-.home-button-character {
-    background-color: transparent;
-    border: 1px solid #FAFAFA80;
-    color: var(--color-title-and-text);
-    font-size: 12px;
-    font-weight: 500;
-    line-height: calc(16/12);
-    text-transform: uppercase;
-    border-radius: 1000px;
-    padding: 10px 20px;
-    width: 131px;
-    height: 36px;
-    display: inline-block;
-    
-    /* white-space: nowrap;
-    position: absolute;
-    bottom: 20px;
-    right: 20px; */
-    margin-top: auto;
-    margin-block: auto 20px;
-    align-self: end;
 }
 
 .sub-title-characters {
@@ -60,16 +39,30 @@
     color: var(--color-title-and-text);
 }
 
+.home-button-character {
+    background-color: transparent;
+    border: 1px solid #FAFAFA80;
+    color: var(--color-title-and-text);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: calc(16/12);
+    text-transform: uppercase;
+    border-radius: 1000px;
+    padding: 10px 20px;
+
+    display: inline-block;
+    margin-block: auto 20px;
+    align-self: end;
+}
+
 @media screen and (min-width: 767.98px){
     .hero-charactares{
+        margin-top: -61px;
+    }
+    .container-hero-characters{
         background-image: url(../img/tab/hero-tab.jpg);
         height: 780px;
-        max-width: 768px;
         padding-top: 278px;
-    }
-    .home-button-character{
-        bottom: 32px;
-        right: 32px;
     }
     .sub-title-characters {
         margin-bottom: 27px;
@@ -81,21 +74,25 @@
         max-width: 469px;
         margin-left: 88px;
     }
+    .home-button-character{
+        padding: 12px 24px;
+        font-size: 14px;
+        line-height: calc(18/14);
+        margin-block: auto 32px;
+    }
 }
 @media screen and (min-width: 1199.98px){
-    .hero-charactares{
+    .container-hero-characters{
         background-image: url(../img/deskt/hero-deskt.jpg);
         height: 880px;
-        max-width: 1440px;
-    }
-    .home-button-character{
-        bottom: 64px;
-        right: 32px;
     }
     .sub-title-characters {
         margin-bottom: 16px;
     }
     .main-title-characters {
         font-size: 150px;
+    }
+    .home-button-character{
+        margin-block: auto 64px;
     }
 }
