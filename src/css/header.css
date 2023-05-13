@@ -45,8 +45,13 @@
   left: 20px;
   width: 16px;
   height: 16px;
-
 }
+
+.header-logo-svg{
+  width: 98px;
+  height: 15px;
+}
+
 @media screen and (min-width:767.98px){
   .header_search input{
     font-size: 14px;
@@ -60,10 +65,16 @@
     height: 18px;
     width: 18px;
   }
-  .header_search input::placeholder{
-    font-size: 14px;
-    line-height: calc(18/14);
-    width: 56px;
-height: 18px;
-  };
+  .header-logo-svg{
+    width: 202px;
+    height: 31px;
+  }
 }
+
+
+/* @media screen and (min-width: 1200px) {
+  .header-logo-svg{
+    width: 202px;
+    height: 31px;
+  }
+} */
