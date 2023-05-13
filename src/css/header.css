@@ -86,3 +86,8 @@
     height: 31px;
   }
 }
+.header_search input:hover,
+.header_search input:focus,
+.header_search input{
+  outline: 1px solid var(--color-title-and-text);
+}
