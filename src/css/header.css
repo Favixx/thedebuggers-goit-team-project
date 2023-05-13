@@ -2,7 +2,8 @@
   position: sticky;
   width: 100vw;
   background-color: transparent;
-  margin-top: 20px;
+  top: 24px;
+  z-index: 2;
 }
 
 .header .container {
