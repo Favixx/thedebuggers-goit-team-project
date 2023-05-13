@@ -61,6 +61,13 @@
     padding: 12px 24px;
     padding-left: 50px;
   }
+  .header_search input::placeholder{
+    font-size: 14px;
+    line-height: calc(18/14);
+    width: 56px;
+height: 18px;
+  };
+}
   .search-header-icon{
     height: 18px;
     width: 18px;
