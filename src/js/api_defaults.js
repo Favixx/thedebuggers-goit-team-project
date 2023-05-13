@@ -32,9 +32,16 @@ export default class MarvelAPI {
   async getCharacterByID(num) {
     return await this.getData(`characters/${num}`);
   }
+    async getNameStartWith(string){
+        return await this.getData('characters',{nameStartsWith:string});
+    }
 
-  setPaginationParams(page = 1, perPage = 20) {
-    this.marvel.defaults.params['offset'] = perPage * (page - 1);
-    this.marvel.defaults.params['limit'] = perPage;
-  }
+    async getByComics(string){
+        return await this.getData('comics',{titleStartsWith:string});
+    }
+
+    setPaginationParams(page = 1, perPage = 20){
+        this.marvel.defaults.params['offset'] = perPage * (page - 1);
+        this.marvel.defaults.params['limit'] = perPage;
+    }
 }

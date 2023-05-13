@@ -1,0 +1,34 @@
+.searchandsort {
+    color: rgba(250, 250, 250, 0.3);
+    font-weight: 400;
+    margin-top: 90px;
+    margin-bottom: 64px;
+}
+
+.searchandsort-input {
+    color: rgba(250, 250, 250, 1);
+    font-size: 16px;
+    border-radius: 100px;
+    border: 2px solid rgba(52, 56, 127, 1);
+    background-color: #0C0B0B;
+    padding-top: 16px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 16px;
+    display: block;
+    margin-top: 8px;
+}
+.searchandsort-label {
+    display: block;
+    text-align: left;
+    margin-right: 16px;
+}
+.searchandsort-label:not:first-child {
+    margin-right: 0px;
+}
+
+.searchandsort-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
