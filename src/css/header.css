@@ -21,6 +21,8 @@
   color: var(--color-title-and-text);
   padding: 6px 18px;
   padding-left: 42px;
+  font-size: 12px;
+  line-height: calc(14/12);
 }
 .header_search{
   display: flex;
@@ -47,6 +49,8 @@
 }
 @media screen and (min-width:767.98px){
   .header_search input{
+    font-size: 14px;
+    line-height: calc(18/14);
     width: 130px;
     height: 41px;
     padding: 12px 24px;
@@ -57,6 +61,9 @@
     width: 18px;
   }
   .header_search input::placeholder{
-    
+    font-size: 14px;
+    line-height: calc(18/14);
+    width: 56px;
+height: 18px;
   };
 }
