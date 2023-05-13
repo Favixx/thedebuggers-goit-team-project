@@ -81,7 +81,7 @@
         margin-block: auto 32px;
     }
 }
-@media screen and (min-width: 1199.98px){
+@media screen and (min-width: 1439.98px){
     .container-hero-characters{
         background-image: url(../img/deskt/hero-deskt.jpg);
         height: 880px;
