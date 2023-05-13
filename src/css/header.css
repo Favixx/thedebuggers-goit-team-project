@@ -1,8 +1,10 @@
 .header {
   position: sticky;
+  top: 0;
+  z-index: 2;
   width: 100vw;
   background-color: transparent;
-  margin-top: 20px;
+  padding-top: 20px;
 }
 
 .header .container {
