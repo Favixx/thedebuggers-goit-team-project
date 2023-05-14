@@ -1,3 +1,4 @@
+
 /**
   |============================
   | include css partials with
@@ -5,14 +6,15 @@
   |============================
 */
 /*Базові імпорти стилів*/
-
+@import url('../../node_modules/modern-normalize/modern-normalize.css');
 @import url('./reset.css');
+@import url('./common.css');
 @import url('./header.css');
 @import url('./hero_index.css');
-@import url('./hero_charactares.css');
-@import url('./random_charactares.css');
+@import url('./hero_characters.css');
+@import url('./random_characters.css');
 @import url('./search_and_sort.css');
-@import url('./charactares_list.css');
+@import url('./characters_list.css');
 @import url('./footer.css');
 
 /*Імпорти стилів модальних вікон*/
@@ -34,44 +36,4 @@
   -webkit-text-size-adjust: 100%;
 } */
 
-html {
-  scroll-behavior: smooth;
-}
-
-body {
-  font-family: 'Poppins', sans-serif;
-  font-size: 14px;
-  line-height: calc(18 / 14);
-  background-color: #0C0B0B;
-  letter-spacing: 0.02em;
-}
-
-:root {
-    --color-blue: #34387F;
-    --color-title-and-text: #FAFAFA;
-    --color-characters-modal-window: #171717;
-    --color-character-spider-man: #600404;
-    --color-character-hulk: #5B7F3C;
-    --color-character-black-panther: #34387F;
-}
-
-.container {
-  margin: 0 auto;
-  padding: 0 20px;
-  max-width: 335px;
-}
-
-@media screen and (min-width: 767.98px) {
-  .container {
-    padding: 0 32px;
-    max-width: 704px;
-  }
-}
-
-@media screen and (min-width: 1199.98px) {
-  .container {
-    padding: 0 32px;
-    max-width: 1376px;
-  }
-}
 
