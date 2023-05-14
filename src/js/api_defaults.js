@@ -66,21 +66,3 @@ export default class MarvelAPI{
         this.marvel.defaults.params['limit'] = perPage;
     }
 }
-
-async function printData(){
-    const api = new MarvelAPI
-    // api.setPaginationParams(1,90)
-    // const data = await api.getFilteredCharacters(new Date('01-01-2020').toDateString())
-    // const comics = await api.getByComics();
-    // const series = await api.getSeries();
-    // const stories =await api.getStories();
-    // console.log(data);
-    // console.log(comics.map(e=>e.series.name));
-    // console.log(series);
-    // console.log(stories);
-    // const data = await api.getFiveCharacters([152,384,1200,0,1475])
-    const filter = await api.getFilteredCharacters('01-01-2020','spider');
-    console.log(filter);
-}
-console.log(new Date().toUTCString());
-printData()
