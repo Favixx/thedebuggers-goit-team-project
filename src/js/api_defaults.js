@@ -12,7 +12,7 @@ export default class MarvelAPI{
         })
     }
     async getData(endPoint = 'characters', params = {}){
-        params.ts = new Date().toDateString();
+        params.ts = new Date().getTime();
         params.hash = md5(params.ts+this.PRIVATE_KEY+this.PUBLIC_KEY);
         try {
             const { data , status, statusText } = await this.marvel.get(endPoint,{params});
@@ -39,9 +39,30 @@ export default class MarvelAPI{
         return await this.getData('comics',{titleStartsWith:string});
     }
 
+    async getFiveCharacters(arr){
+        const promises = arr.map((e) => {
+            const params = {
+                offset:e,
+                limit: 1
+            }
+            return this.getData('characters',params)
+        })
+        const data = await Promise.all(promises);
+        return data.map(e=>e[0]);
+    }
+
+    async getFilteredCharacters(modifiedSince, nameStartsWith, orderBy, comics){
+        const params = {};
+        if (modifiedSince) params.modifiedSince = new Date(modifiedSince).toDateString();
+        if (nameStartsWith) params.nameStartsWith = nameStartsWith;
+        if (orderBy) params.orderBy = orderBy;
+        if (comics) params.comics = comics;
+        console.log(params);
+        return await this.getData('characters', params);
+    }
+
     setPaginationParams(page = 1, perPage = 20){
         this.marvel.defaults.params['offset'] = perPage * (page - 1);
         this.marvel.defaults.params['limit'] = perPage;
     }
 }
-
