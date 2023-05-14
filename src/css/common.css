@@ -44,18 +44,20 @@ html {
 /* Scroll BAR */
 
 ::-webkit-scrollbar {
-  width: 12px;
+  /* width: 12px; */
+  width: 9px;
   /* background-clip: content-box; */
 }
 
 ::-webkit-scrollbar-track {
-  background-color: #242121; 
+  /* background-color: #242121;  */
+  background-color: transparent;
   border-radius: 10px;
   cursor: pointer;
 }
 
 ::-webkit-scrollbar-thumb {
-  border: 3px solid #242121;
+  /* border: 3px solid #242121; */
   border-radius: 100px;
   /* cursor: pointer; */
   
