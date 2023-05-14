@@ -1,6 +1,6 @@
 <section class="searchandsort">
-  <div class="searchandsort-container container">
-    <label class="searchandsort-label"
+  <form class="searchandsort-container container">
+    <label class="searchandsort-label comics"
       >Comics
       <input
         id="comics"
@@ -9,19 +9,24 @@
         placeholder="Enter text"
       />
     </label>
-    <label id="select" class="searchandsort-label"
+    <label class="searchandsort-label name"
+      >Name Starts With
+      <input
+        id="name"
+        class="searchandsort-input"
+        type="text"
+        placeholder="Enter text"
+      />
+    </label>
+    <label class="searchandsort-label order"
       >Order By
-      <select class="searchandsort-input" type="select">
+      <select id="select" class="searchandsort-input" type="select">
         <option value="value1">Modified</option>
         <option value="value2">Non-modified</option>
       </select>
     </label>
-    <label id="name" class="searchandsort-label"
-      >Name Starts With
-      <input class="searchandsort-input" type="text" placeholder="Enter text" />
+    <label class="searchandsort-label date"
+      >Date <input id="date" class="searchandsort-input" type="date" />
     </label>
-    <label id="date" class="searchandsort-label"
-      >Date <input class="searchandsort-input" type="date" />
-    </label>
-  </div>
+  </form>
 </section>
