@@ -1,15 +1,10 @@
-.hero-home {
-  color: aqua;
-}
 .swiper-wrapper {
   width: 100%;
   height: 750px;
 }
 .swiper {
   width: 100%;
-  height: 100%;
-
-  padding: 0;
+  height: 750px;
 }
 
 .swiper-slide {
@@ -74,7 +69,7 @@
 
   color: #fafafa;
 }
-.first-part-home-hero {
+.part-1 {
   padding: 0;
   width: 538px;
   margin-right: 66px;

@@ -3,14 +3,16 @@
 // import 'swiper/css';
 // import 'swiper/css/navigation';
 // import 'swiper/css/pagination';
-import Swiper from 'swiper/bundle';
+import Swiper, { Scrollbar } from 'swiper';
 
 // import styles bundle
 //import 'swiper/css/bundle';
 // init Swiper:
+import 'swiper/css';
+//import 'swiper/css/scrollbar';
 const swiper = new Swiper('.swiper', {
   // configure Swiper to use modules
-  //modules: [Navigation, Pagination, Scrollbar],
+  modules: [Scrollbar],
   direction: 'vertical',
   //   pagination: {
   //     el: '.swiper-pagination',
