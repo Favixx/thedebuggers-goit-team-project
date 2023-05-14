@@ -1,1 +1,34 @@
-<section>
+<section class="searchandsort">
+  <form class="searchandsort-container container">
+    <label class="searchandsort-label comics"
+      >Comics
+      <input
+        id="comics"
+        class="searchandsort-input"
+        type="text"
+        placeholder="Enter text"
+      />
+    </label>
+    <label class="searchandsort-label name"
+      >Name Starts With
+      <input
+        id="name-input"
+        class="searchandsort-input"
+        type="text"
+        placeholder="Enter text"
+      />
+    </label>
+    <label class="searchandsort-label order"
+      >Order By
+      <select id="select" class="searchandsort-input" type="select">
+        <option value="name">Name</option>
+        <option value="modified">Modified</option>
+        <option value="-name">-Name</option>
+        <option value="-modified">-Modified</option>
+      </select>
+    </label>
+    <label class="searchandsort-label date"
+      >Date <input id="date" class="searchandsort-input" type="date" />
+    </label>
+  </form>
+</section>

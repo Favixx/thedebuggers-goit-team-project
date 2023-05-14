@@ -1,0 +1,178 @@
+.searchandsort {
+    color: rgba(250, 250, 250, 0.3);
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 40px;
+}
+
+.searchandsort-input {
+    color: rgba(250, 250, 250, 1);
+    font-size: 14px;
+    border-radius: 100px;
+    border: 2px solid rgba(52, 56, 127, 1);
+    background-color: #0C0B0B;
+    padding-top: 14px;
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 14px;
+    display: block;
+    margin-top: 4px;
+    width: 335px;
+}
+
+.searchandsort-label {
+    text-align: left;
+    font-size: 12px;
+    margin-top: 12px;
+}
+
+.searchandsort-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+}
+
+#select {
+    width: 169px;
+}
+
+#date {
+    width: 158px;
+}
+
+.searchandsort-label.order{
+    width: 169px;
+    position: absolute;
+    left: 5.5%;
+    top: 100%;
+}
+
+.searchandsort-label.date {
+    width: 158px;
+    position: absolute;
+    right: 5.5%;
+    top: 100%;
+}
+
+
+
+@media screen and (min-width: 767.98px) and (max-width: 1199.97px) {
+    .searchandsort {
+        margin-top: 64px;
+        margin-bottom: 52px;
+    }
+
+    .searchandsort-input {
+        font-size: 16px;
+        padding-top: 16px;
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-bottom: 16px;
+        display: block;
+        margin-top: 8px;
+        width: 168px;
+        align-items: center;
+    }
+
+    .searchandsort-label {
+        font-size: 14px;
+        display: block;
+        text-align: left;
+        margin-left: 8px;
+    }
+
+    .searchandsort-container {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        max-width: 100%;
+    }
+
+    .searchandsort-label:not:first-child {
+        margin-left: 0px;
+    }
+
+    .searchandsort-label.comics {
+        order: 1;
+        margin-left: 0;
+    }
+
+    .searchandsort-label.order {
+        order: 2;
+        position: static;
+    }
+
+    .searchandsort-label.name {
+        order: 3;
+    }
+
+    .searchandsort-label.date {
+        order: 4;
+        position: static;
+    }
+
+}
+
+@media screen and (min-width: 1199.98px) {
+    .searchandsort {
+        margin-top: 64px;
+        margin-bottom: 64px;
+    }
+
+    .searchandsort-input {
+        font-size: 16px;
+        padding-top: 16px;
+        padding-left: 24px;
+        padding-right: 24px;
+        padding-bottom: 16px;
+        display: block;
+        margin-top: 8px;
+        width: 100%;
+    }
+
+    .searchandsort-label {
+        font-size: 14px;
+        display: block;
+        text-align: left;
+        margin-left: 16px;
+    }
+
+    .searchandsort-label:not:first-child {
+        margin-left: 0px;
+    }
+
+    .searchandsort-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        max-width: 100%;
+    }
+
+    .searchandsort-label.comics {
+        order: 1;
+        max-width: 268px;
+        margin-left: 0;
+    }
+
+    .searchandsort-label.order {
+        order: 2;
+        width: 185px;
+        position: static;
+    }
+
+    .searchandsort-label.name {
+        order: 3;
+        width: 190px;
+    }
+
+    .searchandsort-label.date {
+        order: 4;
+        width: 170px;
+        position: static;
+    }
+
+}
