@@ -9,7 +9,7 @@ import Swiper, { Scrollbar } from 'swiper';
 //import 'swiper/css/bundle';
 // init Swiper:
 import 'swiper/css';
-//import 'swiper/css/scrollbar';
+import 'swiper/css/scrollbar';
 const swiper = new Swiper('.swiper', {
   // configure Swiper to use modules
   modules: [Scrollbar],
@@ -29,7 +29,7 @@ const swiper = new Swiper('.swiper', {
 });
 // Ініціалізація Swiper слайдера
 
-// Обробник події ініціалізації слайдера
+//Обробник події ініціалізації слайдера
 swiper.on('init', function () {
   updateScrollbarColor(); // Виклик функції для зміни кольору Scrollbar при ініціалізації
 });
