@@ -12,7 +12,7 @@
     <label class="searchandsort-label name"
       >Name Starts With
       <input
-        id="name"
+        id="name-input"
         class="searchandsort-input"
         type="text"
         placeholder="Enter text"
@@ -21,8 +21,10 @@
     <label class="searchandsort-label order"
       >Order By
       <select id="select" class="searchandsort-input" type="select">
-        <option value="value1">Modified</option>
-        <option value="value2">Non-modified</option>
+        <option value="name">Name</option>
+        <option value="modified">Modified</option>
+        <option value="-name">-Name</option>
+        <option value="-modified">-Modified</option>
       </select>
     </label>
     <label class="searchandsort-label date"
