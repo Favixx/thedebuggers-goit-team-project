@@ -1,8 +1,7 @@
 import MarvelAPI from './api_defaults';
 import debounce from 'lodash.debounce';
-// const modalLightboxGallery = new SimpleLightbox('.characters-gallery a', {
-//   captionDelay: 250,
-// });
+import md5 from 'md5';
+import axios from 'axios';
 
 const refs = {
   body: document.querySelector('body'),
@@ -12,54 +11,110 @@ const refs = {
   dateInput: document.querySelector("[id = 'date']"),
   charactersGallery: document.querySelector('.characters-gallery'),
 };
+// console.log(refs.dateInput);
+// const marvelApi = new MarvelAPI();
 
-const marvelApi = new MarvelAPI();
+const PUBLIC_KEY = 'e8d87ed088b5013742a2a9466816b30e';
+const PRIVATE_KEY = 'dbde977f898ea7131460b979ad9d4adf2e774ce4';
 
-async function fetchCharacter() {
-  const charactersArray = await marvelApi.getNameStartWith('black widow');
-  const character = await marvelApi.getCharacterByID(1017109);
-  console.log(charactersArray);
-  console.log(character);
+// Create a character card
+function createCharacterCard(character) {
+  const card = document.createElement('li');
+  card.innerHTML = `
+    <img src="${character.thumbnail.path}/${imageSize}.${
+    character.thumbnail.extension
+  }" alt="${character.name}">
+    <h3>${character.name}</h3>
+    <p>${character.description || 'No description available'}</p>
+  `;
+  return card;
 }
-fetchCharacter();
 
-refs.nameInput.addEventListener('change', debounce(onInputSearch), 500);
+// Render character cards in the page
+function renderCharacterCards(characters) {
+  const ul = document.querySelector('ul');
+  ul.innerHTML = defaultImage;
 
-function onInputSearch() {
-  const listMarkup = charactersArray
-    .map(({ thumbnail, name }) => {
-      `<a href=______________________ class="character-card-link js-character-card-link">
-        <div class="character-card">
-          <img class="character-photo" src="${c.thumbnail.path}/${imageSize}.${c.thumbnail.extension}" loading="lazy" />
-          <div class="character-info">
-            <p class="character-info-item">
-              ${name}
-            </p>
-          </div>
-        </div>
-      </a>`;
-    })
-    .join('');
-  const inputQuantity = charactersArray.length;
-  if (!inputQuantity) {
-    refs.charactersGallery.innerHTML = defaultImage;
-    return;
+  characters.forEach(character => {
+    const card = createCharacterCard(character);
+    ul.appendChild(card);
+  });
+}
+
+// Fetch characters
+async function fetchCharacters(comics, orderBy, nameStartsWith, modifiedSince) {
+  const baseUrl = 'https://gateway.marvel.com/v1/public/characters';
+  const timestamp = new Date().getTime();
+  const hash = md5(timestamp + PRIVATE_KEY + PUBLIC_KEY);
+  const params = new URLSearchParams({
+    apikey: PUBLIC_KEY,
+    comics: comics || undefined,
+    orderBy: orderBy || undefined,
+    nameStartsWith: nameStartsWith || undefined,
+    modifiedSince: modifiedSince || undefined,
+    ts: timestamp,
+    hash: hash,
+  });
+
+  const response = await fetch(`${baseUrl}?${params}`);
+  const data = await response.json();
+
+  if (data && data.data && data.data.results) {
+    const characters = data.data.results;
+    renderCharacterCards(characters);
+  } else {
+    console.error('Error fetching characters:', data);
   }
-  refs.charactersGallery.innerHTML = listMarkup;
-  return listMarkup;
 }
+
+// Event listener
+refs.comicsInput.addEventListener(
+  'change',
+  debounce(() => {
+    const comics = refs.comicsInput.value;
+    fetchCharacters(comics);
+  }),
+  500
+);
+
+refs.selectInput.addEventListener(
+  'change',
+  debounce(() => {
+    const orderBy = refs.selectInput.value;
+    fetchCharacters(0, orderBy);
+  }),
+  500
+);
+
+refs.nameInput.addEventListener(
+  'change',
+  debounce(() => {
+    const nameStartsWith = refs.nameInput.value;
+    fetchCharacters(0, 0, nameStartsWith);
+  }),
+  500
+);
+
+refs.dateInput.addEventListener(
+  'change',
+  debounce(() => {
+    const modifiedSince = refs.dateInput.value;
+    fetchCharacters(0, 0, 0, modifiedSince);
+  }),
+  500
+);
 
 const defaultImage = `<img
   class="try-looking"
   srcset="
-                    ./images/________-min.jpg 1x,
-                    ./images/___________-min.jpg 2x
+                    ./img/tab/frame-tabl-desktop.png 1x,
+                    ./img/tab/frame-2x@tabl-desktop.png 2x
                   "
-  src="./images/_____________-min.jpg"
+  src="./img/tab/frame-tabl-desktop.png"
   title="default-image"
   alt="Try looking for something else"
-  width="___"
-  height="____"
+  width="375px"
+  height="221px"
   loading="lazy"
 />
 `;
