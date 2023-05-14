@@ -12,7 +12,7 @@ export default class MarvelAPI{
         })
     }
     async getData(endPoint = 'characters', params = {}){
-        params.ts = new Date().toDateString();
+        params.ts = new Date().getTime();
         params.hash = md5(params.ts+this.PRIVATE_KEY+this.PUBLIC_KEY);
         try {
             const { data , status, statusText } = await this.marvel.get(endPoint,{params});
@@ -39,8 +39,48 @@ export default class MarvelAPI{
         return await this.getData('comics',{titleStartsWith:string});
     }
 
+    async getFiveCharacters(arr){
+        const promises = arr.map((e) => {
+            const params = {
+                offset:e,
+                limit: 1
+            }
+            return this.getData('characters',params)
+        })
+        const data = await Promise.all(promises);
+        return data.map(e=>e[0]);
+    }
+
+    async getFilteredCharacters(modifiedSince, nameStartsWith, orderBy, comics){
+        const params = {};
+        if (modifiedSince) params.modifiedSince = new Date(modifiedSince).toDateString();
+        if (nameStartsWith) params.nameStartsWith = nameStartsWith;
+        if (orderBy) params.orderBy = orderBy;
+        if (comics) params.comics = comics;
+        console.log(params);
+        return await this.getData('characters', params);
+    }
+
     setPaginationParams(page = 1, perPage = 20){
         this.marvel.defaults.params['offset'] = perPage * (page - 1);
         this.marvel.defaults.params['limit'] = perPage;
     }
 }
+
+async function printData(){
+    const api = new MarvelAPI
+    // api.setPaginationParams(1,90)
+    // const data = await api.getFilteredCharacters(new Date('01-01-2020').toDateString())
+    // const comics = await api.getByComics();
+    // const series = await api.getSeries();
+    // const stories =await api.getStories();
+    // console.log(data);
+    // console.log(comics.map(e=>e.series.name));
+    // console.log(series);
+    // console.log(stories);
+    // const data = await api.getFiveCharacters([152,384,1200,0,1475])
+    const filter = await api.getFilteredCharacters('01-01-2020','spider');
+    console.log(filter);
+}
+console.log(new Date().toUTCString());
+printData()
