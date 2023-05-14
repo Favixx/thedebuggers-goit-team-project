@@ -2,17 +2,34 @@
   <div class="container">
     <div class="footer-top">
       <div class="footer-logo">
-        <a href="../index.html"
-          ><img src="../img/logo-mobile.png" srcset="../img/logo-mobile.png 1x, ../img/logo-mobile2x.png 2x" alt="logo" class="img-footer"
-        /></a>
+        <a href="../index.html">
+          <picture>
+            <source
+              srcset="../img/logo.png 1x, ../img/logo2x.png 2x"
+              media="(min-width: 767.98px)"
+            />
+            <source
+              srcset="../img/logo-mobile.png 1x, ../img/logo-mobile2x.png 2x"
+              media="(min-width: 375px)"
+            />
+            <img
+              class="img-footer"
+              src="../img/logo-mobile.png"
+              alt="logo"
+              width="224"
+              height="171"
+            />
+          </picture>
+        </a>
+
         <a href="../characters.html" class="text-footer">Characters</a>
       </div>
       <ul class="footer-social-list">
         <li>
           <a
-            href=""
+            href="https://twitter.com/"
             class="social-list-link-footer"
-            aria-label="linl-for-instsgram"
+            aria-label="link to twitter"
             rel="noopener noreferer"
             target="_blank"
           >
@@ -23,9 +40,9 @@
         </li>
         <li>
           <a
-            href=""
+          href="https://instagram.com/"
             class="social-list-link-footer"
-            aria-label="linl-for-instsgram"
+            aria-label="link to instagram"
             rel="noopener noreferer"
             target="_blank"
           >
@@ -36,9 +53,9 @@
         </li>
         <li>
           <a
-            href=""
+          href="https://twitter.com/"
             class="social-list-link-footer"
-            aria-label="linl-for-instsgram"
+            aria-label="link to twitter"
             rel="noopener noreferer"
             target="_blank"
           >

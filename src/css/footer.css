@@ -18,7 +18,7 @@
 }
 
 .social-list-icon-footer {
-  fill: #fff;
+  fill:var(--color-title-and-text);
 }
 .img-footer{
   width: 98px;
@@ -55,7 +55,7 @@
   letter-spacing: 0.02em;
   color: rgba(250, 250, 250, 0.4);
 }
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 767.98px) {
   
   .text-footer {
     font-size: 16px;
@@ -64,10 +64,12 @@
   .footer-top {
     flex-direction: row;
     padding: 64px 0;
+    align-items: center;
   }
   .footer-logo {
+    align-items: center;
    gap: 142px;
-    /* width: 434px; */
+ 
   }
   .img-footer{
     width: 202px;
@@ -88,12 +90,12 @@
   .footer-bottom {
     height: 54px;
   }
-  /* .footer{
-    display: flex;
-  justify-content: space-between;
 
-  } */
 }
 
-@media screen and (min-width: 1200px) {
+@media screen and (min-width:  1439.98px) {
+  .footer-logo {
+      gap: 380px;
+
+  }
 }
