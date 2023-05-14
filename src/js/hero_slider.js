@@ -2,6 +2,9 @@
 // // import Swiper and modules styles
 // import 'swiper/css';
 // import 'swiper/css/navigation';
+
+//const { Scrollbar } = require("swiper");
+
 // import 'swiper/css/pagination';
 import Swiper, { Scrollbar } from 'swiper';
 
