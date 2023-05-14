@@ -1,0 +1,148 @@
+.random-characters-section {
+  padding: 80px 0px;
+}
+
+.random-characters-container {
+  position: relative;
+}
+
+.random-characters-title {
+  font-weight: 500;
+  font-size: 28px;
+  line-height: 1.14;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--color-title-and-text);
+  margin-bottom: 44px;
+}
+
+.random-characters-card {
+  margin-bottom: 20px;
+}
+
+.img-wrapper {
+  width: 335px;
+  height: 335px;
+}
+
+.random-characters-img {
+  border-radius: 8px;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+}
+
+.random-characters-list {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.random-characters-item {
+  display: block;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.2);
+}
+
+.random-item-link {
+  display: block;
+  padding-bottom: 32px;
+  margin-top: 32px;
+}
+
+.active > p,
+.active > h2 {
+  color: #4b50ad;
+}
+
+.random-item-title {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: var(--color-title-and-text);
+}
+
+.random-item-text {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.28;
+  letter-spacing: -0em;
+  color: rgba(250, 250, 250, 0.5);
+}
+
+.random-characters-link {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.28;
+  text-transform: uppercase;
+  padding: 10px 20px;
+  color: var(--color-title-and-text);
+  border: 1px solid rgba(250, 250, 250, 0.3);
+  border-radius: 250px;
+  position: absolute;
+  right: 20px;
+}
+
+.random-characters-link:hover,
+.random-characters-link:focus {
+  color: #4b50ad;
+}
+
+@media screen and (min-width: 767.98px) {
+  .random-characters-section {
+    padding: 128px 0px;
+  }
+
+  .random-characters-card {
+    margin-bottom: 32px;
+  }
+
+  .random-characters-title {
+    font-size: 44px;
+    line-height: 1.37;
+    margin-bottom: 64px;
+  }
+
+  .img-wrapper {
+    width: 704px;
+    height: 704px;
+  }
+
+  .random-item-title {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .random-item-text {
+    font-size: 16px;
+    line-height: 1.12;
+    letter-spacing: -0em;
+  }
+
+  .random-characters-link {
+    padding: 12px 24px;
+  }
+}
+
+@media screen and (min-width: 1199.98px) {
+  .random-characters-title {
+    line-height: 1;
+  }
+
+  .random-characters-card {
+    display: flex;
+    gap: 32px;
+  }
+
+  .img-wrapper {
+    background-size: cover;
+  }
+
+  .random-item-text {
+    font-size: 16px;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+  }
+}
