@@ -16,7 +16,7 @@ export default class MarvelAPI {
     params.hash = md5(params.ts + this.PRIVATE_KEY + this.PUBLIC_KEY);
     try {
       const { data, status, statusText } = await this.marvel.get(endPoint, {
-        params,
+        params
       });
       if (status !== 200) console.log(status, statusText);
       this.totalResults = data.data.total;
@@ -38,7 +38,7 @@ export default class MarvelAPI {
     return await this.getData('characters', { nameStartsWith: string });
   }
 
-  async getByComics(string) {
+  async getComicsByName(string) {
     return await this.getData('comics', { titleStartsWith: string });
   }
 
@@ -52,6 +52,13 @@ export default class MarvelAPI {
     });
     const data = await Promise.all(promises);
     return data.map(e => e[0]);
+  }
+
+  async getComicCreators(id){
+    return await this.getData(`comics/${id}/creators`);
+  }
+  async getComicCharacters(id){
+    return await this.getData(`comics/${id}/characters`);
   }
 
   async getFilteredCharacters(modifiedSince, nameStartsWith, orderBy, comics) {
