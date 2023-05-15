@@ -381,11 +381,11 @@
    }
 
    .try-looking {
+    display: flex;
     align-items: center;
     align-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 120px;
+    justify-content: center;
+    margin: 0 auto;
    }
    
    .invisible {

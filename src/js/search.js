@@ -96,10 +96,10 @@ function widthParam(width, fn) {
 const defaultImage = `<img
   class="try-looking"
   srcset="
-  ./img/tab/frame-tabl-deskt.png 1x,
-  ./img/tab/frame-2x@tabl-deskt.png 2x
+  ../img/tab/frame-tabl-deskt.png 1x,
+  ../img/tab/frame-2x@tabl-deskt.png 2x
   "
-  src="./img/tab/frame-tabl-deskt.png"
+  src="../img/tab/frame-tabl-deskt.png"
   title="default-image"
   alt="Try looking for something else"
   width="375px"
