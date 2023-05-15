@@ -176,3 +176,75 @@
     }
 
 }
+
+/*------КЛАСИ ПАГІНАЦІЇ--НЕ АДАПТОВАНІ-----*/
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(23, 23, 23, 1);
+    padding: 2px;
+    max-width: 400px;
+}
+.pagination ul {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: rgba(23, 23, 23, 1);
+    padding: 8px;
+    border-radius: 50px;
+    
+}
+
+.pagination ul button {
+    outline: none;
+    color: #fff;
+    background: rgba(23, 23, 23, 1);
+    list-style: none;
+    line-height: 45px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.pagination ul button.numb {
+    list-style: none;
+    height: 45px;
+    width: 45px;
+    margin: 0 3px;
+    line-height: 45px;
+    border-radius: 5px;
+}
+
+.pagination ul button.numb.first {
+    margin: 0px 3px 0 -5px;
+}
+
+.pagination ul button.numb.last {
+    margin: 0px 5px 0 3px;
+}
+
+.pagination ul button.dots {
+    font-size: 22px;
+    cursor: default;
+}
+
+.pagination ul button.btn {
+    padding: 0 20px;
+    border-radius: 5px;
+}
+
+.pagination button.active,
+.pagination ul button.numb:hover,
+.pagination ul button:first-child:hover,
+.pagination ul button:last-child:hover {
+    color: #fff;
+    background: rgba(52, 56, 127, 1);
+}
+
