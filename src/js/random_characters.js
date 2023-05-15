@@ -29,12 +29,19 @@ async function initialRandomizing() {
 
   function renderImage() {
     imgRef.innerHTML = '';
-    return imgRef.insertAdjacentHTML(
-      'afterbegin',
-      `<img src="${getImgUrl(
-        currentCard.thumbnail
-      )}" class="random-characters-img" />`
-    );
+    const imgElement = document.createElement('img');
+    imgElement.src = getImgUrl(currentCard.thumbnail);
+    imgElement.classList.add('random-characters-img');
+    imgRef.appendChild(imgElement);
+    setTimeout(() => imgElement.classList.add('show'), 300);
+  }
+
+  function hideImage() {
+    const imgElement = imgRef.querySelector('.random-characters-img');
+    if (imgElement) {
+      imgElement.classList.remove('show');
+      setTimeout(() => (imgRef.innerHTML = ''), 3500);
+    }
   }
 
   function renderItems() {
@@ -55,6 +62,7 @@ async function initialRandomizing() {
   }
 
   function showSlides() {
+    hideImage();
     renderImage();
     renderItems();
     let slides = document.getElementsByClassName('random-characters-item');
