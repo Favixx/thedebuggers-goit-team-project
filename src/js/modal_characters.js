@@ -1,4 +1,5 @@
-const openModalCharacters = async charactersId => {
+import MarvelAPI from './api_defaults';
+export async function openModalCharacters(charactersId) {
   const body = document.querySelector('body');
   const marvel = new MarvelAPI();
   const data = await marvel.getCharacterByID(1010354);
@@ -122,4 +123,4 @@ const openModalCharacters = async charactersId => {
   modalDiv.innerHTML = markUp;
   const closeBtn = document.querySelector('.modal-characters-close-btn');
   closeBtn.addEventListener('click', e => modalDiv.remove());
-};
+}
