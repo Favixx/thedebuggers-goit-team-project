@@ -19,7 +19,6 @@ const randomNumbers = getRandomNumbers(NumberOfCards);
 
 async function initialRandomizing() {
   const data = await marvelApi.getFiveCharacters(randomNumbers);
-  console.log(data);
   const randomCards = data.sort(() => 0.5 - Math.random());
   let selectedCards = randomCards.slice(0, 5);
   let currentCard = selectedCards[0];

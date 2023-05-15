@@ -126,7 +126,7 @@
   }
 }
 
-@media screen and (min-width: 1199.98px) {
+@media screen and (min-width: 1439.98px) {
   .random-characters-title {
     line-height: 1;
   }
@@ -134,6 +134,7 @@
   .random-characters-card {
     display: flex;
     gap: 32px;
+    align-items: center;
   }
 
   .img-wrapper {
