@@ -41,8 +41,7 @@ const swiper = new Swiper('.swiper', {
   autoplay:{
     delay: 5000,
   },
-  loop: true,
-
+  
   // Navigation arrows
 });
 // Ініціалізація Swiper слайдера
@@ -59,8 +58,8 @@ swiper.on('slideChange', function () {
 
 // Функція для зміни кольору Scrollbar
 function updateScrollbarColor() {
-  var activeSlideIndex = swiper.activeIndex; // Отримання індексу поточного слайда
-
+  let activeSlideIndex = swiper.activeIndex; // Отримання індексу поточного слайда
+  console.log(activeSlideIndex)
   // Зміна кольору Scrollbar в залежності від поточного слайда
   if (activeSlideIndex == 0) {
     swiper.scrollbar.dragEl.style.backgroundColor = '#34387F';

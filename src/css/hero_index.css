@@ -50,45 +50,72 @@
   font-size: 80px;
   line-height: 80px;
  
-   
- 
+  
+  
    */
-  color: #fafafa;
-  font-size: 44px;
-  line-height: 44px;
-  letter-spacing: -0.02em;
-  margin-bottom: 16px;
-}
-.p-home-hero {
-  color: #fafafa;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 18px;
-  height: 128px;
-  margin-bottom: 20px;
-}
-
-.button-home-hero {
-  /* padding: 12px 24px;
-  width: 167px;
-  height: 42px
-  font-size: 14px;
-  line-height: 18px; */
-  display: block;
-  color: #fafafa;
-  padding: 10px 20px;
-  gap: 10px;
-text-align: center;
-  width: 142px;
+   color: #fafafa;
+   font-size: 44px;
+   line-height: 44px;
+   letter-spacing: -0.02em;
+   margin-bottom: 16px;
+  }
+  .p-home-hero {
+    color: #fafafa;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    height: 128px;
+    margin-bottom: 20px;
+  }
+  
+  .button-home-hero {
+    margin-left: 3px;
+    /* padding: 12px 24px;
+    width: 167px;
+    height: 42px
+    font-size: 14px;
+    line-height: 18px; */
+    display: block;
+    color: #fafafa;
+    padding: 10px 20px;
+    gap: 10px;
+    text-align: center;
+    width: 142px;
   height: 36px;
   font-weight: 500;
   font-size: 12px;
   line-height: calc(16/12);
-  background: #34387f;
+  
   border-radius: 1000px;
   border: none;
   text-transform: uppercase;
   white-space: nowrap;
+  transition: 0.25s background-color ease, 0.25s outline-color ease, 0.25s color ease;
+}
+.blue-but{
+  background-color: #34387f;
+}
+.green_but{
+  background-color: #5B7F3C;
+}
+.red_but{
+  background-color: #600404;
+}
+.blue-but:hover{
+  background-color: transparent;
+  color:#34387F;
+  outline: 2px solid #34387F;
+}
+.red_but:hover{
+  background-color: transparent;
+  color:#600404;
+  outline: 2px solid #600404;
+}
+
+.green_but:hover{
+  background-color: transparent;
+  color:#5B7F3C;
+  outline: 2px solid #5B7F3C;
 }
 .part-1 {
   /* padding: 0;
@@ -145,12 +172,6 @@ text-align: center;
 .info-home-hero-character {
   display: flex;
   margin-left: 100px;
-}
-.green_but{
-  background: #5B7F3C;
-}
-.red_but{
-  background: #600404;
 }
 @media screen and (min-width: 767.98px) {
   .text-home-hero {
