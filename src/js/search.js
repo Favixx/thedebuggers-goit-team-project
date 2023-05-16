@@ -1,5 +1,6 @@
 import MarvelAPI from './api_defaults';
 import debounce from 'lodash.debounce';
+import { openModalCharacters } from './modal_characters';
 
 const refs = {
   body: document.querySelector('body'),
@@ -10,23 +11,24 @@ const refs = {
   charactersGallery: document.querySelector('.characters-gallery'),
   form: document.querySelector('.searchandsort-container'),
   pagination: document.querySelector('.pagination'),
-  searchComicsIcon: document.querySelector('.search-svg-comics'),
-  searchNameIcon: document.querySelector('.search-svg-name'),
 };
 
 const marvelApi = new MarvelAPI();
+let totalPages = 10;
+let page = 1;
 
 // Create a character card
 function createCharacterCard(character) {
   const card = document.createElement('li');
+  card.setAttribute('data-id', character.id);
   card.innerHTML = `
-    <img class="character-image" src="${character.thumbnail.path}.${character.thumbnail.extension}" alt="${character.name}">
-    <h3 class="character-name">${character.name}</h3>
+    <img src="${character.thumbnail.path}.${character.thumbnail.extension}" alt="${character.name}">
+    <h3>${character.name}</h3>
   `;
   return card;
 }
 
-// Render character cards in the page
+// Render character cards
 function renderCharacterCards(characters) {
   refs.charactersGallery.innerHTML = '';
   characters.forEach(character => {
@@ -35,18 +37,10 @@ function renderCharacterCards(characters) {
   });
 }
 
-// Event listener
+// Event listener at form
 refs.form.addEventListener(
   'change',
-  debounce(handleChange,500))
-refs.searchComicsIcon.addEventListener(
-    'change',
-    debounce(handleChange,500))
-refs.searchNameIcon.addEventListener(
-      'change',
-      debounce(handleChange,500))
-
-async function handleChange() {
+  debounce(async event => {
     const comics = refs.comicsInput.value;
     const selectValue = refs.selectInput.value;
     const name = refs.nameInput.value;
@@ -66,22 +60,27 @@ async function handleChange() {
       selectValue,
       comics
     );
-    console.log(data.length);
-    // if (data.length > 5) {
-    //   refs.pagination.classList.remove('invisible')
-    // } else {
-    //   refs.pagination.classList.add('invisible')
-    // }
+    totalPages = marvelApi.totalPage;
+    page = marvelApi.currentPage;
     if (data.length !== 0) {
       console.log(marvelApi.totalResults);
-      renderCharacterCards(data)
-    } 
-    else {
+      renderCharacterCards(data);
+    } else {
       refs.charactersGallery.innerHTML = defaultImage;
     }
+  }),
+  500
+);
+
+refs.charactersGallery.addEventListener('click', handleImageClick);
+function handleImageClick(event) {
+  console.log(event.target);
+  console.log(event.target.parentNode);
+  const card = event.target.parentNode;
+  if (card.hasAttribute('data-id')) {
+    openModalCharacters(Number(card.dataset.id));
   }
-
-
+}
 
 function widthParam(width, fn) {
   if (width < 768) {
@@ -93,29 +92,42 @@ function widthParam(width, fn) {
   }
 }
 
-const defaultImage = `<picture class="try-looking">
-<source srcset="
-../img/tab/frame-tabl-deskt.png 1x,
-../img/tab/frame-2x@tabl-deskt.png 2x" media="">
-<source srcset="../img/mob/frame-mob.png 1x, 
-../img/mob/frame-2x@mob.png 2x">
-  <img src="../img/tab/frame-tabl-deskt.png"
+// Event listener at gallery
+
+const defaultImage = `<img
+  class="try-looking"
+  srcset="
+  ./img/tab/frame-tabl-deskt.png 1x,
+  ./img/tab/frame-2x@tabl-deskt.png 2x
+  "
+  src="./img/tab/frame-tabl-deskt.png"
   title="default-image"
   alt="Try looking for something else"
   width="375px"
-  height="221px"/>
-</picture>
+  height="221px"
+  loading="lazy"
+/>
 `;
 
 const element = document.querySelector('.pagination ul');
-element.addEventListener('click', handleClickPagination);
+const elementDiv = document.querySelector('.pagination');
+// element.addEventListener('click', handleClickPagination);
+
 function handleClickPagination(event) {
-  console.log(event.target);
+  const paginationBtn = event.target.closest('button');
+  if (paginationBtn.classList.contains('btn')) {
+    if (paginationBtn.classList.contains('prev')) {
+      renderPagination(page - 1);
+      element.innerHTML = createPagination(totalPages, page - 1);
+    } else {
+      renderPagination(page + 1);
+      element.innerHTML = createPagination(totalPages, page + 1);
+    }
+  }
+
   if (event.target === 0) {
   }
 }
-let totalPages = 10;
-let page = 1;
 
 element.innerHTML = createPagination(totalPages, page);
 function createPagination(totalPages, page) {
@@ -172,5 +184,18 @@ function createPagination(totalPages, page) {
     liTag += `<button class="btn next"><span>></span></button>`;
   }
   element.innerHTML = liTag;
+  elementDiv.classList.remove('invisible');
   return liTag;
+}
+async function renderPagination(pageNumb) {
+  marvelApi.setPaginationParams(pageNumb);
+  const data = await marvelApi.getFilteredCharacters();
+  totalPages = marvelApi.totalPage;
+  page = marvelApi.currentPage;
+  if (data.length !== 0) {
+    console.log(marvelApi.totalResults);
+    renderCharacterCards(data);
+  } else {
+    refs.charactersGallery.innerHTML = defaultImage;
+  }
 }
