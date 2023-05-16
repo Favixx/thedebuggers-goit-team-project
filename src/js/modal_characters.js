@@ -1,4 +1,5 @@
 import MarvelAPI from './api_defaults';
+import { OpenComicsModal } from './modal_comics';
 // import Swiper, { Navigation, Pagination } from 'swiper';
 // import 'swiper/css';
 // import 'swiper/css/navigation';
@@ -28,7 +29,8 @@ export async function openModalCharacters(charactersId) {
   const markUp = data
     .map(
       e =>
-        `<div class="backdrop-modal is-hidden"><div class="modal-characters-container">
+        `<div class="backdrop-modal">
+        <div class="modal-characters-container">
   <button type="button" class="modal-characters-close-btn">
     <svg class="modal-characters-close-btn-icon" width="10" height="10">
       <use href="../img/sprite.svg#icon-close-btn"></use>
@@ -98,28 +100,43 @@ export async function openModalCharacters(charactersId) {
 async function makeSlider(characterId) {
   const marvel = new MarvelAPI();
   const comicsData = await marvel.getComicsByCharacterID(characterId);
-  const comicsMarkUp = comicsData
-    .map(
-      e =>
-        `<div class="modal-characters-info-comics-item swiper-slide-characters">
-  <button type="button" class="modal-characters-info-comics-button">
-    <img
-      src="${e.thumbnail.path}/standard_amazing.${e.thumbnail.extension}"
-      alt=""
-      class="modal-characters-info-comics-image"
-    />
-  </button>
-  <h3 class="modal-characters-info-comics-name">
-    ${e.title}
-  </h3>
-  <p class="modal-characters-info-comics-author">${e.creators.items[0]?.name}</p>
-</div>
-  `
-    )
-    .join('');
   const list = document.querySelector('.modal-characters-info-comics-list');
-  list.innerHTML = comicsMarkUp;
+  list.innerHTML = '';
+
+  comicsData.slice(0, 3).forEach(e => {
+    const item = document.createElement('div');
+    item.classList.add(
+      'modal-characters-info-comics-item',
+      'swiper-slide-characters'
+    );
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.classList.add('modal-characters-info-comics-button');
+    button.addEventListener('click', () => openModal(e.id));
+
+    const image = document.createElement('img');
+    image.src = `${e.thumbnail.path}/standard_amazing.${e.thumbnail.extension}`;
+    image.alt = '';
+    image.classList.add('modal-characters-info-comics-image');
+
+    const title = document.createElement('h3');
+    title.classList.add('modal-characters-info-comics-name');
+    title.textContent = e.title;
+
+    const author = document.createElement('p');
+    author.classList.add('modal-characters-info-comics-author');
+    author.textContent = e.creators.items[0].name;
+
+    button.appendChild(image);
+    item.appendChild(button);
+    item.appendChild(title);
+    item.appendChild(author);
+
+    list.appendChild(item);
+  });
 }
-// const swiperCharacters = new Swiper('.swiper-characters', {
-//   modules: [Navigation, Pagination],
-// });
+
+function openModal(id) {
+  OpenComicsModal(id);
+}
