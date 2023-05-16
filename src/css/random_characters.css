@@ -41,7 +41,6 @@
 .random-characters-list {
   display: flex;
   flex-direction: column-reverse;
-  justify-content: flex-start;
   width: 100%;
 }
 

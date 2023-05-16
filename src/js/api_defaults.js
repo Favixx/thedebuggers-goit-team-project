@@ -2,8 +2,8 @@ import { keys } from './keys';
 import axios from 'axios';
 import md5 from 'md5';
 export default class MarvelAPI {
-  PUBLIC_KEY = '80ffeb6fa5691a33f33e64431c6d9989';
-  PRIVATE_KEY = 'c6c470899aecedfc1c5215fc7096b67431ebdc43';
+  PUBLIC_KEY = 'a8eb5267d3554d948feb51d4d5baa392';
+  PRIVATE_KEY = 'b29d496a1b59d6f335fd297e737331f03b528d90';
   constructor() {
     // this.changeKey();
     this.marvel = axios.create({
