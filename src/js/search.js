@@ -2,7 +2,7 @@ import MarvelAPI from './api_defaults';
 import debounce from 'lodash.debounce';
 import { openModalCharacters } from './modal_characters';
 
-const refs = {
+export const refs = {
   body: document.querySelector('body'),
   comicsInput: document.getElementById('comics'),
   selectInput: document.getElementById('select'),
@@ -22,8 +22,9 @@ function createCharacterCard(character) {
   const card = document.createElement('li');
   card.setAttribute('data-id', character.id);
   card.innerHTML = `
-    <img src="${character.thumbnail.path}.${character.thumbnail.extension}" alt="${character.name}">
-    <h3>${character.name}</h3>
+    <button class="character-image-button"><img class="character-image" src="${character.thumbnail.path}.${character.thumbnail.extension}" 
+    alt="${character.name}"></button>
+    <h3 class="character-name">${character.name}</h3>
   `;
   return card;
 }
@@ -40,7 +41,13 @@ function renderCharacterCards(characters) {
 // Event listener at form
 refs.form.addEventListener(
   'change',
-  debounce(async event => {
+  debounce(handleChange,500))
+refs.searchComicsIcon.addEventListener(
+    'click', handleChange)
+refs.searchNameIcon.addEventListener(
+      'click', handleChange)
+
+async function handleChange() {
     const comics = refs.comicsInput.value;
     const selectValue = refs.selectInput.value;
     const name = refs.nameInput.value;
@@ -68,19 +75,9 @@ refs.form.addEventListener(
     } else {
       refs.charactersGallery.innerHTML = defaultImage;
     }
-  }),
-  500
-);
-
-refs.charactersGallery.addEventListener('click', handleImageClick);
-function handleImageClick(event) {
-  console.log(event.target);
-  console.log(event.target.parentNode);
-  const card = event.target.parentNode;
-  if (card.hasAttribute('data-id')) {
-    openModalCharacters(Number(card.dataset.id));
   }
-}
+
+
 
 function widthParam(width, fn) {
   if (width < 768) {
@@ -92,21 +89,18 @@ function widthParam(width, fn) {
   }
 }
 
-// Event listener at gallery
-
-const defaultImage = `<img
-  class="try-looking"
-  srcset="
-  ./img/tab/frame-tabl-deskt.png 1x,
-  ./img/tab/frame-2x@tabl-deskt.png 2x
-  "
-  src="./img/tab/frame-tabl-deskt.png"
+const defaultImage = `<picture class="try-looking">
+<source srcset="
+../img/tab/frame-tabl-deskt.png 1x,
+../img/tab/frame-2x@tabl-deskt.png 2x" media="">
+<source srcset="../img/mob/frame-mob.png 1x, 
+../img/mob/frame-2x@mob.png 2x">
+  <img src="../img/tab/frame-tabl-deskt.png"
   title="default-image"
   alt="Try looking for something else"
   width="375px"
-  height="221px"
-  loading="lazy"
-/>
+  height="221px"/>
+</picture>
 `;
 
 const element = document.querySelector('.pagination ul');
