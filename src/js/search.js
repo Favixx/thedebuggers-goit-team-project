@@ -18,20 +18,17 @@ let totalPages = 10;
 let page = 1;
 const element = document.querySelector('.pagination ul');
 const elementDiv = document.querySelector('.pagination');
-const defaultImage = `<img
-  class="try-looking"
-  srcset="
-  ./img/tab/frame-tabl-deskt.png 1x,
-  ./img/tab/frame-2x@tabl-deskt.png 2x
-  "
-  src="./img/tab/frame-tabl-deskt.png"
+const defaultImage = `<picture class="try-looking">
+  <source srcset="
+  ../img/tab/frame-tabl-deskt.png 1x,
+  ../img/tab/frame-2x@tabl-deskt.png 2x" media="">
+  <source srcset="../img/mob/frame-mob.png 1x, 
+  ../img/mob/frame-2x@mob.png 2x">
   title="default-image"
   alt="Try looking for something else"
   width="375px"
-  height="221px"
-  loading="lazy"
-/>
-`;
+  height="221px"/>
+  </picture>`;
 
 // Create a character card
 function createCharacterCard(character) {
