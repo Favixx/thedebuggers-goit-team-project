@@ -16,6 +16,10 @@
 <symbol id="icon-close-btn" viewBox="0 0 32 32">
 <path d="M32 3.224l-3.224-3.224-12.776 12.776-12.776-12.776-3.224 3.224 12.776 12.776-12.776 12.776 3.224 3.224 12.776-12.776 12.776 12.776 3.224-3.224-12.776-12.776 12.776-12.776z"></path>
 </symbol>
+<symbol id="icon-shevron" viewBox="0 0 48 32">
+<path fill="none" stroke="#fafafa" stroke-width="8" stroke-miterlimit="4" stroke-linecap="round" stroke-linejoin="round" style="stroke: var(--color1, #fafafa)" d="M6 7l18 18 18-18"></path>
+</symbol>
+
 
 
 
