@@ -80,7 +80,8 @@ export default class MarvelAPI {
 
   async getCharactersByPage(pageNumber) {
     const params = this.params;
-    params.offset = pageNumber * this.limit;
+    params.offset = (pageNumber - 1) * this.perPage;
+    console.log('API', params, this.perPage);
     return await this.getData('characters', params);
   }
 
