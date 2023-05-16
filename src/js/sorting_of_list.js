@@ -5,7 +5,7 @@ const datePicker = document.getElementById('date')
 const options = {
   enableTime: false,
   dateFormat: 'm/d/Y',
-  defaultDate: new Date(),
+  defaultDate: "--/--/----",
   onClose(selectedDates) {selectedDates[0]
   },
 };
