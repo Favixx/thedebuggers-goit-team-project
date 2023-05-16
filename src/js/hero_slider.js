@@ -38,9 +38,6 @@ const swiper = new Swiper('.swiper', {
       direction: 'vertical'
     }
   },
-  autoplay:{
-    delay: 5000,
-  },
   
   // Navigation arrows
 });
