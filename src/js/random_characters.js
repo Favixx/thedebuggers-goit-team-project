@@ -1,4 +1,5 @@
 import MarvelAPI from './api_defaults';
+import { openModalCharacters } from './modal_characters';
 const INTERVAL = 3500;
 const NUMBER_OF_CARDS = 1562;
 const listRef = document.querySelector('.random-characters-list');
@@ -47,34 +48,26 @@ async function initialRandomizing() {
 
   function renderItems() {
     listRef.innerHTML = '';
-    for (let i = selectedCards.length - 1; i >= 0; i--) {
-      const item = selectedCards[i];
-      const listItem = document.createElement('li');
-      listItem.classList.add('random-characters-item');
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.classList.add('random-item-btn');
-      if (item.id === currentCard.id) {
-        button.classList.add('active');
-      }
-      button.description = item.description;
-      listItem.appendChild(button);
-      const title = document.createElement('h2');
-      title.classList.add('random-item-title');
-      title.textContent = item.name;
-      button.appendChild(title);
-      const text = document.createElement('p');
-      text.classList.add('random-item-text');
-      text.textContent = item.description;
-      button.appendChild(text);
-      listRef.appendChild(listItem);
-    }
+    return selectedCards.forEach(item => {
+      listRef.insertAdjacentHTML(
+        'afterbegin',
+        `<li class="random-characters-item">
+        <button type="button" class="random-item-btn ${
+          item.id === currentCard.id ? 'active' : ''
+        }">
+        <h2 class="random-item-title">${item.name}</h2>
+        <p class="random-item-text">${item.description}</p>
+        </button>
+        </li>`
+      );
+    });
   }
 
   function showSlides() {
     hideImage();
     renderImage();
     renderItems();
+    addEventListeners();
     let slides = document.getElementsByClassName('random-characters-item');
     for (let i = 0; i < slides.length; i++) {
       if (slideIndex === 4) {
@@ -87,8 +80,23 @@ async function initialRandomizing() {
     if (slideIndex > slides.length - 1) {
       slideIndex = 0;
     }
-    setTimeout(showSlides, INTERVAL); // Change image every 3.5 seconds
+    setTimeout(showSlides, INTERVAL);
   }
   showSlides();
+
+  function openModal(id) {
+    openModalCharacters(id);
+  }
+
+  function addEventListeners() {
+    const buttons = document.querySelectorAll('.random-item-btn');
+    for (let i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', event => {
+        const item = selectedCards[i];
+        openModal(item.id);
+        console.log(event);
+      });
+    }
+  }
 }
 initialRandomizing();

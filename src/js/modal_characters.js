@@ -28,7 +28,7 @@ export async function openModalCharacters(charactersId) {
   const markUp = data
     .map(
       e =>
-        ` <div class="modal-characters-container">
+        `<div class="backdrop-modal is-hidden"><div class="modal-characters-container">
   <button type="button" class="modal-characters-close-btn">
     <svg class="modal-characters-close-btn-icon" width="10" height="10">
       <use href="./img/sprite.svg#icon-close-btn"></use>
@@ -85,6 +85,7 @@ export async function openModalCharacters(charactersId) {
     </div>
   </div>
 </div>
+</div>
 `
     )
     .join('');
@@ -122,5 +123,3 @@ async function makeSlider() {
 // const swiperCharacters = new Swiper('.swiper-characters', {
 //   modules: [Navigation, Pagination],
 // });
-
-openModalCharacters(1010354);
