@@ -85,7 +85,7 @@
 
    .date-svg {
     position: absolute;
-    left: 83.25%;
+    left: 85%;
     top: 86%;
     z-index: 10;
     cursor: pointer;
@@ -107,8 +107,12 @@
    .searchandsort-label.date {
     display: block;
     width: 158px;
-    max-width: calc(50% - 4px)
+    max-width: calc(50% - 4px);
    }
+   .searchandsort-input.date {
+    padding-right: 33px;
+   }
+
 
    .search-svg-comics-button {
     position: absolute;
@@ -352,7 +356,7 @@
        }
        .date-svg {
         position: absolute;
-        left: 77%;
+        left: 79%;
         top: 58%;
         z-index: 10;
         cursor: pointer;
@@ -387,6 +391,10 @@
     .character-image-button {
         width: 336px;
         height: 450px;
+       }
+       .searchandsort-input.date {
+        padding-left: 15px;
+        padding-right: 34px;
        }
    }
    
@@ -491,10 +499,14 @@
        }
        .date-svg {
         position: absolute;
-        left: 77%;
+        left: 80%;
         top: 58%;
         z-index: 10;
         cursor: pointer;
+       }
+       .searchandsort-input.date {
+        padding-left: 15px;
+        padding-right: 30px;
        }
 
 
