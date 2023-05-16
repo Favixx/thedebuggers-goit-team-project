@@ -83,6 +83,10 @@ export default class MarvelAPI {
     params.offset = pageNumber * this.limit;
     return await this.getData('characters', params)
   }
+
+  async getComicsByCharacterID(num) {
+    return await this.getData(`characters/${num}/comics`);
+  }
   
   setPerPage(perPage = 20) {
     this.perPage = perPage;
