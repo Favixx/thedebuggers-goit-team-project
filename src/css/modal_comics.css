@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: black;
+  color: white;
+}
+.comics-modal-close-icon {
+  padding: 5px;
+  fill: white;
+}
+.comics-modal-window {
+  width: 295px;
+  background-color: #171717;
+  border-radius: 8px;
+}
+@media screen and (min-width: 767.98px) {
+  .comics-modal-window {
+    width: 536px;
+  }
+}
+@media screen and (min-width: 1199.98px) {
+  .comics-modal-window {
+    width: 588px;
+  }
+}
+
+.comisc-modal-author-portrait {
+  border-radius: 8px;
+}
+h2 {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: calc(24 / 18);
+}
+@media screen and (min-width: 767.98px) {
+  h2 {
+    font-size: 24px;
+    line-height: calc(24 / 24);
+    letter-spacing: -2%;
+  }
+}
+h3 {
+  color: rgba(250, 250, 250, 0.5);
+  font-size: 14px;
+  line-height: calc(18 / 14);
+}
+dl {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  display: inline;
+}
+dt {
+  font-size: 10px;
+  line-height: calc(12 / 10);
+  color: rgba(250, 250, 250, 0.5);
+  display: inline;
+}
+@media screen and (min-width: 767.98px) {
+  dt {
+    font-size: 12px;
+    line-height: calc(14 / 12);
+    color: rgba(250, 250, 250, 0.5);
+  }
+}
+dd {
+  font-size: 14px;
+  line-height: calc(18 / 14);
+  margin: 0;
+  display: inline;
+}
+@media screen and (min-width: 767.98px) {
+  dd {
+    font-size: 16px;
+    line-height: calc(18 / 16);
+  }
+}
+.h3 {
+  color: rgba(250, 250, 250, 0.5);
+  font-size: 10px;
+  line-height: calc(12 / 10);
+}
+ul {
+  list-style: none;
+}
+.comics-modal-comics-description {
+  font-size: 14px;
+  line-height: calc(18 / 14);
+}
+@media screen and (min-width: 767.98px) {
+  .comics-modal-comics-description {
+    font-size: 16px;
+    line-height: calc(18 / 16);
+  }
+}
+.comics-modal-characters-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.modal-window-character-item {
+  justify-content: center;
+  text-align: right;
+}
+.modal-comics-character-pict {
+  border-radius: 8px;
+}
+.modal-comics-gallery {
+  border-radius: 8px;
+}

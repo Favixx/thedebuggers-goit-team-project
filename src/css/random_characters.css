@@ -41,7 +41,7 @@
 .random-characters-list {
   display: flex;
   flex-direction: column-reverse;
-  justify-content: flex-end;
+  justify-content: flex-start;
   width: 100%;
 }
 
@@ -50,8 +50,10 @@
   border-bottom: 1px solid rgba(250, 250, 250, 0.2);
 }
 
-.random-item-link {
-  display: block;
+.random-item-btn {
+  background-color: transparent;
+  border: none;
+  text-align: start;
   padding-bottom: 32px;
   margin-top: 32px;
 }
