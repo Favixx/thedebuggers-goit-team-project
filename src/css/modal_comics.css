@@ -14,26 +14,33 @@ body {
   background-color: black;
   color: white;
 }
-.modal-comics-close-btn {
-  position: absolute;
-  top: 14px;
-  right: 14px;
-  fill: #fafafa;
-  background-color: #0c0b0b;
-  border: none;
-  width: 20px;
-  height: 20px;
-  padding: 0;
-}
-.comics-modal-close-icon {
-  padding: 5px;
-  fill: white;
-}
+
 .comics-modal-window {
   max-width: 295px;
   background-color: #171717;
   border-radius: 8px;
+  position: absolute;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 14;
 }
+
+.modal-comics-close-btn {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  border: none;
+  background-color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.comics-modal-close-icon {
+  fill: white;
+}
+
 @media screen and (min-width: 767.98px) {
   .comics-modal-window {
     max-width: 536px;

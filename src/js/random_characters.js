@@ -94,7 +94,6 @@ async function initialRandomizing() {
       buttons[i].addEventListener('click', event => {
         const item = selectedCards[i];
         openModal(item.id);
-        console.log(event);
       });
     }
   }
