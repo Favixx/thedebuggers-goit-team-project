@@ -99,18 +99,14 @@
    }
 
    .searchandsort-label.order{
-    display: inline-block;
+    display: block;
     width: 169px;
-    left: 5.5%;
-    top: 100%;
     max-width: calc(50% - 4px);
    }
    
    .searchandsort-label.date {
-    display: inline-block;
+    display: block;
     width: 158px;
-    right: 5.5%;
-    top: 100%;
     max-width: calc(50% - 4px)
    }
 
@@ -356,7 +352,7 @@
        }
        .date-svg {
         position: absolute;
-        left: 91%;
+        left: 77%;
         top: 58%;
         z-index: 10;
         cursor: pointer;
@@ -410,6 +406,9 @@
     margin-top: 8px;
     width: 100%;
     }
+    #date {
+        position: relative;
+    }
    
     .searchandsort-label {
     font-size: 14px;
@@ -431,7 +430,6 @@
     }
    
     .searchandsort-label.comics {
-    order: 1;
     width: 268px;
     max-width: 100%;
     margin-left: 0;
@@ -439,24 +437,18 @@
     }
    
     .searchandsort-label.order {
-    order: 2;
     max-width: 100%;
-    width: 185px;
-    position: static;
+    position: relative;
     }
    
     .searchandsort-label.name {
-    order: 3;
     width: 190px;
     max-width: 100%;
     position: relative;
     }
    
     .searchandsort-label.date {
-    order: 4;
-    width: 170px;
     max-width: 100%;
-    position: relative;
     }
 
     .search-svg-comics-button {
@@ -492,19 +484,18 @@
     }
     .select-svg {
         position: absolute;
-        left: 48.7%;
+        left: 49.9%;
         top: 58%;
         z-index: 10;
         cursor: pointer;
        }
        .date-svg {
         position: absolute;
-        left: 75%;
+        left: 77%;
         top: 58%;
         z-index: 10;
         cursor: pointer;
        }
-
 
 
 
@@ -539,5 +530,27 @@
             width: 332px;
             height: 445px;
            }
+           
    } 
    
+   @media screen and (min-width: 768.98px) {
+    .searchandsort-label.comics {
+        order: 1;
+        position: relative;
+        }
+       
+        .searchandsort-label.order {
+        order: 2;
+        position: static;
+        }
+       
+        .searchandsort-label.name {
+        order: 3;
+        position: relative;
+        }
+       
+        .searchandsort-label.date {
+        order: 4;
+        position: relative;
+        }
+   }
