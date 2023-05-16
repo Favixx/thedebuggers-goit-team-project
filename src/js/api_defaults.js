@@ -1,9 +1,9 @@
+import { keys } from './keys';
 import axios from 'axios';
 import md5 from 'md5';
 export default class MarvelAPI {
-  PUBLIC_KEY = 'e8d87ed088b5013742a2a9466816b30e';
-  PRIVATE_KEY = 'dbde977f898ea7131460b979ad9d4adf2e774ce4';
   constructor() {
+    this.changeKey();
     this.marvel = axios.create({
       baseURL: 'https://gateway.marvel.com/v1/public/',
       params: {
@@ -19,7 +19,11 @@ export default class MarvelAPI {
         params
       });
       if (status !== 200) console.log(status, statusText);
+      if (status === 429 && this.changeKey()) return await this.getData(endPoint, params);
       this.totalResults = data.data.total;
+      this.perPage = data.data.limit;
+      this.currentPage = data.data.offset / data.data.limit + 1;
+      this.totalPage = Math.ceil(this.totalResults / data.data.limit);
       return data.data.results;
     } catch (error) {
       console.log(error.message);
@@ -68,12 +72,29 @@ export default class MarvelAPI {
     if (nameStartsWith) params.nameStartsWith = nameStartsWith;
     if (orderBy) params.orderBy = orderBy;
     if (comics) params.comics = comics;
-    console.log(params);
+    this.params = params;
     return await this.getData('characters', params);
   }
 
-  setPaginationParams(page = 1, perPage = 20) {
-    this.marvel.defaults.params['offset'] = perPage * (page - 1);
+  async getCharactersByPage(pageNumber){
+    const params = this.params;
+    params.offset = pageNumber * this.limit;
+    return await this.getData('characters', params)
+  }
+  
+  setPerPage(perPage = 20) {
+    this.perPage = perPage;
     this.marvel.defaults.params['limit'] = perPage;
   }
-}
+  changeKey(){
+    const newKeys = keys.getNextKey();
+    console.log(newKeys)
+    if (newKeys) {
+      this.PRIVATE_KEY = newKeys.private;
+      this.PUBLIC_KEY = newKeys.public;
+      return true;
+    } else {
+      return null;
+    }
+  }
+}   
