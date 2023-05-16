@@ -33,7 +33,7 @@ export async function openModalCharacters(charactersId) {
         <div class="modal-characters-container">
   <button type="button" class="modal-characters-close-btn">
     <svg class="modal-characters-close-btn-icon" width="10" height="10">
-      <use href="./img/sprite.svg#icon-close-btn"></use>
+      <use href="../img/sprite.svg#icon-close-btn"></use>
     </svg>
   </button>
   <div class="modal-characters-gallery">
