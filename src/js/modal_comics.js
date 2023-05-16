@@ -13,6 +13,20 @@ const charactersList = modalWindow.querySelector(
 );
 const genInfo = modalWindow.querySelector('.modal-comics-general-info');
 
+const monthName = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
 async function getComicsByID(comicsID) {
   //   const promises = [];
   const comicsEndpoint = `comics/${comicsID}`;
@@ -56,38 +70,47 @@ function renderComicsCard(comicsData, creatorsNew) {
     images,
   } = comicsData[0];
   // const creatorsMarkup = renderComicsCard(creatorsNew)
-  return `<img src="${thumbnail.path}.${
+  return `<div><img class="modal-comics-main-pict" src="${thumbnail.path}.${
     thumbnail.extension
-  }" width="332" height="445">
-  <h2>${title}</h2>
-      <h3>${creators.items[3].name} | ${modified}</h3>
-      <p class="comics-description">
+  }" width="295">
+  <ul class="modal-comics-gallery">${renderComicsGallery(images)}</ul>
+  </div>
+  <h2 class="title">${title}</h2>
+      <h3>${creators.items[3].name} | ${
+    monthName[new Date(modified).getMonth()]
+  } ${new Date(modified).getDate()}, ${new Date(modified).getFullYear()}</h3>
+      <p class="comics-modal-comics-description">
         ${description}
       </p>
-      <ul>
-      <li>
-      <p>format</p>
-      <p>${format}</p>
+      <ul class="modal-comics-filter-info">
+      <li class="modal-comics-filter-item">
+      <p class="modal-comics-filter">format</p>
+      <p class="modal-comics-filter-descr">${format}</p>
       </li>
-      <li><p>year realeased</p>
-      <p>${new Date(dates.date).toDateString()}</p>
+      <li>
+      <p class="modal-comics-filter">year realeased</p>
+      <p class="modal-comics-filter-descr">${new Date(
+        dates.date
+      ).getFullYear()}</p>
       </li>
 <li>
-<p>pages</p>
-<p>${pageCount}</p>
+<p class="modal-comics-filter">pages</p>
+<p class="modal-comics-filter-descr">${pageCount}</p>
 </li>
 <li>
-<p>price</p><p>${printPrice.price}$</p></li>
+<p class="modal-comics-filter">price</p>
+<p class="modal-comics-filter-descr">${printPrice.price}$</p>
+  </li>
 </ul>`;
 }
 
 function renderCreators(creators, array) {
   return creators
     .map((el, index) => {
-      return `<li>
-        <img src="${el.thumbnail.path}.${el.thumbnail.extension}" alt="portrait of ${el.fullName}" height="50" width="50" />
-        <p>${array[index].role}</p>
-          <p>${el.fullName}</p>
+      return `<li class="modal-comics-creators-li">
+        <img class="comics-modal-author-portrait" src="${el.thumbnail.path}.${el.thumbnail.extension}" alt="portrait of ${el.fullName}" height="50" width="50" />
+        <div class=""><p class="modal-comics-author-role">${array[index].role}</p>
+          <p class="modal-comics-author-name">${el.fullName}</p></div>
     </li>`;
     })
     .join('');
@@ -97,7 +120,7 @@ function renderCharacters(characters) {
     .map(el => {
       return `<li class="modal-window-character-item">
         <img class="modal-comics-character-pict" src="${el.thumbnail.path}.${el.thumbnail.extension}" alt="title page of ${el.name}" height="60" width="60" />
-          <p>${el.name}</p>
+          <p class="modal-comics-character-name">${el.name}</p>
     </li>`;
     })
     .join('');
@@ -106,7 +129,7 @@ function renderComicsGallery(images) {
   return images
     .map(el => {
       return `<li>
-        <img class="modal-comics-gallery" src="${el.path}.${el.extension}" alt="title page of ${el.title}" height="80" width="80" />
+        <img class="modal-comics-gallery-item" src="${el.path}.${el.extension}" alt="title page of ${el.title}" height="80" width="80" />
     </li>`;
     })
     .join('');

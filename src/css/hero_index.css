@@ -157,8 +157,9 @@
   top: 0;
   margin-bottom: 32px;
   width: 237px;
-  height: 343px;
-  margin-left: 100px;
+  /* height: 343px; */
+  margin-left: 85px;
+
 }
 .spider-man-modal {
   /* margin-top: 139px;
