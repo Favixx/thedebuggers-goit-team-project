@@ -38,10 +38,6 @@ const swiper = new Swiper('.swiper', {
       direction: 'vertical'
     }
   },
-  mousewheel: {
-    invert: false,
-    enabled: true, // Додайте цей рядок
-  },
   // Navigation arrows
 });
 // Ініціалізація Swiper слайдера
