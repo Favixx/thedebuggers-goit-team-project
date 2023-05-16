@@ -79,7 +79,7 @@ export async function openModalCharacters(charactersId) {
     <div class="modal-characters-info-comics-container">
       <h2 class="modal-characters-info-comics-header">List of comics</h2>
       <div class="modal-characters-info-comics-list swiper-characters mySwiper-characters">
-        <div class='swiper-wrapper-characters'></div>
+       
     
       </div>
     </div>
@@ -116,7 +116,7 @@ async function makeSlider() {
   `
     )
     .join('');
-  const list = document.querySelector('.swiper-wrapper-characters');
+  const list = document.querySelector('.modal-characters-info-comics-list');
   list.innerHTML = comicsMarkUp;
 }
 // const swiperCharacters = new Swiper('.swiper-characters', {
