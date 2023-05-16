@@ -2,8 +2,8 @@ import { keys } from './keys';
 import axios from 'axios';
 import md5 from 'md5';
 export default class MarvelAPI {
-  PUBLIC_KEY = 'a8eb5267d3554d948feb51d4d5baa392';
-  PRIVATE_KEY = 'b29d496a1b59d6f335fd297e737331f03b528d90';
+  PUBLIC_KEY = keys.getPublicKey();
+  PRIVATE_KEY = keys.getPrivateKey();
   constructor() {
     // this.changeKey();
     this.marvel = axios.create({
@@ -21,7 +21,7 @@ export default class MarvelAPI {
         params,
       });
       if (status !== 200) console.log(status, statusText);
-      // if (status === 429 && this.changeKey()) return await this.getData(endPoint, params);
+      if (status === 429 && this.changeKey()) return await this.getData(endPoint, params);
       this.totalResults = data.data.total;
       this.perPage = data.data.limit;
       this.currentPage = data.data.offset / data.data.limit + 1;
@@ -93,15 +93,15 @@ export default class MarvelAPI {
     this.perPage = perPage;
     this.marvel.defaults.params['limit'] = perPage;
   }
-  // changeKey(){
-  //   const newKeys = keys.getNextKey();
-  //   console.log(newKeys)
-  //   if (newKeys) {
-  //     this.PRIVATE_KEY = newKeys.private;
-  //     this.PUBLIC_KEY = newKeys.public;
-  //     return true;
-  //   } else {
-  //     return null;
-  //   }
-  // }
+  changeKey(){
+    const newKeys = keys.getNextKey();
+    console.log("Chenged key to:", newKeys)
+    if (newKeys) {
+      this.PRIVATE_KEY = newKeys.private;
+      this.PUBLIC_KEY = newKeys.public;
+      return true;
+    } else {
+      return null;
+    }
+  }
 }

@@ -112,7 +112,7 @@ async function makeSlider(characterId) {
   <h3 class="modal-characters-info-comics-name">
     ${e.title}
   </h3>
-  <p class="modal-characters-info-comics-author">${e.creators.items[0].name}</p>
+  <p class="modal-characters-info-comics-author">${e.creators.items[0]?.name}</p>
 </div>
   `
     )
