@@ -10,6 +10,8 @@ const refs = {
   charactersGallery: document.querySelector('.characters-gallery'),
   form: document.querySelector('.searchandsort-container'),
   pagination: document.querySelector('.pagination'),
+  searchComicsIcon: document.querySelector('.search-svg-comics'),
+  searchNameIcon: document.querySelector('.search-svg-name'),
 };
 
 const marvelApi = new MarvelAPI();
@@ -18,8 +20,8 @@ const marvelApi = new MarvelAPI();
 function createCharacterCard(character) {
   const card = document.createElement('li');
   card.innerHTML = `
-    <img src="${character.thumbnail.path}.${character.thumbnail.extension}" alt="${character.name}">
-    <h3>${character.name}</h3>
+    <img class="character-image" src="${character.thumbnail.path}.${character.thumbnail.extension}" alt="${character.name}">
+    <h3 class="character-name">${character.name}</h3>
   `;
   return card;
 }
@@ -36,7 +38,15 @@ function renderCharacterCards(characters) {
 // Event listener
 refs.form.addEventListener(
   'change',
-  debounce(async event => {
+  debounce(handleChange,500))
+refs.searchComicsIcon.addEventListener(
+    'change',
+    debounce(handleChange,500))
+refs.searchNameIcon.addEventListener(
+      'change',
+      debounce(handleChange,500))
+
+async function handleChange() {
     const comics = refs.comicsInput.value;
     const selectValue = refs.selectInput.value;
     const name = refs.nameInput.value;
@@ -56,15 +66,22 @@ refs.form.addEventListener(
       selectValue,
       comics
     );
+    console.log(data.length);
+    // if (data.length > 5) {
+    //   refs.pagination.classList.remove('invisible')
+    // } else {
+    //   refs.pagination.classList.add('invisible')
+    // }
     if (data.length !== 0) {
       console.log(marvelApi.totalResults);
-      renderCharacterCards(data);
-    } else {
+      renderCharacterCards(data)
+    } 
+    else {
       refs.charactersGallery.innerHTML = defaultImage;
     }
-  }),
-  500
-);
+  }
+
+
 
 function widthParam(width, fn) {
   if (width < 768) {
@@ -76,19 +93,18 @@ function widthParam(width, fn) {
   }
 }
 
-const defaultImage = `<img
-  class="try-looking"
-  srcset="
-  ./img/tab/frame-tabl-deskt.png 1x,
-  ./img/tab/frame-2x@tabl-deskt.png 2x
-  "
-  src="./img/tab/frame-tabl-deskt.png"
+const defaultImage = `<picture class="try-looking">
+<source srcset="
+../img/tab/frame-tabl-deskt.png 1x,
+../img/tab/frame-2x@tabl-deskt.png 2x" media="">
+<source srcset="../img/mob/frame-mob.png 1x, 
+../img/mob/frame-2x@mob.png 2x">
+  <img src="../img/tab/frame-tabl-deskt.png"
   title="default-image"
   alt="Try looking for something else"
   width="375px"
-  height="221px"
-  loading="lazy"
-/>
+  height="221px"/>
+</picture>
 `;
 
 const element = document.querySelector('.pagination ul');
