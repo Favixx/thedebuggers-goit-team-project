@@ -157,9 +157,7 @@
   top: 0;
   margin-bottom: 32px;
   width: 237px;
-  /* height: 343px; */
-  margin-left: 85px;
-
+  margin-left: 83px;
 }
 .spider-man-modal {
   /* margin-top: 139px;
@@ -172,7 +170,7 @@
 }
 .info-home-hero-character {
   display: flex;
-  margin-left: 100px;
+  margin-left: 75px;
 }
 
 /* box shadow */
@@ -184,10 +182,22 @@
   content: '';
   position: absolute;
   top: -16px;
-  left: -16px;
+  left: 0;
   width: 237px;
   height: 0;
   border: 1px solid rgba(250, 250, 250, 0.15);
+}
+.info-home-hero-character::after{
+  content: "";
+    position: absolute;
+    top: -20%;
+    right: 0;
+    width: 0px;
+    height: 0px;
+    border-style: solid;
+    border-width: 3px 5px 3px 0;
+    border-color: transparent rgb(37,37,37) transparent transparent;
+    transform: rotate(0) translateY(-50%);
 }
 
 .part-2-1{
