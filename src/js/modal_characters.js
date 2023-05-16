@@ -92,12 +92,12 @@ export async function openModalCharacters(charactersId) {
   modalDiv.innerHTML = markUp;
   const closeBtn = document.querySelector('.modal-characters-close-btn');
   closeBtn.addEventListener('click', e => modalDiv.remove());
-  makeSlider();
+  makeSlider(charactersId);
 }
 
-async function makeSlider() {
+async function makeSlider(characterId) {
   const marvel = new MarvelAPI();
-  const comicsData = await marvel.getComicsByCharacterID(1010354);
+  const comicsData = await marvel.getComicsByCharacterID(characterId);
   const comicsMarkUp = comicsData
     .map(
       e =>

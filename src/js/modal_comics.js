@@ -53,7 +53,7 @@ async function getComicsByID(comicsID) {
   //   console.log(comicsData[0].creators.items[0].resourceURI);
 }
 
-getComicsByID(21366);
+// getComicsByID(21366);
 
 function renderComicsCard(comicsData, creatorsNew) {
   const {
