@@ -1,11 +1,6 @@
-import axios from 'axios';
 import MarvelAPI from './api_defaults';
-
 const marvelAPI = new MarvelAPI();
 
-const comicsDescription = document.querySelector(
-  '.comics-modal-comics-description'
-);
 const modalWindow = document.querySelector('.comics-modal-window');
 const creatorsList = modalWindow.querySelector('.comics-modal-creators-list');
 const charactersList = modalWindow.querySelector(
@@ -27,35 +22,26 @@ const monthName = [
   'November',
   'December',
 ];
-async function getComicsByID(comicsID) {
-  //   const promises = [];
+export async function OpenComicsModal(comicsID) {
   const comicsEndpoint = `comics/${comicsID}`;
   const comicsData = await marvelAPI.getData(comicsEndpoint);
   const creators = await marvelAPI.getComicCreators(comicsID);
   const characters = await marvelAPI.getComicCharacters(comicsID);
-  //   const commonPromis = await Promise.all([comicsData, creators, characters]);
-  //   console.log(commonPromis);
-  //   promises.push(comicsData, creators,characters)
-  console.log(comicsData);
-  console.log(creators);
+
   genInfo.innerHTML = renderComicsCard(comicsData);
-  console.log(renderComicsCard(comicsData));
-  console.log(characters);
   charactersList.innerHTML = renderCharacters(characters);
   creatorsList.innerHTML = renderCreators(
     creators,
     comicsData[0].creators.items
   );
-  //   marvelAPI.setdefaultURL(comicsData[0].creators.items[0].resourceURI);
-  //   const creatorsData = await marvelAPI.getData('');
-  //   console.log(creatorsData);
-
-  //   console.log(comicsData[0].creators.items[0].resourceURI);
+  // const closeButton = modalWindow.querySelector('.modal-comics-close-btn');
+  // closeButton.addEventListener('click', closeModal);
 }
+// function closeModal() {
+//   modalWindow.style.display = 'none';
+// }
 
-// getComicsByID(21366);
-
-function renderComicsCard(comicsData, creatorsNew) {
+function renderComicsCard(comicsData) {
   const {
     title,
     format,
@@ -69,8 +55,14 @@ function renderComicsCard(comicsData, creatorsNew) {
     modified,
     images,
   } = comicsData[0];
-  // const creatorsMarkup = renderComicsCard(creatorsNew)
-  return `<div><img class="modal-comics-main-pict" src="${thumbnail.path}.${
+  return ` 
+  <button type="button" class="modal-comics-close-btn" modal-close>
+      <svg class="comics-modal-close-icon" width="12" height="12">
+        <use href="./img/sprite.svg#icon-close-btn"></use>
+      </svg>
+  </button>
+  <div>
+  <img class="modal-comics-main-pict" src="${thumbnail.path}.${
     thumbnail.extension
   }" width="295">
   <ul class="modal-comics-gallery">${renderComicsGallery(images)}</ul>
