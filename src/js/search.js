@@ -16,6 +16,22 @@ export const refs = {
 const marvelApi = new MarvelAPI();
 let totalPages = 10;
 let page = 1;
+const element = document.querySelector('.pagination ul');
+const elementDiv = document.querySelector('.pagination');
+const defaultImage = `<img
+  class="try-looking"
+  srcset="
+  ./img/tab/frame-tabl-deskt.png 1x,
+  ./img/tab/frame-2x@tabl-deskt.png 2x
+  "
+  src="./img/tab/frame-tabl-deskt.png"
+  title="default-image"
+  alt="Try looking for something else"
+  width="375px"
+  height="221px"
+  loading="lazy"
+/>
+`;
 
 // Create a character card
 function createCharacterCard(character) {
@@ -39,76 +55,70 @@ function renderCharacterCards(characters) {
 }
 
 // Event listener at form
-refs.form.addEventListener(
-  'change',
-  debounce(handleChange,500))
-refs.searchComicsIcon.addEventListener(
-    'click', handleChange)
-refs.searchNameIcon.addEventListener(
-      'click', handleChange)
+refs.form.addEventListener('change', debounce(handleChange, 500));
+// refs.searchComicsIcon.addEventListener('click', handleChange);
+// refs.searchNameIcon.addEventListener('click', handleChange);
 
 async function handleChange() {
-    const comics = refs.comicsInput.value;
-    const selectValue = refs.selectInput.value;
-    const name = refs.nameInput.value;
-    const modifiedSince = refs.dateInput.value;
-    if (!name && !comics) {
-      refs.charactersGallery.innerHTML = defaultImage;
-      return;
-    }
-    console.log(comics, selectValue, name, modifiedSince);
-    const dispayWidth = document.documentElement.clientWidth;
-
-    widthParam(dispayWidth, marvelApi);
-
-    const data = await marvelApi.getFilteredCharacters(
-      modifiedSince,
-      name,
-      selectValue,
-      comics
-    );
-    totalPages = marvelApi.totalPage;
-    page = marvelApi.currentPage;
-    if (data.length !== 0) {
-      console.log(marvelApi.totalResults);
-      renderCharacterCards(data);
-    } else {
-      refs.charactersGallery.innerHTML = defaultImage;
-    }
+  const comics = refs.comicsInput.value;
+  const selectValue = refs.selectInput.value;
+  const name = refs.nameInput.value;
+  const modifiedSince = refs.dateInput.value;
+  if (!name && !comics) {
+    refs.charactersGallery.innerHTML = defaultImage;
+    return;
   }
+  console.log(comics, selectValue, name, modifiedSince);
+  const dispayWidth = document.documentElement.clientWidth;
 
+  widthParam(dispayWidth, marvelApi);
 
-
-function widthParam(width, fn) {
-  if (width < 768) {
-    fn.setPaginationParams(1, 5);
-  } else if (width >= 768 && width < 1440) {
-    fn.setPaginationParams(1, 8);
+  const data = await marvelApi.getFilteredCharacters(
+    modifiedSince,
+    name,
+    selectValue,
+    comics
+  );
+  totalPages = marvelApi.totalPage;
+  page = marvelApi.currentPage;
+  if (data.length !== 0) {
+    console.log(marvelApi.totalResults);
+    renderCharacterCards(data);
+    element.innerHTML = createPagination(totalPages, page);
   } else {
-    fn.setPaginationParams(1, 14);
+    refs.charactersGallery.innerHTML = defaultImage;
   }
 }
 
-const defaultImage = `<picture class="try-looking">
-<source srcset="
-../img/tab/frame-tabl-deskt.png 1x,
-../img/tab/frame-2x@tabl-deskt.png 2x" media="">
-<source srcset="../img/mob/frame-mob.png 1x, 
-../img/mob/frame-2x@mob.png 2x">
-  <img src="../img/tab/frame-tabl-deskt.png"
-  title="default-image"
-  alt="Try looking for something else"
-  width="375px"
-  height="221px"/>
-</picture>
-`;
+// Event listener at gallery
+refs.charactersGallery.addEventListener('click', handleImageClick);
+function handleImageClick(event) {
+  console.log(event.target);
+  console.log(event.target.parentNode);
+  const card = event.target.closest('li');
+  if (card && card.hasAttribute('data-id')) {
+    openModalCharacters(Number(card.dataset.id));
+  }
+}
 
-const element = document.querySelector('.pagination ul');
-const elementDiv = document.querySelector('.pagination');
-// element.addEventListener('click', handleClickPagination);
+// Pagination at charactersGallery
+
+//Amount of cards at page
+function widthParam(width, fn) {
+  if (width < 768) {
+    fn.setPerPage(5);
+  } else if (width >= 768 && width < 1440) {
+    fn.setPerPage(8);
+  } else {
+    fn.setPerPage(14);
+  }
+}
+console.log(element);
+element.addEventListener('click', handleClickPagination);
 
 function handleClickPagination(event) {
   const paginationBtn = event.target.closest('button');
+
   if (paginationBtn.classList.contains('btn')) {
     if (paginationBtn.classList.contains('prev')) {
       renderPagination(page - 1);
@@ -123,7 +133,6 @@ function handleClickPagination(event) {
   }
 }
 
-element.innerHTML = createPagination(totalPages, page);
 function createPagination(totalPages, page) {
   let liTag = '';
   let active;
@@ -147,7 +156,7 @@ function createPagination(totalPages, page) {
   }
 
   if (page === 1) {
-    afterPage = afterPage + 1;
+    afterPage = afterPage + 2;
   } else if (page === 2) {
     afterPage = afterPage + 1;
   }
@@ -182,8 +191,9 @@ function createPagination(totalPages, page) {
   return liTag;
 }
 async function renderPagination(pageNumb) {
-  marvelApi.setPaginationParams(pageNumb);
-  const data = await marvelApi.getFilteredCharacters();
+  // marvelApi.setPaginationParams(pageNumb);
+  console.log(pageNumb);
+  const data = await marvelApi.getCharactersByPage(pageNumb);
   totalPages = marvelApi.totalPage;
   page = marvelApi.currentPage;
   if (data.length !== 0) {
