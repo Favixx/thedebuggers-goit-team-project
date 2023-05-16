@@ -20,8 +20,7 @@ const element = document.querySelector('.pagination ul');
 const elementDiv = document.querySelector('.pagination');
 const defaultImage = `<picture class="try-looking">
 <source srcset="../img/tab/frame-tabl-deskt.png 1x, ../img/tab/frame-2x@tabl-deskt.png 2x" media="(min-width: 1440px)">
-<source srcset="../img/mob/frame-mob.png 1x, ../img/mob/frame-2x@mob.png 2x" media="(max-width: 768px)">
-title="default-image"
+<source srcset="../img/mob/frame-mob.png 1x, ../img/mob/frame-2x@mob.png 2x" media="(max-width: 768px)"> <img title="default-image"
 alt="Try looking for something else"
 width="375px"
 height="221px"/>

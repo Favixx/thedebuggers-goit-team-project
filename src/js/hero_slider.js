@@ -6,7 +6,7 @@
 //const { Scrollbar } = require("swiper");
 
 // import 'swiper/css/pagination';
-import Swiper, { Scrollbar, Autoplay, Mousewheel } from 'swiper';
+import Swiper, { Scrollbar, Autoplay } from 'swiper';
 
 // import styles bundle
 //import 'swiper/css/bundle';
@@ -16,7 +16,7 @@ import 'swiper/css/autoplay'
 import 'swiper/css/mousewheel'
 const swiper = new Swiper('.swiper', {
   // configure Swiper to use modules
-  modules: [Scrollbar, Autoplay, Mousewheel],
+  modules: [Scrollbar, Autoplay, ],
   //   pagination: {
   //     el: '.swiper-pagination',
   //     // clickable: true,
@@ -38,10 +38,10 @@ const swiper = new Swiper('.swiper', {
       direction: 'vertical'
     }
   },
+ 
   // Navigation arrows
 });
 // Ініціалізація Swiper слайдера
-swiper.mousewheel.enable()
 swiper.on('scrollbarDragMove', ()=>{
 
   swiper.scrollbar.init()
