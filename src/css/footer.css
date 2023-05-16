@@ -54,7 +54,9 @@
   line-height: 1.2px;
   letter-spacing: 0.02em;
   color: rgba(250, 250, 250, 0.4);
+  
 }
+
 @media screen and (min-width: 767.98px) {
   
   .text-footer {
