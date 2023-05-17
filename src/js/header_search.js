@@ -1,8 +1,5 @@
-
 import MarvelAPI from './api_defaults';
 import { debounce } from 'lodash';
-
-
 const searchHeaderInput = document.querySelector('.search-header')
 const header = document.querySelector('.header')
 const form = document.querySelector('.header_search')
@@ -54,12 +51,13 @@ debounce(
     },250)
     )
         
-
+    buttonSearchHeader.addEventListener('click', submitHeaderForm);
+    
+    function submitHeaderForm(){
+        form.submit()
+     }
 function createItemListSearch(newElement){
    return `
    <li class="autocomplete-list-item"><a class="autocomplete-list-link" href="">${newElement}</a></li>
    `
-function submitHeaderForm(){
-    form.submit()
 }
-buttonSearchHeader.addEventListener('click', submitHeaderForm)
