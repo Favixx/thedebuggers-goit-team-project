@@ -144,7 +144,7 @@ body {
 @media screen and (min-width: 767.98px) {
   .modal-characters-container {
     max-width: 600px;
-    transform: translate(-50%, -40%);
+    transform: translate(-50%, -50%) scale(0.85);
   }
   .modal-characters-close-btn {
     top: 16px;
@@ -214,7 +214,7 @@ body {
     padding: 64px 32px;
     height: 661px;
     overflow-y: hidden;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(1);
   }
   .modal-characters-gallery {
     display: block;
