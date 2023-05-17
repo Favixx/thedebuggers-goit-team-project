@@ -101,7 +101,7 @@ function widthParam(width, fn) {
   } else if (width >= 768 && width < 1440) {
     fn.setPerPage(8);
   } else {
-    fn.setPerPage(14);
+    fn.setPerPage(16);
   }
 }
 console.log(element);
