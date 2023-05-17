@@ -53,6 +53,8 @@
     display: inline-block;
     margin-block: auto 20px;
     align-self: end;
+    transition: color 250ms ease;
+    transition: background-color 250ms ease;
 }
 
 .home-button-character:hover{
