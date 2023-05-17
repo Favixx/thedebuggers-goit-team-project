@@ -7,6 +7,7 @@ import { OpenComicsModal } from './modal_comics';
 
 export async function openModalCharacters(charactersId) {
   const body = document.querySelector('body');
+  body.classList.add('modal-open');
   const marvel = new MarvelAPI();
   const data = await marvel.getCharacterByID(charactersId);
   const monthNames = [
@@ -33,7 +34,7 @@ export async function openModalCharacters(charactersId) {
         <div class="modal-characters-container">
   <button type="button" class="modal-characters-close-btn">
     <svg class="modal-characters-close-btn-icon" width="10" height="10">
-      <use href="../img/sprite.svg#icon-close-btn"></use>
+      <use href="./img/sprite.svg#icon-close-btn"></use>
     </svg>
   </button>
   <div class="modal-characters-gallery">
@@ -93,7 +94,23 @@ export async function openModalCharacters(charactersId) {
     .join('');
   modalDiv.innerHTML = markUp;
   const closeBtn = document.querySelector('.modal-characters-close-btn');
-  closeBtn.addEventListener('click', e => modalDiv.remove());
+  closeBtn.addEventListener('click', e => {
+    modalDiv.remove();
+    body.classList.remove('modal-open');
+  });
+  body.addEventListener('keydown', event => {
+    if (event.code === 'Escape') {
+      modalDiv.remove();
+      body.classList.remove('modal-open');
+    }
+  });
+  const backdrop = document.querySelector('.backdrop-modal');
+  backdrop.addEventListener('click', event => {
+    if (event.target == event.currentTarget) {
+      modalDiv.remove();
+      body.classList.remove('modal-open');
+    }
+  });
   makeSlider(charactersId);
 }
 

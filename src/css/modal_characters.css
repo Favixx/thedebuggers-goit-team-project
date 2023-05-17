@@ -2,6 +2,10 @@ body {
   position: relative;
 }
 
+.modal-open {
+  overflow: hidden;
+}
+
 .backdrop-modal {
   width: 100vw;
   height: 100vh;
@@ -19,7 +23,7 @@ body {
   position: absolute;
   padding: 40px 20px;
   overflow-y: auto;
-  height: 800px;
+  height: 100vh;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -140,9 +144,7 @@ body {
 @media screen and (min-width: 767.98px) {
   .modal-characters-container {
     max-width: 600px;
-    overflow-y: hidden;
-    height: 970px;
-    transform: translate(-50%, -40%) scale(0.9);
+    transform: translate(-50%, -40%);
   }
   .modal-characters-close-btn {
     top: 16px;
@@ -211,7 +213,8 @@ body {
     gap: 16px;
     padding: 64px 32px;
     height: 661px;
-    transform: translate(-50%, -50%) scale(1);
+    overflow-y: hidden;
+    transform: translate(-50%, -50%);
   }
   .modal-characters-gallery {
     display: block;
