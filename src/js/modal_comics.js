@@ -7,7 +7,7 @@ const charactersList = modalWindow.querySelector(
   '.comics-modal-characters-list'
 );
 const genInfo = modalWindow.querySelector('.modal-comics-general-info');
-
+const titleImageWrapper = modalWindow.querySelector('.modal-comics-title-image-wrapper')
 const monthName = [
   'January',
   'February',
@@ -24,22 +24,28 @@ const monthName = [
 ];
 export async function OpenComicsModal(comicsID) {
   const comicsEndpoint = `comics/${comicsID}`;
-  const comicsData = await marvelAPI.getData(comicsEndpoint);
-  const creators = await marvelAPI.getComicCreators(comicsID);
-  const characters = await marvelAPI.getComicCharacters(comicsID);
-
+  const [comicsData, creators, characters] = await Promise.all([
+    marvelAPI.getData(comicsEndpoint),
+    marvelAPI.getComicCreators(comicsID),
+    marvelAPI.getComicCharacters(comicsID)
+  ])
+  console.log(comicsData, creators, characters);
+  console.log(titleImageWrapper, genInfo, charactersList, creatorsList);
+  titleImageWrapper.innerHTML = renderTitleImage(comicsData);
   genInfo.innerHTML = renderComicsCard(comicsData);
   charactersList.innerHTML = renderCharacters(characters);
   creatorsList.innerHTML = renderCreators(
     creators,
     comicsData[0].creators.items
   );
-  // const closeButton = modalWindow.querySelector('.modal-comics-close-btn');
-  // closeButton.addEventListener('click', closeModal);
+  modalWindow.style.display = 'block';
+  const closeButton = modalWindow.querySelector('.modal-comics-close-btn');
+  console.log(closeButton);
+  closeButton.addEventListener('click', closeModal);
 }
-// function closeModal() {
-//   modalWindow.style.display = 'none';
-// }
+function closeModal() {
+  modalWindow.style.display = 'none';
+}
 
 function renderComicsCard(comicsData) {
   const {
@@ -48,30 +54,17 @@ function renderComicsCard(comicsData) {
     dates: [dates],
     pageCount,
     prices: [printPrice],
-    thumbnail,
     description,
     creators,
     characters,
     modified,
-    images,
   } = comicsData[0];
-  return ` 
-  <button type="button" class="modal-comics-close-btn" modal-close>
-      <svg class="comics-modal-close-icon" width="12" height="12">
-        <use href="./img/sprite.svg#icon-close-btn"></use>
-      </svg>
-  </button>
-  <div>
-  <img class="modal-comics-main-pict" src="${thumbnail.path}.${
-    thumbnail.extension
-  }" width="295">
-  <ul class="modal-comics-gallery">${renderComicsGallery(images)}</ul>
-  </div>
-  <h2 class="title">${title}</h2>
-      <h3>${creators.items[3].name} | ${
-    monthName[new Date(modified).getMonth()]
-  } ${new Date(modified).getDate()}, ${new Date(modified).getFullYear()}</h3>
-      <p class="comics-modal-comics-description">
+  return `
+      <div class="modal-comics-title-wrapper"> 
+        <h2 class="modal-comics-title">${title}</h2>
+        <h3>${creators.items[3]?.name} | ${formatDate(modified)}</h3>
+      </div>
+      <p class="modal-comics-text">
         ${description}
       </p>
       <ul class="modal-comics-filter-info">
@@ -100,9 +93,9 @@ function renderCreators(creators, array) {
   return creators
     .map((el, index) => {
       return `<li class="modal-comics-creators-li">
-        <img class="comics-modal-author-portrait" src="${el.thumbnail.path}.${el.thumbnail.extension}" alt="portrait of ${el.fullName}" height="50" width="50" />
-        <div class=""><p class="modal-comics-author-role">${array[index].role}</p>
-          <p class="modal-comics-author-name">${el.fullName}</p></div>
+        <img class="comics-modal-author-portrait" src="${el.thumbnail.path}/standard_medium.${el.thumbnail.extension}" alt="portrait of ${el.fullName}" height="50" width="50" />
+        <div class="comics-modal-author-descr"><p class="modal-comics-author-role">${array[index].role}</p>
+          <p class="modal-comics-text">${el.fullName}</p></div>
     </li>`;
     })
     .join('');
@@ -111,8 +104,8 @@ function renderCharacters(characters) {
   return characters
     .map(el => {
       return `<li class="modal-window-character-item">
-        <img class="modal-comics-character-pict" src="${el.thumbnail.path}.${el.thumbnail.extension}" alt="title page of ${el.name}" height="60" width="60" />
-          <p class="modal-comics-character-name">${el.name}</p>
+        <img class="modal-comics-character-pict" src="${el.thumbnail.path}/standard_medium.${el.thumbnail.extension}" alt="title page of ${el.name}" height="60" width="60" />
+          <p class="modal-comics-text">${el.name}</p>
     </li>`;
     })
     .join('');
@@ -121,8 +114,24 @@ function renderComicsGallery(images) {
   return images
     .map(el => {
       return `<li>
-        <img class="modal-comics-gallery-item" src="${el.path}.${el.extension}" alt="title page of ${el.title}" height="80" width="80" />
+        <img class="modal-comics-gallery-item" src="${el.path}/standard_medium.${el.extension}" alt="title page of ${el.title}" height="80" width="80" />
     </li>`;
     })
     .join('');
+}
+
+function renderTitleImage([{thumbnail, images}]) {
+  return `
+      <img class="modal-comics-main-pict" src="${thumbnail.path}.${
+        thumbnail.extension
+      }" width="295">
+      <ul class="modal-comics-gallery">${renderComicsGallery(images)}</ul>`;
+}
+
+function formatDate(str){
+  const date = new Date(str);
+  return `${
+    monthName[date.getMonth()]} ${
+    date.getDate()}, ${
+    date.getFullYear()}`
 }
