@@ -80,3 +80,9 @@ autocompleteList.addEventListener('click', async (event) => {
         localStorage.setItem("searchQuery", JSON.stringify(await getDataSearch(contentLocal)));
     }
 });
+
+// Очистить значение поля
+searchHeader.addEventListener('blur', (event)=> {
+    searchHeader.value = '';
+    autocompleteList.style.display = 'none'
+  });
