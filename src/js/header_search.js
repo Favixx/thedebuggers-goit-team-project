@@ -78,6 +78,14 @@ autocompleteList.addEventListener('click', async (event) => {
         const contentLocal = event.target.textContent.replace('...', '').trim();
         
         localStorage.setItem("searchQuery", JSON.stringify(await getDataSearch(contentLocal)));
+        
+        // Получаем родительскую форму
+        const form = event.target.closest('form');
+        
+        // Проверяем, что форма существует и вызываем метод submit()
+        if (form) {
+            form.submit();
+        }
     }
 });
 
