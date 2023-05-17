@@ -22,8 +22,7 @@ const defaultImage = `<picture class="try-looking">
 <source srcset="./img/tab/frame-tabl-deskt.png 1x, ./img/tab/frame-2x@tabl-deskt.png 2x" media="(min-width: 768px)">
 <source srcset="./img/mob/frame-mob.png 1x, ./img/mob/frame-2x@mob.png 2x">
 <img src="./img/mob/frame-mob.png" title="default-image" alt="Try looking for something else" width="375px" height="221px"/>
-</picture>`
-
+</picture>`;
 
 // Create a character card
 function createCharacterCard(character) {
@@ -121,7 +120,10 @@ function handleClickPagination(event) {
     }
   }
 
-  if (event.target === 0) {
+  if (paginationBtn.classList.contains('numb')) {
+    const pageNumber = parseInt(paginationBtn.textContent);
+    renderPagination(pageNumber);
+    element.innerHTML = createPagination(totalPages, pageNumber);
   }
 }
 
@@ -130,7 +132,7 @@ function createPagination(totalPages, page) {
   let active;
   let beforePage = page - 1;
   let afterPage = page + 1;
-  if (page >= 1) {
+  if (page > 1) {
     liTag += `<button class="btn prev"><span><</span></button>`;
   }
 
@@ -143,7 +145,7 @@ function createPagination(totalPages, page) {
 
   if (page === totalPages) {
     beforePage = beforePage - 2;
-  } else if (page === totalPages - 1) {
+  } else if (page === totalPages) {
     beforePage = beforePage - 1;
   }
 
@@ -154,7 +156,7 @@ function createPagination(totalPages, page) {
   }
 
   for (let plength = beforePage; plength <= afterPage; plength += 1) {
-    if (plength > totalPages) {
+    if (plength > totalPages || plength < 1) {
       continue;
     }
     if (plength === 0) {
