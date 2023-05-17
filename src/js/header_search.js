@@ -51,13 +51,14 @@ debounce(
         if(result !== []){
             autocompleteList.innerHTML = ''
             result.forEach(element => {
-                const newElement = element.substring(0, 12) + "..."
+                const newElement = element.substring(0, 18) + "..."
                 autocompleteList.insertAdjacentHTML('beforeend', createItemListSearch(newElement))
             });
         } else {
             autocompleteList.innerHTML = ''
         }
-        
+
+        return result
     },250)
     )
         
@@ -67,3 +68,15 @@ function createItemListSearch(newElement){
    <li class="autocomplete-list-item"><a class="autocomplete-list-link" href="">${newElement}</a></li>
    `
 }
+
+
+// СДЕЛАЛ НО ХУЙ ЕГО НОРМАЛЬНО ЧИ НЕ. НО Я ПРОВЕРИЛ НЕСКОЛЬКО РАЗ, ТО ЧТО ПОПАДАЕТ В ЛОКАЛ ВОПЛНЕ ХВАТАТ ДЛЯ ТОГО ЧТОБЫ ЗАПРОС ПОНЯЛ О ЧЁМ РЕЧь
+
+autocompleteList.addEventListener('click', async (event) => {
+    event.preventDefault();
+    if (event.target.classList.contains('autocomplete-list-link')) {
+        const contentLocal = event.target.textContent.replace('...', '').trim();
+        
+        localStorage.setItem("searchQuery", JSON.stringify(await getDataSearch(contentLocal)));
+    }
+});
