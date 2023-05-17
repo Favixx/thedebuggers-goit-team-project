@@ -92,7 +92,7 @@ async function initialRandomizing() {
     const buttons = document.querySelectorAll('.random-item-btn');
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener('click', event => {
-        const item = selectedCards[i];
+        const item = selectedCards[Math.abs(i - 4)];
         openModal(item.id);
       });
     }
