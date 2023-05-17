@@ -322,7 +322,8 @@
     border-radius: 10px
   }
   .hero-home{
-    margin-top: -89px;
+    padding-top: 0;
+    margin-top: -111px;
   }
   .text-home-hero {
     margin-top: 144px;
