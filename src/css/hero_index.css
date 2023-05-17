@@ -1,7 +1,5 @@
 .swiper {
-  min-width: 320px;
   width: 100%;
-  max-width: 375px;
   height: 1300px;
   position: relative;
 }
@@ -12,7 +10,7 @@
 }
 .swiper-slide {
   font-size: 18px;
-  padding: 0;
+  padding: 0 22px;
 }
 
 .swiper-slide img {
@@ -297,8 +295,6 @@
 @media screen and (min-width: 767.98px) and (max-width: 1439px) {
   .swiper {
     width: 100%;
-    min-width: 768px;
-    max-width: 1140px;
     height: 1195px;
   }
   .swiper-scrollbar{
@@ -352,10 +348,9 @@
     line-height: 18px;
   }
   .swiper-slide {
+    padding: 0;
     font-size: 18px;
     display: flex !important;
-
-    padding: 0;
   }
   .info-home-hero-character {
     display: flex;
