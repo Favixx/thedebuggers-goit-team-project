@@ -33,11 +33,33 @@
   height: 32px;
   border-radius: 6px;
   border: 1px solid rgba(250, 250, 250, 0.15);
- transition: border-color 250ms linear; 
+  transition: border-color 250ms ease;
 }
-.social-list-link-footer:hover,
-.social-list-icon-footer:focus{
-  border-color: var(--color-blue);
+
+.social-list-icon-footer{
+  transition: fill 250ms ease;
+}
+.footer-link-face:hover{
+  border: 1px solid rgba(24, 119, 242, 0.15);
+}
+.footer-link-inst:hover{
+  border: 1px solid rgba(225, 48, 108, 0.15);
+}
+.footer-link-twit:hover{
+  border: 1px solid rgba(29, 161, 242, 0.15);
+}
+.footer-icon-twit{
+  width: 15px;
+  height: 15px;
+}
+.footer-link-face:hover > .footer-icon-face{
+  fill: #3b5998;
+}
+.footer-link-inst:hover > .footer-icon-inst{
+  fill:#bc1888; 
+}
+.footer-link-twit:hover > .footer-icon-twit{
+  fill: #00acee;
 }
 .text-footer {
   font-weight: 400;
