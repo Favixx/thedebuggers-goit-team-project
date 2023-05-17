@@ -20,6 +20,14 @@ export const keys = {
             public:'80ffeb6fa5691a33f33e64431c6d9989',
             private:'c6c470899aecedfc1c5215fc7096b67431ebdc43'
         },
+        {
+            public:'a8eb5267d3554d948feb51d4d5baa392',
+            private:'b29d496a1b59d6f335fd297e737331f03b528d90'
+        },
+        {
+            public:'6402ff7fd33e14d5d962ffb5be5b6a20',
+            private:'abfb2c2a185bd8dac77f8985adf490b350fa6d5b'
+        },
     ],
     keyID: 0,
     getNextKey(){
