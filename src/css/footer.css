@@ -19,9 +19,9 @@
 }
 
 .social-list-icon-footer {
-  fill:var(--color-title-and-text);
+  fill: var(--color-title-and-text);
 }
-.img-footer{
+.img-footer {
   width: 98px;
   height: 15px;
 }
@@ -33,48 +33,49 @@
   height: 32px;
   border-radius: 6px;
   border: 1px solid rgba(250, 250, 250, 0.15);
-  transition: border-color 250ms ease;
+  transition: border-color 500ms ease;
 }
 
-.social-list-icon-footer{
-  transition: fill 250ms ease;
+.social-list-icon-footer {
+  transition: fill 500ms ease;
 }
-.footer-link-face:hover{
-  border: 1px solid rgba(24, 119, 242, 0.15);
+.social-list-link-footer.footer-link-face:hover {
+  border: 2px solid rgba(24, 119, 242, 0.4);
 }
-.footer-link-inst:hover{
-  border: 1px solid rgba(225, 48, 108, 0.15);
+.social-list-link-footer.footer-link-inst:hover {
+  border: 2px solid #bc1988ba;
 }
-.footer-link-twit:hover{
-  border: 1px solid rgba(29, 161, 242, 0.15);
+.social-list-link-footer.footer-link-twit:hover {
+  border: 2px solid rgba(29, 161, 242, 0.4);
 }
-.footer-icon-twit{
+.footer-icon-twit {
   width: 15px;
   height: 15px;
 }
-.footer-link-face:hover > .footer-icon-face{
+.social-list-link-footer:hover > .footer-icon-face {
   fill: #3b5998;
 }
-.footer-link-inst:hover > .footer-icon-inst{
-  fill:#bc1888; 
+.social-list-link-footer:hover > .footer-icon-inst {
+  fill: #bc1888;
 }
-.footer-link-twit:hover > .footer-icon-twit{
+.social-list-link-footer:hover > .footer-icon-twit {
   fill: #00acee;
 }
 .text-footer {
   font-weight: 400;
- 
+
   color: var(--color-title-and-text);
   width: 90px;
   height: 18px;
-  transition: width  700ms linear, color  700ms linear, font-weight  700ms linear, line-height  700ms linear;
+  transition: width 700ms linear, color 700ms linear, font-weight 700ms linear,
+    line-height 700ms linear;
 }
 .text-footer:hover,
-.text-footer:focus{
+.text-footer:focus {
   width: 130px;
   color: var(--color-blue);
   font-weight: 500px;
-   line-height: 1.5;
+  line-height: 1.5;
 }
 
 .footer-bottom {
@@ -94,12 +95,11 @@
   transition: color 1s;
 }
 .footer-bottom-text:hover,
-.footer-bottom-text:focus{
+.footer-bottom-text:focus {
   color: #ffffff;
 }
 
 @media screen and (min-width: 767.98px) {
-  
   .text-footer {
     font-size: 16px;
     line-height: 1.1;
@@ -111,10 +111,9 @@
   }
   .footer-logo {
     align-items: center;
-   gap: 142px;
- 
+    gap: 142px;
   }
-  .img-footer{
+  .img-footer {
     width: 202px;
     height: 31px;
   }
@@ -133,11 +132,10 @@
   .footer-bottom {
     height: 54px;
   }
-
 }
 
-@media screen and (min-width:  1439.98px) {
+@media screen and (min-width: 1439.98px) {
   .footer-logo {
-      justify-content: space-between;
+    justify-content: space-between;
   }
 }

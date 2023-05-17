@@ -6,6 +6,7 @@ import { debounce } from 'lodash';
 const searchHeaderInput = document.querySelector('.search-header')
 const header = document.querySelector('.header')
 const form = document.querySelector('.header_search')
+const buttonSearchHeader = document.querySelector('#header-search')
 window.addEventListener('scroll', scrolBlur)
 function scrolBlur(){
     header.classList.toggle('scroll', window.scrollY > 0)
@@ -13,16 +14,11 @@ function scrolBlur(){
 function submitSearchHandle(event){
     event.preventDefault()
     localStorage.setItem('searchQuery', searchHeaderInput.value);
-    form.submit();
+    form.submit()
 }
 form.addEventListener('submit', submitSearchHandle)
 
-
-
-
 const apiSearch = new MarvelAPI()
-
-
 
 async function getDataSearch (inputValue){
     apiSearch.setPerPage(8)
@@ -33,9 +29,6 @@ async function getDataSearch (inputValue){
     return console.log(arrName);
 }
 
-
-    
-    
 const searchHeader = document.querySelector('.search-header')
 const autocompleteList = document.querySelector('.autocomplete-list')
 
@@ -66,4 +59,7 @@ function createItemListSearch(newElement){
    return `
    <li class="autocomplete-list-item"><a class="autocomplete-list-link" href="">${newElement}</a></li>
    `
+function submitHeaderForm(){
+    form.submit()
 }
+buttonSearchHeader.addEventListener('click', submitHeaderForm)

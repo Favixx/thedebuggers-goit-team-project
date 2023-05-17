@@ -55,7 +55,9 @@
   width: 16px;
   height: 16px;
 }
-
+.search-header-icon:hover{
+  cursor: pointer;
+}
 .header-logo-svg{
   width: 98px;
   height: 15px;
