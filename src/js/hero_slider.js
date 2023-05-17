@@ -4,7 +4,7 @@
 // import 'swiper/css/navigation';
 
 //const { Scrollbar } = require("swiper");
-
+import 'animate.css'
 // import 'swiper/css/pagination';
 import Swiper, { Scrollbar, Autoplay } from 'swiper';
 

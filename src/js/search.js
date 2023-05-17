@@ -57,9 +57,9 @@ async function handleChange() {
   const modifiedSince = refs.dateInput.value;
   if (!name && !comics) {
     refs.charactersGallery.innerHTML = defaultImage;
+    elementDiv.classList.add('invisible');
     return;
   }
-  console.log(comics, selectValue, name, modifiedSince);
   const dispayWidth = document.documentElement.clientWidth;
 
   widthParam(dispayWidth, marvelApi);
@@ -73,7 +73,6 @@ async function handleChange() {
   totalPages = marvelApi.totalPage;
   page = marvelApi.currentPage;
   if (data.length !== 0) {
-    console.log(marvelApi.totalResults);
     renderCharacterCards(data);
     element.innerHTML = createPagination(totalPages, page);
   } else {
@@ -84,8 +83,6 @@ async function handleChange() {
 // Event listener at gallery
 refs.charactersGallery.addEventListener('click', handleImageClick);
 function handleImageClick(event) {
-  console.log(event.target);
-  console.log(event.target.parentNode);
   const card = event.target.closest('li');
   if (card && card.hasAttribute('data-id')) {
     openModalCharacters(Number(card.dataset.id));
@@ -104,7 +101,7 @@ function widthParam(width, fn) {
     fn.setPerPage(16);
   }
 }
-console.log(element);
+
 element.addEventListener('click', handleClickPagination);
 
 function handleClickPagination(event) {
@@ -132,6 +129,9 @@ function createPagination(totalPages, page) {
   let active;
   let beforePage = page - 1;
   let afterPage = page + 1;
+  if (totalPages === 1) {
+    return '';
+  }
   if (page > 1) {
     liTag += `<button class="btn prev"><span><</span></button>`;
   }
@@ -143,26 +143,11 @@ function createPagination(totalPages, page) {
     }
   }
 
-  if (page === totalPages) {
-    beforePage = beforePage - 2;
-  } else if (page === totalPages) {
-    beforePage = beforePage - 1;
-  }
-
-  if (page === 1) {
-    afterPage = afterPage + 2;
-  } else if (page === 2) {
-    afterPage = afterPage + 1;
-  }
-
   for (let plength = beforePage; plength <= afterPage; plength += 1) {
     if (plength > totalPages || plength < 1) {
       continue;
     }
-    if (plength === 0) {
-      plength = plength + 1;
-    }
-    if (page === plength) {
+    if (plength === page) {
       active = 'active';
     } else {
       active = '';
@@ -186,12 +171,11 @@ function createPagination(totalPages, page) {
 }
 async function renderPagination(pageNumb) {
   // marvelApi.setPaginationParams(pageNumb);
-  console.log(pageNumb);
+
   const data = await marvelApi.getCharactersByPage(pageNumb);
   totalPages = marvelApi.totalPage;
   page = marvelApi.currentPage;
   if (data.length !== 0) {
-    console.log(marvelApi.totalResults);
     renderCharacterCards(data);
   } else {
     refs.charactersGallery.innerHTML = defaultImage;
