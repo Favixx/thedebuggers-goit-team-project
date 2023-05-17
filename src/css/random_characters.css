@@ -90,11 +90,13 @@
   border-radius: 250px;
   position: absolute;
   right: 20px;
+transition: border-color 750ms linear, color 750ms linear; 
 }
 
 .random-characters-link:hover,
 .random-characters-link:focus {
   color: #4b50ad;
+  border-color: #4b50ad;
 }
 
 @media screen and (min-width: 767.98px) {

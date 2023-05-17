@@ -143,7 +143,7 @@ async function makeSlider(characterId) {
 
     const author = document.createElement('p');
     author.classList.add('modal-characters-info-comics-author');
-    author.textContent = e.creators.items[0].name;
+    author.textContent = e.creators.items[0]?.name;
 
     button.appendChild(image);
     item.appendChild(button);
