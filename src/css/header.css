@@ -133,3 +133,6 @@
 .autocomplete-list-link{
   display: block;
 }
+.autocomplete-list-item:hover{
+  cursor: pointer;
+}

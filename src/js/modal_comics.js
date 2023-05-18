@@ -144,12 +144,12 @@ function renderComicsModal(comics, creators, characters) {
   )}</div>
     <div class="modal-comics-info-wrapper">
       <div class="modal-comics-general-info">${renderComicsCard(comics)}</div>
-      <h2>Creator</h2>
+      <h2 class="modal-comics-title">Creator</h2>
       <ul class="comics-modal-creators-list">${renderCreators(
         creators,
         comics[0].creators.items
       )}</ul>
-      <h2>Characters</h2>
+      <h2 class="modal-comics-title">Characters</h2>
       <ul class="comics-modal-characters-list">${renderCharacters(
         characters
       )}</ul>

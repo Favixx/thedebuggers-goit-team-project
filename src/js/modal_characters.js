@@ -68,7 +68,7 @@ export async function openModalCharacters(charactersId) {
       ).getFullYear()}</p>
     </div>
     <p class="modal-characters-info-descr">
-      ${e.description}
+      ${e.description || "Description missing"}
     </p>
     <div class="modal-characters-info-comics-container">
       <h2 class="modal-characters-info-comics-header">List of comics</h2>
@@ -151,7 +151,7 @@ async function makeSlider(characterId) {
     // showAnimation(modal);
     // setClosed(false)
     list.appendChild(item);
-    button.removeEventListener();
+    // button.removeEventListener();
   });
 }
 
