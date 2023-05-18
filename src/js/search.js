@@ -15,14 +15,14 @@ export const refs = {
 };
 
 const marvelApi = new MarvelAPI();
-let totalPages = 10;
-let page = 1;
+let totalPages;
+let page;
 const element = document.querySelector('.pagination ul');
 const elementDiv = document.querySelector('.pagination');
 const defaultImage = `<picture class="try-looking">
-<source srcset="./img/tab/frame-tabl-deskt.png 1x, ./img/tab/frame-2x@tabl-deskt.png 2x" media="(min-width: 768px)" type="image/png">
-<source srcset="./img/mob/frame-mob.png 1x, ./img/mob/frame-2x@mob.png 2x" type="image/png">
-<img src="./img/mob/frame-mob.png" title="default-image" alt="Try looking for something else" width="375px" height="221px"/>
+<source srcset="https://i.ibb.co/WBRXLmm/frame-tabl-deskt.png 1x, https://i.ibb.co/s2KsRqF/frame-2x-tabl-deskt.png 2x" media="(min-width: 768px)" type="image/png">
+<source srcset="https://i.ibb.co/HK8hr3T/frame-mob.png 1x, https://i.ibb.co/dW72Tjr/frame-2x-mob.png 2x" type="image/png">
+<img src="https://i.ibb.co/HK8hr3T/frame-mob.png" title="default-image" alt="Try looking for something else" width="375px" height="221px"/>
 </picture>`;
 function preventionDefault(event){
   event.preventDefault()
@@ -97,6 +97,7 @@ async function handleChange() {
     element.innerHTML = createPagination(totalPages, page);
   } else {
     refs.charactersGallery.innerHTML = defaultImage;
+    elementDiv.classList.add("invisible");
   }
 }
 
@@ -123,8 +124,8 @@ function widthParam(width, fn) {
 }
 
 element.addEventListener('click', handleClickPagination);
-
 function handleClickPagination(event) {
+  try{
   const paginationBtn = event.target.closest('button');
 
   if (paginationBtn.classList.contains('btn')) {
@@ -142,6 +143,9 @@ function handleClickPagination(event) {
     renderPagination(pageNumber);
     element.innerHTML = createPagination(totalPages, pageNumber);
   }
+}catch{
+  return
+}
 }
 
 function createPagination(totalPages, page) {
@@ -197,7 +201,9 @@ async function renderPagination(pageNumb) {
   page = marvelApi.currentPage;
   if (data.length !== 0) {
     renderCharacterCards(data);
-  } else {
+  } 
+  if(data.length === 0){
     refs.charactersGallery.innerHTML = defaultImage;
+    elementDiv.classList.add('invisible');
   }
 }
