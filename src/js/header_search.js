@@ -1,3 +1,4 @@
+import Notiflix from 'notiflix';
 import MarvelAPI from './api_defaults';
 import { debounce } from 'lodash';
 
@@ -22,10 +23,15 @@ function submitSearchHandle(event) {
 form.addEventListener('submit', submitSearchHandle);
 
 async function getDataSearch(inputValue) {
-  apiSearch.setPerPage(8);
-  const objectNameInfo = await apiSearch.getNameStartWith(inputValue);
-  const arrName = objectNameInfo.map(el => el.name);
-  return arrName;
+  try {
+    apiSearch.setPerPage(8);
+    const objectNameInfo = await apiSearch.getNameStartWith(inputValue);
+    const arrName = objectNameInfo.map(el => el.name);
+    return arrName;
+  } catch (error) {
+    Notiflix.Notify.failure("There is an error during fetching data")
+    return [];
+  }
 }
 
 searchHeaderInput.addEventListener('input', debounce(async (event) => {
@@ -35,20 +41,22 @@ searchHeaderInput.addEventListener('input', debounce(async (event) => {
     return;
   }
 
-  const result = await getDataSearch(inputValue);
-  autocompleteList.innerHTML = '';
+  try {
+    const result = await getDataSearch(inputValue);
+    autocompleteList.innerHTML = '';
 
-  if (result.length !== 0) {
-    result.forEach(element => {
-        let newElement = element.substring(0, 18) +"..."
-        if(result.length<19){
-        newElement = element
+    if (result.length !== 0) {
+      result.forEach(element => {
+        let newElement = element.substring(0, 18) + "...";
+        if (result.length < 19) {
+          newElement = element;
         }
-      autocompleteList.insertAdjacentHTML('beforeend', createItemListSearch(newElement));
-    });
+        autocompleteList.insertAdjacentHTML('beforeend', createItemListSearch(newElement));
+      });
+    }
+  } catch (error) {
+    Notiflix.Notify.failure("There is an error during fetching data")
   }
-
-  return result;
 }, 250));
 
 buttonSearchHeader.addEventListener('click', () => {
@@ -62,26 +70,24 @@ function createItemListSearch(newElement) {
 }
 
 autocompleteList.addEventListener('click', (event) => {
-    const autocompleteElem = document.querySelectorAll('.autocomplete-list-item');
-    let elementFound = false;
-    let selectedElement = null;
-  
-    autocompleteElem.forEach((elem) => {
-      if (elem === event.target) {
-        elementFound = true;
-        selectedElement = elem;
-      }
-    });
-  
-    if (elementFound) {
-      const contentLocal = selectedElement.textContent.replace('...', '').trim();
-      localStorage.setItem('searchQueryAutocomplete', contentLocal);
-      form.submit();
+  const autocompleteElem = document.querySelectorAll('.autocomplete-list-item');
+  let elementFound = false;
+  let selectedElement = null;
+
+  autocompleteElem.forEach((elem) => {
+    if (elem === event.target) {
+      elementFound = true;
+      selectedElement = elem;
     }
   });
-// searchHeaderInput.addEventListener('blur', () => {
-//   autocompleteList.style.display = 'none';
-// });
+
+  if (elementFound) {
+    const contentLocal = selectedElement.textContent.replace('...', '').trim();
+    localStorage.setItem('searchQueryAutocomplete', contentLocal);
+    form.submit();
+  }
+});
+
 searchHeaderInput.addEventListener('focus', () => {
-    autocompleteList.style.display = 'block';
-  });
+  autocompleteList.style.display = 'block';
+});

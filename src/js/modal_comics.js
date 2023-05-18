@@ -1,5 +1,6 @@
 import MarvelAPI from './api_defaults';
 import 'animate.css';
+import { openModalCharacters } from './modal_characters';
 const marvelAPI = new MarvelAPI();
 
 const modalWindow = document.querySelector('.backdrop-modal');
@@ -32,28 +33,42 @@ export async function OpenComicsModal(comicsID) {
     closeIcon + renderComicsModal(comicsData, creators, characters);
 
   const closeButton = modalWindow.querySelector('.modal-comics-close-btn');
+  const characterList = modalWindow.querySelector('.comics-modal-characters-list')
 
   modalWindow.classList.add(
     'modal-active',
     'animate__animated',
     'animate__fadeIn'
   );
-
+  characterList.addEventListener('click', onClickCharacter)
   closeButton.addEventListener('click', closeModal);
-  modalWindow.addEventListener('click', event => {
-    if (event.target == event.currentTarget) {
-      closeModal();
+  modalWindow.addEventListener('click', closeModal);
+
+  function closeModal(event) {
+    if (event === null 
+      || event.target === event.currentTarget 
+      || event.target.closest('.modal-comics-close-btn') === closeButton){
+      modalWindow.classList.remove(
+        'animate__animated',
+        'animate__fadeIn',
+        'modal-active',
+        false
+      );
+      document.body.classList.remove('modal-open');
+      closeButton.removeEventListener('click', closeModal);
+      modalWindow.removeEventListener('click', closeModal);
     }
-  });
-}
-function closeModal() {
-  modalWindow.classList.remove(
-    'animate__animated',
-    'animate__fadeIn',
-    'modal-active',
-    false
-  );
-  document.body.classList.remove('modal-open');
+  }
+  function onClickCharacter(event){
+    event.preventDefault();
+    const characterId = event.target.closest('li')?.dataset.id;
+    if (characterId) {
+      console.log(characterId);
+      characterList.removeEventListener('click', onClickCharacter);
+      closeModal(null);
+      openModalCharacters(characterId);
+    }
+  }
 }
 
 function renderComicsCard(comicsData) {
@@ -112,9 +127,11 @@ function renderCreators(creators, array) {
 function renderCharacters(characters) {
   return characters
     .map(el => {
-      return `<li class="modal-window-character-item" data-id="el.id">
+      return `<li class="modal-window-character-item" data-id="${el.id}">
+      <a href="#">
         <img class="modal-comics-character-pict" src="${el.thumbnail.path}/standard_medium.${el.thumbnail.extension}" alt="title page of ${el.name}" height="60" width="60" />
-          <p class="modal-comics-text">${el.name}</p>
+        <p class="modal-comics-text">${el.name}</p>
+      </a>
     </li>`;
     })
     .join('');

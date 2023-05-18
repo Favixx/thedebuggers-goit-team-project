@@ -4,10 +4,10 @@
   position: relative;
 }
 .border-radius-part-1{
-  border-radius: 4px;
+  border-radius: 5px;
 }
 .border-radius-part-2{
-  border-radius: 0px 0px 0px 4px;
+  border-radius: 0px 0px 0px 5px;
 }
 .swiper-scrollbar-drag {
   height: 81px;
