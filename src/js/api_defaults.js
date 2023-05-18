@@ -1,6 +1,7 @@
 import { keys } from './keys';
 import axios from 'axios';
 import md5 from 'md5';
+import Notiflix from 'notiflix';
 export default class MarvelAPI {
   PUBLIC_KEY = keys.getPublicKey();
   PRIVATE_KEY = keys.getPrivateKey();
@@ -51,15 +52,20 @@ export default class MarvelAPI {
   }
 
   async getFiveCharacters(arr) {
+    try{
     const promises = arr.map(e => {
       const params = {
         offset: e,
         limit: 1,
       };
+      
       return this.getData('characters', params);
     });
     const data = await Promise.all(promises);
     return data.map(e => e[0]);
+  }catch{
+    Notiflix.Notify.failure("There is an error during fetching the data")
+  }
   }
 
   async getComicCreators(id) {
