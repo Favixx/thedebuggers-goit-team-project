@@ -83,6 +83,8 @@ export async function openModalCharacters(charactersId) {
     .join('');
   modalDiv.innerHTML = closeIcon + markUp;
   modal.classList.toggle('modal-active');
+  modal.classList.add('animate__animated', 'animate__fadeIn');
+
   const closeBtn = document.querySelector('.modal-characters-close-btn');
   closeBtn.addEventListener('click', closeModal);
   window.addEventListener('keydown', event => {
