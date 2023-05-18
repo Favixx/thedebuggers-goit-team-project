@@ -48,14 +48,6 @@
   fill: white;
 }
 
-.backdrop-modal h2 {
-  color: var(--color-title-and-text);
-  font-weight: 500;
-  font-size: 18px;
-  line-height: calc(24 / 18);
-  margin-bottom: 16px;
-  margin-top: 32px;
-}
 .modal-comics-title {
   margin: 0;
   color: var(--color-title-and-text);
@@ -212,11 +204,6 @@
     color: rgba(250, 250, 250, 0.5);
     font-size: 16px;
     line-height: calc(18 / 16);
-  }
-  .backdrop-modal h2 {
-    font-size: 24px;
-    line-height: calc(24 / 24);
-    letter-spacing: -2%;
   }
   .comics-modal-creators-list {
     flex-direction: row;
