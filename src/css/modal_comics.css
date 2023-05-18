@@ -8,10 +8,10 @@
   width: 100vw;
   z-index: 14;
   height: 100vh;
-  overflow-y: auto;
 }
 
 .modal-comics-container {
+  display: none;
   height: 0;
   opacity: 0;
   overflow: hidden;
@@ -21,7 +21,7 @@
   margin: 0 auto;
   position: relative;
   padding: 40px 20px;
-  display: flex;
+  /* display: flex; */
   flex-wrap: wrap;
   transition: opacity 500ms ease-in-out 50ms;
 }
@@ -293,7 +293,7 @@
 .modal-active {
   display: block;
 }
-.secon-modal-active .modal-comics-container{
+.secon-modal-active .modal-comics-container {
   height: auto;
   opacity: 1;
   overflow: auto;

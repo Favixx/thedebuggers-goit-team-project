@@ -236,7 +236,7 @@ body {
     display: flex;
   }
 }
-.secon-modal-active .modal-characters-container{
+.secon-modal-active .modal-characters-container {
   height: 0;
   opacity: 0;
   overflow: hidden;
