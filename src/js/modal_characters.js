@@ -1,9 +1,6 @@
 import MarvelAPI from './api_defaults';
 import { OpenComicsModal, closeIcon } from './modal_comics';
-// import Swiper, { Navigation, Pagination } from 'swiper';
-// import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
+import 'animate.css';
 
 export async function openModalCharacters(charactersId) {
   const body = document.querySelector('body');
@@ -25,13 +22,12 @@ export async function openModalCharacters(charactersId) {
     'November',
     'December',
   ];
-  // const modalDiv = document.createElement('div');
-  // body.prepend(modalDiv);
-  const modalDiv = document.querySelector('.modal-comics-container')
+
+  const modalDiv = document.querySelector('.modal-comics-container');
 
   const markUp = data
     .map(
-      e =>`
+      e => `
   <div class="modal-characters-gallery">
     <img
       src="${e.thumbnail.path}/portrait_uncanny.${e.thumbnail.extension}"
@@ -68,8 +64,8 @@ export async function openModalCharacters(charactersId) {
       <p class="modal-characters-info-date">${
         monthNames[new Date(e.modified).getMonth()]
       } ${new Date(e.modified).getDate()}, ${new Date(
-          e.modified
-        ).getFullYear()}</p>
+        e.modified
+      ).getFullYear()}</p>
     </div>
     <p class="modal-characters-info-descr">
       ${e.description}
@@ -86,20 +82,27 @@ export async function openModalCharacters(charactersId) {
     )
     .join('');
   modalDiv.innerHTML = closeIcon + markUp;
-  modal.classList.toggle('modal-active');
+  // modal.classList.toggle('modal-active');
   const closeBtn = document.querySelector('.modal-characters-close-btn');
   closeBtn.addEventListener('click', closeModal);
-  body.addEventListener('keydown', event => {
-    if (event.code === 'Escape') closeModal()
+  window.addEventListener('keydown', event => {
+    if (event.code === 'Escape') closeModal();
   });
   const backdrop = document.querySelector('.backdrop-modal');
   backdrop.addEventListener('click', event => {
-    if (event.target === event.currentTarget) closeModal()
+    if (event.target === event.currentTarget) closeModal();
   });
   makeSlider(charactersId);
-  function closeModal(){
-    // console.log("close modal characters", new Date());
-    // setClosed(true);
+
+  setTimeout(() => {
+    modal.classList.add('modal-active', 'animate__animated', 'animate__fadeIn');
+  }, 800);
+
+  modal.addEventListener('animationend', () => {
+    modal.classList.remove('animate__animated', 'animate__fadeIn');
+  });
+
+  function closeModal() {
     modal.classList.remove('modal-active');
     body.classList.remove('modal-open');
   }
@@ -121,7 +124,11 @@ async function makeSlider(characterId) {
     const button = document.createElement('button');
     button.type = 'button';
     button.classList.add('modal-characters-info-comics-button');
-    button.addEventListener('click', () => openModal(e.id));
+    button.addEventListener('click', () => {
+      setTimeout(() => {
+        openModal(e.id);
+      }, 500);
+    });
 
     const image = document.createElement('img');
     image.src = `${e.thumbnail.path}/standard_amazing.${e.thumbnail.extension}`;
@@ -144,6 +151,7 @@ async function makeSlider(characterId) {
     // showAnimation(modal);
     // setClosed(false)
     list.appendChild(item);
+    button.removeEventListener();
   });
 }
 
