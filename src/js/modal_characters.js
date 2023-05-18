@@ -1,11 +1,13 @@
 import MarvelAPI from './api_defaults';
-import { OpenComicsModal, closeIcon } from './modal_comics';
+import { OpenComicsModal} from './modal_comics';
 import 'animate.css';
 
+const modalDiv = document.querySelector('.modal-characters-container');
+const closeIcon = modalDiv.innerHTML;
+const modal = window.modal;
 export async function openModalCharacters(charactersId) {
   const body = document.querySelector('body');
   body.classList.add('modal-open');
-  const modal = window.modal;
   const marvel = new MarvelAPI();
   const data = await marvel.getCharacterByID(charactersId);
   const monthNames = [
@@ -22,8 +24,6 @@ export async function openModalCharacters(charactersId) {
     'November',
     'December',
   ];
-
-  const modalDiv = document.querySelector('.modal-comics-container');
 
   const markUp = data
     .map(
@@ -82,7 +82,7 @@ export async function openModalCharacters(charactersId) {
     )
     .join('');
   modalDiv.innerHTML = closeIcon + markUp;
-  modal.classList.toggle('modal-active');
+  modal.classList.add('modal-active');
   modal.classList.add('animate__animated', 'animate__fadeIn');
 
   const closeBtn = document.querySelector('.modal-characters-close-btn');
@@ -101,6 +101,7 @@ export async function openModalCharacters(charactersId) {
   });
 
   function closeModal() {
+    console.log("closed");
     modal.classList.remove('modal-active');
     body.classList.remove('modal-open');
   }
@@ -123,6 +124,7 @@ async function makeSlider(characterId) {
     button.type = 'button';
     button.classList.add('modal-characters-info-comics-button');
     button.addEventListener('click', () => {
+      modal.classList.add('secon-modal-active');
       openModal(e.id);
     });
 

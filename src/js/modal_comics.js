@@ -51,10 +51,9 @@ export async function OpenComicsModal(comicsID) {
       modalWindow.classList.remove(
         'animate__animated',
         'animate__fadeIn',
-        'modal-active',
         false
       );
-      document.body.classList.remove('modal-open');
+      modalWindow.classList.remove('secon-modal-active');
       closeButton.removeEventListener('click', closeModal);
       modalWindow.removeEventListener('click', closeModal);
     }
@@ -80,7 +79,6 @@ function renderComicsCard(comicsData) {
     prices: [printPrice],
     description,
     creators,
-    characters,
     modified,
   } = comicsData[0];
   return `
