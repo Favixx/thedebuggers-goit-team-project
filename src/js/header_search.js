@@ -76,21 +76,14 @@ autocompleteList.addEventListener('click', async (event) => {
     event.preventDefault();
     if (event.target.classList.contains('autocomplete-list-link')) {
         const contentLocal = event.target.textContent.replace('...', '').trim();
-        
-        localStorage.setItem("searchQuery", JSON.stringify(await getDataSearch(contentLocal)));
-        
-        // Получаем родительскую форму
-        const form = event.target.closest('form');
-        
-        // Проверяем, что форма существует и вызываем метод submit()
-        if (form) {
-            form.submit();
-        }
+        localStorage.setItem("searchQuery", await getDataSearch(contentLocal));
+        form.submit()
     }
+
 });
 
 // Очистить значение поля
 searchHeader.addEventListener('blur', (event)=> {
-    searchHeader.value = '';
+    // searchHeader.value = '';
     autocompleteList.style.display = 'none'
   });
