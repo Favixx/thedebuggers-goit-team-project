@@ -27,6 +27,7 @@ const defaultImage = `<picture class="try-looking">
 function preventionDefault(event){
   event.preventDefault()
 }
+refs.form.addEventListener('submit', preventionDefault)
 refs.headerForm.addEventListener('submit', preventionDefault)
 if((localStorage.getItem("searchQuery"))!==null){
 document.addEventListener("DOMContentLoaded", submitOnLoadIfNotEmpty)
@@ -35,6 +36,18 @@ function submitOnLoadIfNotEmpty(){
   localStorage.removeItem('searchQuery')
   handleChange();
 }
+} 
+else if(localStorage.getItem("searchQueryAutocomplete")!==null){
+  document.addEventListener("DOMContentLoaded", submitOnLoadIfNotEmpty)
+  function submitOnLoadIfNotEmpty(){
+    
+    refs.nameInput.value = localStorage.getItem("searchQueryAutocomplete")
+    localStorage.removeItem('searchQueryAutocomplete')
+    handleChange()
+  }
+}
+ else{
+  handleChange()
 }
 // Create a character card
 function createCharacterCard(character) {
@@ -63,15 +76,10 @@ refs.form.addEventListener('change', debounce(handleChange, 500));
 // refs.searchNameIcon.addEventListener('click', handleChange);
 
 async function handleChange() {
-  const comics = refs.comicsInput.value;
+  const comics = (refs.comicsInput.value.trim());
   const selectValue = refs.selectInput.value;
-  const name = refs.nameInput.value;
+  const name = (refs.nameInput.value).trim();
   const modifiedSince = refs.dateInput.value;
-  if (!name && !comics) {
-    refs.charactersGallery.innerHTML = defaultImage;
-    elementDiv.classList.add('invisible');
-    return;
-  }
   const dispayWidth = document.documentElement.clientWidth;
 
   widthParam(dispayWidth, marvelApi);
