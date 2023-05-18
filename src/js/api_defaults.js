@@ -19,7 +19,9 @@ export default class MarvelAPI {
       const { data, status, statusText } = await this.marvel.get(endPoint, {
         params,
       });
-      if (status !== 200) console.log(status, statusText);
+      if (status !== 200) {
+        return
+      }
       if (status === 429 && keys.getNextKey()) alert('Перезавантажте сторінку для отримання нового ключа') 
       this.totalResults = data.data.total;
       this.perPage = data.data.limit;
@@ -28,7 +30,7 @@ export default class MarvelAPI {
       return data.data.results;
     } catch (error) {
       if (error.response.status === 429 && keys.getNextKey()) alert('Перезавантажте сторінку для отримання нового ключа')
-      console.log(error.message);
+      return
     }
   }
 
@@ -81,7 +83,6 @@ export default class MarvelAPI {
   async getCharactersByPage(pageNumber) {
     const params = this.params;
     params.offset = (pageNumber - 1) * this.perPage;
-    console.log('API', params, this.perPage);
     return await this.getData('characters', params);
   }
 

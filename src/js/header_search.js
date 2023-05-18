@@ -67,9 +67,6 @@ autocompleteList.addEventListener('click', (event) => {
     let selectedElement = null;
   
     autocompleteElem.forEach((elem) => {
-        console.log(elem)
-        console.log(event.target)
-        // console.log(elem===event.currentTarget)
       if (elem === event.target) {
         elementFound = true;
         selectedElement = elem;
