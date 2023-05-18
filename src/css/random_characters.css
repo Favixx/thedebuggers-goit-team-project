@@ -63,6 +63,12 @@
   transition: color 350ms linear;
 }
 
+.random-item-btn:focus h2,
+.random-item-btn:focus p {
+  color: rgb(187, 187, 255);
+  transition: color 350ms linear;
+}
+
 .active > p,
 .active > h2 {
   color: #4b50ad;

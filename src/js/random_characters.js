@@ -34,6 +34,7 @@ async function initialRandomizing() {
     const imgElement = document.createElement('img');
     imgElement.src = getImgUrl(currentCard.thumbnail);
     imgElement.classList.add('random-characters-img');
+    imgElement.setAttribute('alt', currentCard.name);
     imgRef.appendChild(imgElement);
     setTimeout(() => imgElement.classList.add('show'), 300);
   }
