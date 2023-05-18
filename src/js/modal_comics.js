@@ -64,7 +64,6 @@ export async function OpenComicsModal(comicsID) {
     event.preventDefault();
     const characterId = event.target.closest('li')?.dataset.id;
     if (characterId) {
-      console.log(characterId);
       characterList.removeEventListener('click', onClickCharacter);
       closeModal(null);
       openModalCharacters(characterId);

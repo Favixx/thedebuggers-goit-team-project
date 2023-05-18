@@ -97,11 +97,8 @@ export async function openModalCharacters(charactersId) {
   });
   makeSlider(charactersId);
 
-  modal.addEventListener('animationend', () => {
-    modal.classList.remove('animate__animated', 'animate__fadeIn');
-  });
-
   function closeModal() {
+    modal.classList.remove('animate__animated', 'animate__fadeIn');
     modal.classList.remove('modal-active');
     body.classList.remove('modal-open');
   }
