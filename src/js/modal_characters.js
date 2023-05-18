@@ -1,5 +1,6 @@
 import MarvelAPI from './api_defaults';
 import { OpenComicsModal, closeIcon } from './modal_comics';
+import 'animate.css';
 
 export async function openModalCharacters(charactersId) {
   const body = document.querySelector('body');
@@ -95,7 +96,7 @@ export async function openModalCharacters(charactersId) {
 
   setTimeout(() => {
     modal.classList.add('modal-active', 'animate__animated', 'animate__fadeIn');
-  }, 700);
+  }, 800);
 
   modal.addEventListener('animationend', () => {
     modal.classList.remove('animate__animated', 'animate__fadeIn');
@@ -123,7 +124,11 @@ async function makeSlider(characterId) {
     const button = document.createElement('button');
     button.type = 'button';
     button.classList.add('modal-characters-info-comics-button');
-    button.addEventListener('click', () => openModal(e.id));
+    button.addEventListener('click', () => {
+      setTimeout(() => {
+        openModal(e.id);
+      }, 500);
+    });
 
     const image = document.createElement('img');
     image.src = `${e.thumbnail.path}/standard_amazing.${e.thumbnail.extension}`;
@@ -146,6 +151,7 @@ async function makeSlider(characterId) {
     // showAnimation(modal);
     // setClosed(false)
     list.appendChild(item);
+    button.removeEventListener();
   });
 }
 

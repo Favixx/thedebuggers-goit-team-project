@@ -30,29 +30,29 @@ export async function OpenComicsModal(comicsID) {
   ]);
   modalContainer.innerHTML =
     closeIcon + renderComicsModal(comicsData, creators, characters);
-  modalWindow.classList.toggle('modal-active', true);
-  modalWindow.classList.add('animate__animated', 'animate__fadeIn');
-  setTimeout(() => {}, 3000);
+
   const closeButton = modalWindow.querySelector('.modal-comics-close-btn');
-  closeButton.classList.add('animate__animated', 'animate__fadeIn');
+
+  modalWindow.classList.add(
+    'modal-active',
+    'animate__animated',
+    'animate__fadeIn'
+  );
+
   closeButton.addEventListener('click', closeModal);
   modalWindow.addEventListener('click', event => {
     if (event.target == event.currentTarget) {
       closeModal();
     }
   });
-  modalWindow.addEventListener('animationend', () => {
-    modalWindow.classList.remove('animate__animated', 'animate__fadeIn');
-  });
-
-  if (closeButton) {
-    closeButton.addEventListener('animationend', () => {
-      closeButton.classList.remove('animate__animated', 'animate__fadeIn');
-    });
-  }
 }
 function closeModal() {
-  modalWindow.classList.toggle('modal-active', false);
+  modalWindow.classList.remove(
+    'animate__animated',
+    'animate__fadeIn',
+    'modal-active',
+    false
+  );
   document.body.classList.remove('modal-open');
 }
 
