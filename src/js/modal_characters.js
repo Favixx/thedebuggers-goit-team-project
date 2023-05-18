@@ -1,5 +1,5 @@
 import MarvelAPI from './api_defaults';
-import { OpenComicsModal } from './modal_comics';
+import { OpenComicsModal, closeIcon } from './modal_comics';
 // import Swiper, { Navigation, Pagination } from 'swiper';
 // import 'swiper/css';
 // import 'swiper/css/navigation';
@@ -8,6 +8,7 @@ import { OpenComicsModal } from './modal_comics';
 export async function openModalCharacters(charactersId) {
   const body = document.querySelector('body');
   body.classList.add('modal-open');
+  const modal = window.modal;
   const marvel = new MarvelAPI();
   const data = await marvel.getCharacterByID(charactersId);
   const monthNames = [
@@ -24,19 +25,13 @@ export async function openModalCharacters(charactersId) {
     'November',
     'December',
   ];
-  const modalDiv = document.createElement('div');
-  body.prepend(modalDiv);
+  // const modalDiv = document.createElement('div');
+  // body.prepend(modalDiv);
+  const modalDiv = document.querySelector('.modal-comics-container')
 
   const markUp = data
     .map(
-      e =>
-        `<div class="backdrop-modal">
-        <div class="modal-characters-container">
-  <button type="button" class="modal-characters-close-btn">
-    <svg class="modal-characters-close-btn-icon" width="10" height="10">
-      <use href="./img/sprite.svg#icon-close-btn"></use>
-    </svg>
-  </button>
+      e =>`
   <div class="modal-characters-gallery">
     <img
       src="${e.thumbnail.path}/portrait_uncanny.${e.thumbnail.extension}"
@@ -87,31 +82,27 @@ export async function openModalCharacters(charactersId) {
       </div>
     </div>
   </div>
-</div>
-</div>
 `
     )
     .join('');
-  modalDiv.innerHTML = markUp;
+  modalDiv.innerHTML = closeIcon + markUp;
+  modal.classList.toggle('modal-active');
   const closeBtn = document.querySelector('.modal-characters-close-btn');
-  closeBtn.addEventListener('click', e => {
-    modalDiv.remove();
-    body.classList.remove('modal-open');
-  });
+  closeBtn.addEventListener('click', closeModal);
   body.addEventListener('keydown', event => {
-    if (event.code === 'Escape') {
-      modalDiv.remove();
-      body.classList.remove('modal-open');
-    }
+    if (event.code === 'Escape') closeModal()
   });
   const backdrop = document.querySelector('.backdrop-modal');
   backdrop.addEventListener('click', event => {
-    if (event.target == event.currentTarget) {
-      modalDiv.remove();
-      body.classList.remove('modal-open');
-    }
+    if (event.target === event.currentTarget) closeModal()
   });
   makeSlider(charactersId);
+  function closeModal(){
+    // console.log("close modal characters", new Date());
+    // setClosed(true);
+    modal.classList.remove('modal-active');
+    body.classList.remove('modal-open');
+  }
 }
 
 async function makeSlider(characterId) {
@@ -150,6 +141,8 @@ async function makeSlider(characterId) {
     item.appendChild(title);
     item.appendChild(author);
 
+    // showAnimation(modal);
+    // setClosed(false)
     list.appendChild(item);
   });
 }
