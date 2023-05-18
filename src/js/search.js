@@ -1,6 +1,7 @@
 import MarvelAPI from './api_defaults';
 import debounce from 'lodash.debounce';
 import { openModalCharacters } from './modal_characters';
+import Notiflix from 'notiflix';
 
 export const refs = {
   body: document.querySelector('body'),
@@ -82,6 +83,11 @@ async function handleChange() {
   const modifiedSince = refs.dateInput.value;
   const dispayWidth = document.documentElement.clientWidth;
 
+  if (comics !== '' && !/^\d+$/.test(comics)) {
+    Notiflix.Notify.failure('Comics input should be empty or contain only digits');
+    return;
+  }
+
   widthParam(dispayWidth, marvelApi);
 
   const data = await marvelApi.getFilteredCharacters(
@@ -96,6 +102,7 @@ async function handleChange() {
     renderCharacterCards(data);
     element.innerHTML = createPagination(totalPages, page);
   } else {
+    Notiflix.Notify.failure('Your query has zero matches')
     refs.charactersGallery.innerHTML = defaultImage;
     elementDiv.classList.add("invisible");
   }
