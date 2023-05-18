@@ -4,7 +4,6 @@ const marvelAPI = new MarvelAPI();
 const modalWindow = document.querySelector('.backdrop-modal');
 const modalContainer = modalWindow.querySelector('.modal-comics-container');
 export const closeIcon = modalContainer.innerHTML;
-// let isClosed = false;
 
 const monthName = [
   'January',
@@ -26,31 +25,22 @@ export async function OpenComicsModal(comicsID) {
   const [comicsData, creators, characters] = await Promise.all([
     marvelAPI.getData(comicsEndpoint),
     marvelAPI.getComicCreators(comicsID),
-    marvelAPI.getComicCharacters(comicsID)
-  ])
-  modalContainer.innerHTML = closeIcon + renderComicsModal(comicsData, creators, characters);
-  modalWindow.classList.toggle('modal-active',true);
-  console.log(modalWindow.offsetHeight, modalWindow.clienHeight, window.innerHeight);
-  setTimeout(()=>{console.log(modalWindow.offsetHeight, modalWindow.clienHeight, window.innerHeight)},3000)
+    marvelAPI.getComicCharacters(comicsID),
+  ]);
+  modalContainer.innerHTML =
+    closeIcon + renderComicsModal(comicsData, creators, characters);
+  modalWindow.classList.toggle('modal-active', true);
+  setTimeout(() => {}, 3000);
   const closeButton = modalWindow.querySelector('.modal-comics-close-btn');
   closeButton.addEventListener('click', closeModal);
   modalWindow.addEventListener('click', event => {
-    console.log('clicked modal');
     if (event.target == event.currentTarget) {
-      // showAnimation(modalWindow)
-      closeModal()
+      closeModal();
     }
   });
 }
-
-// export function setClosed(bool) {
-//   isClosed = bool;
-// }
-// export function getClosed(){
-//   return isClosed;
-// }
 function closeModal() {
-  modalWindow.classList.toggle('modal-active',false);
+  modalWindow.classList.toggle('modal-active', false);
 }
 
 function renderComicsCard(comicsData) {
@@ -71,7 +61,7 @@ function renderComicsCard(comicsData) {
         <h3>${creators.items[3]?.name} | ${formatDate(modified)}</h3>
       </div>
       <p class="modal-comics-text">
-        ${description || "description missing"}
+        ${description || 'description missing'}
       </p>
       <ul class="modal-comics-filter-info">
       <li class="modal-comics-filter-item">
@@ -126,38 +116,35 @@ function renderComicsGallery(images) {
     .join('');
 }
 
-function renderTitleImage([{thumbnail, images}]) {
+function renderTitleImage([{ thumbnail, images }]) {
   return `
       <img class="modal-comics-main-pict" src="${thumbnail.path}.${
-        thumbnail.extension
-      }" width="295">
+    thumbnail.extension
+  }" width="295">
       <ul class="modal-comics-gallery">${renderComicsGallery(images)}</ul>`;
 }
 
-function renderComicsModal(comics, creators, characters){
+function renderComicsModal(comics, creators, characters) {
   return `
-  <div class="modal-comics-title-image-wrapper">${renderTitleImage(comics)}</div>
+  <div class="modal-comics-title-image-wrapper">${renderTitleImage(
+    comics
+  )}</div>
     <div class="modal-comics-info-wrapper">
       <div class="modal-comics-general-info">${renderComicsCard(comics)}</div>
       <h2>Creator</h2>
-      <ul class="comics-modal-creators-list">${renderCreators(creators, comics[0].creators.items)}</ul>
+      <ul class="comics-modal-creators-list">${renderCreators(
+        creators,
+        comics[0].creators.items
+      )}</ul>
       <h2>Characters</h2>
-      <ul class="comics-modal-characters-list">${renderCharacters(characters)}</ul>
-    </div>`
+      <ul class="comics-modal-characters-list">${renderCharacters(
+        characters
+      )}</ul>
+    </div>`;
 }
-function formatDate(str){
+function formatDate(str) {
   const date = new Date(str);
-  console.log(str);
   return `${
-    monthName[date.getMonth()]} ${
-    date.getDate()}, ${
-    date.getFullYear()}`
+    monthName[date.getMonth()]
+  } ${date.getDate()}, ${date.getFullYear()}`;
 }
-// export function showAnimation(elem){
-//   console.log('showAnimation started');
-//   elem.classList.toggle('modal-animation');
-//   setTimeout(()=>{
-//     if (isClosed) elem.classList.toggle('modal-active',false)
-//     else elem.classList.toggle('modal-animation', false);
-//   },500)
-// }
