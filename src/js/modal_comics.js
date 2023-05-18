@@ -1,13 +1,11 @@
 import MarvelAPI from './api_defaults';
 const marvelAPI = new MarvelAPI();
 
-const modalWindow = document.querySelector('.comics-modal-window');
-const creatorsList = modalWindow.querySelector('.comics-modal-creators-list');
-const charactersList = modalWindow.querySelector(
-  '.comics-modal-characters-list'
-);
-const genInfo = modalWindow.querySelector('.modal-comics-general-info');
-const titleImageWrapper = modalWindow.querySelector('.modal-comics-title-image-wrapper')
+const modalWindow = document.querySelector('.backdrop-modal');
+const modalContainer = modalWindow.querySelector('.modal-comics-container');
+export const closeIcon = modalContainer.innerHTML;
+// let isClosed = false;
+
 const monthName = [
   'January',
   'February',
@@ -22,6 +20,7 @@ const monthName = [
   'November',
   'December',
 ];
+
 export async function OpenComicsModal(comicsID) {
   const comicsEndpoint = `comics/${comicsID}`;
   const [comicsData, creators, characters] = await Promise.all([
@@ -29,22 +28,29 @@ export async function OpenComicsModal(comicsID) {
     marvelAPI.getComicCreators(comicsID),
     marvelAPI.getComicCharacters(comicsID)
   ])
-  console.log(comicsData, creators, characters);
-  console.log(titleImageWrapper, genInfo, charactersList, creatorsList);
-  titleImageWrapper.innerHTML = renderTitleImage(comicsData);
-  genInfo.innerHTML = renderComicsCard(comicsData);
-  charactersList.innerHTML = renderCharacters(characters);
-  creatorsList.innerHTML = renderCreators(
-    creators,
-    comicsData[0].creators.items
-  );
-  modalWindow.style.display = 'block';
+  modalContainer.innerHTML = closeIcon + renderComicsModal(comicsData, creators, characters);
+  modalWindow.classList.toggle('modal-active',true);
+  console.log(modalWindow.offsetHeight, modalWindow.clienHeight, window.innerHeight);
+  setTimeout(()=>{console.log(modalWindow.offsetHeight, modalWindow.clienHeight, window.innerHeight)},3000)
   const closeButton = modalWindow.querySelector('.modal-comics-close-btn');
-  console.log(closeButton);
   closeButton.addEventListener('click', closeModal);
+  modalWindow.addEventListener('click', event => {
+    console.log('clicked modal');
+    if (event.target == event.currentTarget) {
+      // showAnimation(modalWindow)
+      closeModal()
+    }
+  });
 }
+
+// export function setClosed(bool) {
+//   isClosed = bool;
+// }
+// export function getClosed(){
+//   return isClosed;
+// }
 function closeModal() {
-  modalWindow.style.display = 'none';
+  modalWindow.classList.toggle('modal-active',false);
 }
 
 function renderComicsCard(comicsData) {
@@ -65,7 +71,7 @@ function renderComicsCard(comicsData) {
         <h3>${creators.items[3]?.name} | ${formatDate(modified)}</h3>
       </div>
       <p class="modal-comics-text">
-        ${description}
+        ${description || "description missing"}
       </p>
       <ul class="modal-comics-filter-info">
       <li class="modal-comics-filter-item">
@@ -103,7 +109,7 @@ function renderCreators(creators, array) {
 function renderCharacters(characters) {
   return characters
     .map(el => {
-      return `<li class="modal-window-character-item">
+      return `<li class="modal-window-character-item" data-id="el.id">
         <img class="modal-comics-character-pict" src="${el.thumbnail.path}/standard_medium.${el.thumbnail.extension}" alt="title page of ${el.name}" height="60" width="60" />
           <p class="modal-comics-text">${el.name}</p>
     </li>`;
@@ -128,10 +134,30 @@ function renderTitleImage([{thumbnail, images}]) {
       <ul class="modal-comics-gallery">${renderComicsGallery(images)}</ul>`;
 }
 
+function renderComicsModal(comics, creators, characters){
+  return `
+  <div class="modal-comics-title-image-wrapper">${renderTitleImage(comics)}</div>
+    <div class="modal-comics-info-wrapper">
+      <div class="modal-comics-general-info">${renderComicsCard(comics)}</div>
+      <h2>Creator</h2>
+      <ul class="comics-modal-creators-list">${renderCreators(creators, comics[0].creators.items)}</ul>
+      <h2>Characters</h2>
+      <ul class="comics-modal-characters-list">${renderCharacters(characters)}</ul>
+    </div>`
+}
 function formatDate(str){
   const date = new Date(str);
+  console.log(str);
   return `${
     monthName[date.getMonth()]} ${
     date.getDate()}, ${
     date.getFullYear()}`
 }
+// export function showAnimation(elem){
+//   console.log('showAnimation started');
+//   elem.classList.toggle('modal-animation');
+//   setTimeout(()=>{
+//     if (isClosed) elem.classList.toggle('modal-active',false)
+//     else elem.classList.toggle('modal-animation', false);
+//   },500)
+// }

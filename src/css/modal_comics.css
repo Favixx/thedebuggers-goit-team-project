@@ -1,19 +1,30 @@
 
+.backdrop-modal {
+  display: none;
+  background-color:rgba(46, 47, 66, 0.5);
+  scale:1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width:100vw;
+  z-index: 14;
+  height: 100vh;
+  overflow-y: auto;
+  transition: scale 500ms ease-in-out;
+}
+.backdrop-modal.modal-animation{
+  scale:0.1;
+} 
 .modal-comics-container {
   width: 335px;
   max-width: 600px;
-  background-color: black;
+  background-color: #0c0b0b;
   margin: 0 auto;
   position: relative;
   padding: 40px 20px;
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-}
-.title-image-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
 }
 .modal-comics-info-wrapper{
   padding: 32px 16px;
@@ -22,18 +33,7 @@
   width: 100%;
   max-width: 588px;
 }
-.comics-modal-window {
-  display: none;
-  background-color: #171717;
-  border-radius: 8px;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width:100vw;
-  z-index: 14;
-  max-height: 100vh;
-  overflow-y: auto;
-}
+
 
 .modal-comics-close-btn {
   position: absolute;
@@ -50,7 +50,7 @@
   fill: white;
 }
 
-.comics-modal-window h2 {
+.backdrop-modal h2 {
   color: var(--color-title-and-text);
   font-weight: 500;
   font-size: 18px;
@@ -72,6 +72,7 @@
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
+  align-content: start;
 }
 
 .modal-comics-title-wrapper h3 {
@@ -112,11 +113,13 @@
   border-radius: 8px;
   width: 80px;
   height: 80px;
+  overflow: hidden;
 }
 .modal-comics-main-pict {
   border-radius: 8px;
   width: 100%;
   max-width: 332px;
+  height: 387px;
 }
 
 .modal-comics-gallery {
@@ -190,11 +193,6 @@
   text-transform: capitalize;
   color: rgba(250, 250, 250, 0.5);
 }
-/* .modal-comics-author-name {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: calc(18 / 14);
-} */
 @media screen and (min-width: 767.98px) {
   .modal-comics-filter-descr {
     font-size: 16px;
@@ -209,24 +207,22 @@
   }
   .modal-comics-main-pict {
     width: 332px;
+    width: 445px;
   }
   .modal-comics-text {
     font-size: 16px;
     line-height: calc(18 / 16);
   }
-  h3 {
+  .backdrop-modal h3 {
     font-weight: 400;
     color: rgba(250, 250, 250, 0.5);
     font-size: 16px;
     line-height: calc(18 / 16);
   }
-  .comics-modal-window h2 {
+  .backdrop-modal h2 {
     font-size: 24px;
     line-height: calc(24 / 24);
     letter-spacing: -2%;
-  }
-  .comics-modal-window {
-    max-width: 100vw;
   }
   .comics-modal-creators-list {
     flex-direction: row;
@@ -240,7 +236,14 @@
     width: calc((100% - 48px) / 3);
   }
   .modal-comics-container{
+    border-radius: 8px;
+    padding: 64px 32px;
     width: 600px;
+    top:50%;
+    transform: translate(0,max(-50%, -50vh));
+  }
+  .modal-comics-gallery{
+    flex-direction: column;
   }
 }
 @media screen and (min-width: 1439.98px) {
@@ -260,10 +263,16 @@
     line-height: calc(18 / 14);
     color: #fafafa;
   }
-  .comics-modal-window {
-    max-width: 100vw;
-  }
   .modal-comics-title-image-wrapper{
     max-width: 332px;
   }
+  .modal-comics-gallery{
+    flex-direction: row;
+  }
+}
+
+.modal-active{
+  display: block;
+  /* transition: opacity 1000ms ease-in-out; */
+  /* opacity: 1; */
 }
