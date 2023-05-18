@@ -70,7 +70,7 @@ function renderComicsCard(comicsData) {
   } = comicsData[0];
   return `
       <div class="modal-comics-title-wrapper"> 
-        <h2 class="modal-comics-title">${title}</h2>
+        <h2 class="modal-comics-title-main">${title}</h2>
         <h3>${creators.items[3]?.name} | ${formatDate(modified)}</h3>
       </div>
       <p class="modal-comics-text">

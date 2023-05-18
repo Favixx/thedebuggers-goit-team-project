@@ -68,7 +68,7 @@ export async function openModalCharacters(charactersId) {
       ).getFullYear()}</p>
     </div>
     <p class="modal-characters-info-descr">
-      ${e.description || "Description missing"}
+      ${e.description || 'Description missing'}
     </p>
     <div class="modal-characters-info-comics-container">
       <h2 class="modal-characters-info-comics-header">List of comics</h2>
@@ -82,7 +82,7 @@ export async function openModalCharacters(charactersId) {
     )
     .join('');
   modalDiv.innerHTML = closeIcon + markUp;
-  // modal.classList.toggle('modal-active');
+  modal.classList.toggle('modal-active');
   const closeBtn = document.querySelector('.modal-characters-close-btn');
   closeBtn.addEventListener('click', closeModal);
   window.addEventListener('keydown', event => {
@@ -93,10 +93,6 @@ export async function openModalCharacters(charactersId) {
     if (event.target === event.currentTarget) closeModal();
   });
   makeSlider(charactersId);
-
-  setTimeout(() => {
-    modal.classList.add('modal-active', 'animate__animated', 'animate__fadeIn');
-  }, 800);
 
   modal.addEventListener('animationend', () => {
     modal.classList.remove('animate__animated', 'animate__fadeIn');
@@ -125,9 +121,7 @@ async function makeSlider(characterId) {
     button.type = 'button';
     button.classList.add('modal-characters-info-comics-button');
     button.addEventListener('click', () => {
-      setTimeout(() => {
-        openModal(e.id);
-      }, 500);
+      openModal(e.id);
     });
 
     const image = document.createElement('img');
