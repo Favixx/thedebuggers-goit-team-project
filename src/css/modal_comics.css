@@ -1,20 +1,19 @@
-
 .backdrop-modal {
   display: none;
-  background-color:rgba(46, 47, 66, 0.5);
-  scale:1;
+  background-color: rgba(46, 47, 66, 0.5);
+  scale: 1;
   position: fixed;
   top: 0;
   left: 0;
-  width:100vw;
+  width: 100vw;
   z-index: 14;
   height: 100vh;
   overflow-y: auto;
   transition: scale 500ms ease-in-out;
 }
-.backdrop-modal.modal-animation{
-  scale:0.1;
-} 
+.backdrop-modal.modal-animation {
+  scale: 0.1;
+}
 .modal-comics-container {
   width: 335px;
   max-width: 600px;
@@ -26,14 +25,13 @@
   flex-wrap: wrap;
   gap: 16px;
 }
-.modal-comics-info-wrapper{
+.modal-comics-info-wrapper {
   padding: 32px 16px;
   background-color: #171717;
   border-radius: 8px;
   width: 100%;
   max-width: 588px;
 }
-
 
 .modal-comics-close-btn {
   position: absolute;
@@ -59,16 +57,16 @@
   margin-top: 32px;
 }
 .modal-comics-title {
-  margin:0;
+  margin: 0;
   color: var(--color-title-and-text);
 }
-.modal-comics-title-wrapper{
+.modal-comics-title-wrapper {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 4px;
 }
-.modal-comics-title-image-wrapper{
+.modal-comics-title-image-wrapper {
   display: flex;
   gap: 8px;
   flex-wrap: wrap;
@@ -136,8 +134,6 @@
   gap: 24px;
 }
 
-
-
 .modal-comics-filter-item {
   gap: 24px;
   flex-direction: column;
@@ -157,8 +153,6 @@
   line-height: calc(18 / 14);
   color: #fafafa;
 }
-
-
 
 /* CREATORS */
 
@@ -229,20 +223,20 @@
     justify-content: flex-start;
     flex-wrap: wrap;
   }
-  .modal-comics-creators-li{
+  .modal-comics-creators-li {
     width: calc((100% - 48px) / 3);
   }
-  .modal-window-character-item{
+  .modal-window-character-item {
     width: calc((100% - 48px) / 3);
   }
-  .modal-comics-container{
+  .modal-comics-container {
     border-radius: 8px;
     padding: 64px 32px;
     width: 600px;
-    top:50%;
-    transform: translate(0,max(-50%, -50vh));
+    top: 50%;
+    transform: translate(0, max(-50%, -50vh));
   }
-  .modal-comics-gallery{
+  .modal-comics-gallery {
     flex-direction: column;
   }
 }
@@ -253,7 +247,7 @@
     margin-top: 16px;
     gap: 24px;
   }
-  .modal-comics-container{
+  .modal-comics-container {
     max-width: 1000px;
     width: 100%;
   }
@@ -263,15 +257,15 @@
     line-height: calc(18 / 14);
     color: #fafafa;
   }
-  .modal-comics-title-image-wrapper{
+  .modal-comics-title-image-wrapper {
     max-width: 332px;
   }
-  .modal-comics-gallery{
+  .modal-comics-gallery {
     flex-direction: row;
   }
 }
 
-.modal-active{
+.modal-active {
   display: block;
   /* transition: opacity 1000ms ease-in-out; */
   /* opacity: 1; */

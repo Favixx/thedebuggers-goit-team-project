@@ -81,7 +81,7 @@ export async function openModalCharacters(charactersId) {
     )
     .join('');
   modalDiv.innerHTML = closeIcon + markUp;
-  modal.classList.toggle('modal-active');
+  // modal.classList.toggle('modal-active');
   const closeBtn = document.querySelector('.modal-characters-close-btn');
   closeBtn.addEventListener('click', closeModal);
   window.addEventListener('keydown', event => {
@@ -92,8 +92,14 @@ export async function openModalCharacters(charactersId) {
     if (event.target === event.currentTarget) closeModal();
   });
   makeSlider(charactersId);
+
+  setTimeout(() => {
+    modal.classList.add('modal-active', 'animate__animated', 'animate__fadeIn');
+    modal.addEventListener('animationend', () => {
+      modal.classList.remove('animate__animated', 'animate__fadeIn');
+    });
+  });
   function closeModal() {
-    // setClosed(true);
     modal.classList.remove('modal-active');
     body.classList.remove('modal-open');
   }
