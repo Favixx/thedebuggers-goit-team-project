@@ -95,10 +95,12 @@ export async function openModalCharacters(charactersId) {
 
   setTimeout(() => {
     modal.classList.add('modal-active', 'animate__animated', 'animate__fadeIn');
-    modal.addEventListener('animationend', () => {
-      modal.classList.remove('animate__animated', 'animate__fadeIn');
-    });
+  }, 700);
+
+  modal.addEventListener('animationend', () => {
+    modal.classList.remove('animate__animated', 'animate__fadeIn');
   });
+
   function closeModal() {
     modal.classList.remove('modal-active');
     body.classList.remove('modal-open');
