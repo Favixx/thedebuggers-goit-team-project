@@ -156,7 +156,7 @@
 
 .spider-man {
   top: 0;
-  margin-bottom: 32px;
+  margin-bottom: 14px;
   width: 237px;
   margin-left: 83px;
 }
@@ -176,30 +176,39 @@
 
 /* box shadow */
 
-/* .info-home-hero-character{
+.info-home-hero-line {
+  display: block;
+  rotate: 180deg;
+  border-bottom: 1px solid rgba(250, 250, 250, 0.15);
+  width: 237px;
+  margin-bottom: 16px;
+  margin-left: 58px;
   position: relative;
 }
-.info-home-hero-character::before{
-  content: '';
+.info-home-hero-line::after {
   position: absolute;
-  top: -16px;
-  left: 0;
-  width: 237px;
-  height: 0;
-  border: 1px solid rgba(250, 250, 250, 0.15);
+  content: '';
+  width: 0px;
+  height: 0px;
+  top: -5.5px;
+  left: 0%;
+  border-style: solid;
+  border-width: 3px 5px 3px 0px;
+  border-color: transparent rgb(37, 37, 37) transparent transparent;
+  transform: rotate(180deg) translateY(-50%);
 }
-.info-home-hero-character::after{
-  content: "";
-    position: absolute;
-    top: -20%;
-    right: 0;
-    width: 0px;
-    height: 0px;
-    border-style: solid;
-    border-width: 3px 5px 3px 0;
-    border-color: transparent rgb(37,37,37) transparent transparent;
-    transform: rotate(0) translateY(-50%);
-} */
+.info-home-hero-line::before {
+  position: absolute;
+  content: '';
+  width: 0px;
+  height: 0px;
+  right: 0%;
+  top: 0.5px;
+  border-style: solid;
+  border-width: 3px 5px 3px 0px;
+  border-color: transparent rgb(37, 37, 37) transparent transparent;
+  transform: rotate(0deg) translateY(-50%);
+}
 
 .part-2-1 {
   position: relative;
@@ -281,6 +290,7 @@
     width: 336px;
     height: 540px;
     margin-left: 32px;
+    margin-bottom: 16px;
   }
   .spider-man-modal {
     margin-top: 79px;
@@ -300,6 +310,10 @@
   .swiper-wrapper {
     width: 100%;
     height: 1195px;
+  }
+  .info-home-hero-line {
+    width: 336px;
+    margin-left: 32px;
   }
 }
 @media screen and (min-width: 767.98px) and (max-width: 1439px) {
@@ -391,39 +405,10 @@
   }
   .spider-man {
     margin-left: 16px;
+    margin-bottom: 32px;
   }
   .info-home-hero-line {
-    display: block;
-    rotate: 180deg;
-    border-bottom: 1px solid rgba(250, 250, 250, 0.15);
     width: 320px;
-    margin-top: 32px;
-    margin-bottom: 16px;
     margin-left: 20px;
-    position: relative;
-  }
-  .info-home-hero-line::after {
-    position: absolute;
-    content: '';
-    width: 0px;
-    height: 0px;
-    top: -5.5px;
-    left: 0%;
-    border-style: solid;
-    border-width: 3px 5px 3px 0px;
-    border-color: transparent rgb(37, 37, 37) transparent transparent;
-    transform: rotate(180deg) translateY(-50%);
-  }
-  .info-home-hero-line::before {
-    position: absolute;
-    content: '';
-    width: 0px;
-    height: 0px;
-    right: 0%;
-    top: 0.5px;
-    border-style: solid;
-    border-width: 3px 5px 3px 0px;
-    border-color: transparent rgb(37, 37, 37) transparent transparent;
-    transform: rotate(0deg) translateY(-50%);
   }
 }
