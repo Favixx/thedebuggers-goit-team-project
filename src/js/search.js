@@ -11,6 +11,7 @@ export const refs = {
   charactersGallery: document.querySelector('.characters-gallery'),
   form: document.querySelector('.searchandsort-container'),
   pagination: document.querySelector('.pagination'),
+  headerForm: document.querySelector('.header_search')
 };
 
 const marvelApi = new MarvelAPI();
@@ -23,7 +24,18 @@ const defaultImage = `<picture class="try-looking">
 <source srcset="./img/mob/frame-mob.png 1x, ./img/mob/frame-2x@mob.png 2x">
 <img src="./img/mob/frame-mob.png" title="default-image" alt="Try looking for something else" width="375px" height="221px"/>
 </picture>`;
-
+function preventionDefault(event){
+  event.preventDefault()
+}
+refs.headerForm.addEventListener('submit', preventionDefault)
+if((localStorage.getItem("searchQuery"))!==null){
+document.addEventListener("DOMContentLoaded", submitOnLoadIfNotEmpty)
+function submitOnLoadIfNotEmpty(){
+  refs.nameInput.value = localStorage.getItem('searchQuery')
+  localStorage.removeItem('searchQuery')
+  handleChange();
+}
+}
 // Create a character card
 function createCharacterCard(character) {
   const card = document.createElement('li');
