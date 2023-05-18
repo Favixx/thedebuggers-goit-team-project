@@ -15,18 +15,15 @@
   scale: 0.1;
 }
 .modal-comics-container {
-  width: 335px;
-  max-width: 600px;
   background-color: #0c0b0b;
   margin: 0 auto;
   position: relative;
   padding: 40px 20px;
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
 }
 .modal-comics-info-wrapper {
-  padding: 32px 16px;
+  padding: 0px 16px;
   background-color: #171717;
   border-radius: 8px;
   width: 100%;
@@ -48,8 +45,21 @@
   fill: white;
 }
 
+.modal-comics-title-main {
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  color: var(--color-title-and-text);
+  margin-top: 32px;
+}
+
 .modal-comics-title {
-  margin: 0;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.33;
+  letter-spacing: -0.02em;
+  margin: 32px 0px 20px;
   color: var(--color-title-and-text);
 }
 .modal-comics-title-wrapper {
@@ -77,6 +87,7 @@
   color: var(--color-title-and-text);
   font-size: 14px;
   line-height: calc(18 / 14);
+  text-align: start;
 }
 
 /* CHARACTERS */
@@ -93,6 +104,15 @@
   width: 100%;
   max-width: 100%;
 }
+
+.modal-window-caracter-btn {
+  background-color: transparent;
+  border: none;
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
 .modal-comics-character-pict {
   border-radius: 8px;
 }
@@ -107,8 +127,8 @@
 }
 .modal-comics-main-pict {
   border-radius: 8px;
-  width: 100%;
-  max-width: 332px;
+  /* width: 100%; */
+  width: 332px;
   height: 387px;
 }
 
@@ -137,6 +157,7 @@
   line-height: calc(12 / 10);
   text-transform: uppercase;
   color: rgba(250, 250, 250, 0.5);
+  margin-bottom: 4px;
 }
 
 .modal-comics-filter-descr {
@@ -162,7 +183,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   width: 100%;
 }
 
@@ -180,6 +201,18 @@
   color: rgba(250, 250, 250, 0.5);
 }
 @media screen and (min-width: 767.98px) {
+  .modal-comics-title {
+    font-size: 24px;
+  }
+
+  .modal-comics-title-main {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .modal-comics-title-wrapper {
+    gap: 16px;
+  }
   .modal-comics-filter-descr {
     font-size: 16px;
     line-height: calc(18 / 16);
@@ -187,13 +220,14 @@
   .modal-comics-filter {
     font-size: 12px;
     line-height: calc(14 / 12);
+    margin-bottom: 8px;
   }
   .modal-comics-filter-info {
     gap: 32px;
   }
   .modal-comics-main-pict {
     width: 332px;
-    width: 445px;
+    height: 445px;
   }
   .modal-comics-text {
     font-size: 16px;
@@ -238,6 +272,7 @@
     max-width: 1000px;
     width: 100%;
   }
+
   .modal-comics-filter-descr {
     font-weight: 400;
     font-size: 14px;
