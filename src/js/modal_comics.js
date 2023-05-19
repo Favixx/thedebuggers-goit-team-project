@@ -33,36 +33,37 @@ export async function OpenComicsModal(comicsID) {
     closeIcon + renderComicsModal(comicsData, creators, characters);
 
   const closeButton = modalWindow.querySelector('.modal-comics-close-btn');
-  const characterList = modalWindow.querySelector('.comics-modal-characters-list')
-
-  modalWindow.classList.add(
-    'modal-active',
-    'animate__animated',
-    'animate__fadeIn'
+  const characterList = modalWindow.querySelector(
+    '.comics-modal-characters-list'
   );
-  characterList.addEventListener('click', onClickCharacter)
+
+  modalWindow.classList.add('animate__animated', 'animate__fadeIn');
+  characterList.addEventListener('click', onClickCharacter);
   closeButton.addEventListener('click', closeModal);
   modalWindow.addEventListener('click', closeModal);
 
   function closeModal(event) {
-    if (event === null 
-      || event.target === event.currentTarget 
-      || event.target.closest('.modal-comics-close-btn') === closeButton){
+    if (
+      event === null ||
+      event.target === event.currentTarget ||
+      event.target.closest('.modal-comics-close-btn') === closeButton
+    ) {
       modalWindow.classList.remove(
         'animate__animated',
         'animate__fadeIn',
         false
       );
       modalWindow.classList.remove('secon-modal-active');
+      modalContainer.style.display = 'none';
       closeButton.removeEventListener('click', closeModal);
       modalWindow.removeEventListener('click', closeModal);
+      modalContainer.innerHTML = '';
     }
   }
-  function onClickCharacter(event){
+  function onClickCharacter(event) {
     event.preventDefault();
     const characterId = event.target.closest('li')?.dataset.id;
     if (characterId) {
-      console.log(characterId);
       characterList.removeEventListener('click', onClickCharacter);
       closeModal(null);
       openModalCharacters(characterId);
