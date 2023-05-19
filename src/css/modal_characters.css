@@ -57,6 +57,7 @@ body {
   background-color: #171717;
   padding: 32px 16px;
   border-radius: 8px;
+  width: 100%;
   /* overflow: hidden; */
 }
 
@@ -202,9 +203,9 @@ body {
 
 @media screen and (min-width: 1439.98px) {
   .modal-characters-container {
+    overflow: auto;
     max-width: 1000px;
     display: flex;
-    justify-content: space-between;
     gap: 16px;
 
     /* height: 661px; */
@@ -238,9 +239,13 @@ body {
   }
 }
 .secon-modal-active .modal-characters-container {
+  padding: 0;
   height: 0;
   opacity: 0;
   /* overflow: hidden; */
   visibility: hidden;
   pointer-events: none;
-}
+  overflow: auto;
+  width: 0;
+  }
+ 

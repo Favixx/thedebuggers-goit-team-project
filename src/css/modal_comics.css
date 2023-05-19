@@ -8,7 +8,7 @@
   width: 100vw;
   z-index: 14;
   height: 100vh;
-  overflow-y: auto;
+ overflow-y: auto; 
 }
 
 .modal-comics-container {
@@ -206,7 +206,7 @@
 }
 @media screen and (min-width: 767.98px) {
   .backdrop-modal {
-    overflow-y: hidden;
+    overflow-y: auto;
   }
   .modal-comics-title {
     font-size: 24px;
@@ -292,6 +292,9 @@
   .modal-comics-gallery {
     flex-direction: row;
   }
+  .backdrop-modal{
+    overflow-y: auto;
+  }
 }
 
 .modal-active {
@@ -299,8 +302,17 @@
 }
 .secon-modal-active .modal-comics-container {
   height: auto;
+  max-height: fit-content;
   opacity: 1;
-  overflow: auto;
+  overflow: auto !important;
   visibility: visible;
   pointer-events: all;
+}
+@media screen and (max-width:767.98px){
+  .secon-modal-active .modal-characters-container{
+    overflow: auto;
+    padding: 0;
+    width: 0;
+  }
+  
 }
