@@ -34,6 +34,7 @@ async function initialRandomizing() {
     const imgElement = document.createElement('img');
     imgElement.src = getImgUrl(currentCard.thumbnail);
     imgElement.classList.add('random-characters-img');
+    imgElement.setAttribute('alt', currentCard.name);
     imgRef.appendChild(imgElement);
     setTimeout(() => imgElement.classList.add('show'), 300);
   }
@@ -92,7 +93,7 @@ async function initialRandomizing() {
     const buttons = document.querySelectorAll('.random-item-btn');
     for (let i = 0; i < buttons.length; i++) {
       buttons[i].addEventListener('click', event => {
-        const item = selectedCards[i];
+        const item = selectedCards[Math.abs(i - 4)];
         openModal(item.id);
       });
     }

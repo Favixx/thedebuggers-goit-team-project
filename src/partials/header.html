@@ -3,9 +3,12 @@
     <a href="./index.html" class="logo">
         <svg class="header-logo-svg"><use href="./img/sprite.svg#icon-logo"></use></svg>
     </a>
-    <form action="./characters.html" class="header_search">
-        <svg class="search-header-icon" id="header-search"><use href="./img/sprite.svg#icon-search"></use></svg>
-        <input type="text" placeholder="search" class="search-header">
-    </form>
+        <form action="./characters.html" autocomplete="off" class="header_search">
+            <svg class="search-header-icon" id="header-search"><use href="./img/sprite.svg#icon-search"></use></svg>
+            <input id="myInput" type="text" placeholder="search" class="search-header">
+            <ul class="autocomplete-list">
+            </ul>
+        </form>
+
 </div>
 </header>

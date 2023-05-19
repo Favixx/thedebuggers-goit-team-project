@@ -151,6 +151,7 @@
    }
    
    .character-image {
+    object-fit: fill;
     margin-top: 40px;
    }
    .characters-gallery {
@@ -293,7 +294,7 @@
     flex-direction: row;
     justify-content: space-between;
     row-gap: 8px;
-    column-gap: 8px;
+    column-gap: 0px;
     }
    
     .searchandsort-label.comics {
@@ -435,6 +436,7 @@
     justify-content: center;
     max-width: 100%;
     row-gap: 16px;
+    column-gap: 16px;
     }
    
     .searchandsort-label.comics {

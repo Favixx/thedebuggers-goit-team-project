@@ -31,6 +31,12 @@
 
     color: var(--color-title-and-text);
 }
+@media screen and (max-width: 330px) {
+    .main-title-characters{
+        font-size: 47px;
+    }
+}
+
 .description-title-characters{
     font-size: 16px;
     line-height: 1.25;
@@ -53,6 +59,8 @@
     display: inline-block;
     margin-block: auto 20px;
     align-self: end;
+    transition: color 250ms ease;
+    transition: background-color 250ms ease;
 }
 
 .home-button-character:hover{

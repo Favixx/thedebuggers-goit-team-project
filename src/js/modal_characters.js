@@ -1,12 +1,14 @@
 import MarvelAPI from './api_defaults';
 import { OpenComicsModal } from './modal_comics';
-// import Swiper, { Navigation, Pagination } from 'swiper';
-// import 'swiper/css';
-// import 'swiper/css/navigation';
-// import 'swiper/css/pagination';
+import 'animate.css';
+
+const modalDiv = document.querySelector('.modal-characters-container');
+const closeIcon = modalDiv.innerHTML;
+const modal = window.modal;
 
 export async function openModalCharacters(charactersId) {
   const body = document.querySelector('body');
+  body.classList.add('modal-open');
   const marvel = new MarvelAPI();
   const data = await marvel.getCharacterByID(charactersId);
   const monthNames = [
@@ -23,19 +25,10 @@ export async function openModalCharacters(charactersId) {
     'November',
     'December',
   ];
-  const modalDiv = document.createElement('div');
-  body.prepend(modalDiv);
 
   const markUp = data
     .map(
-      e =>
-        `<div class="backdrop-modal">
-        <div class="modal-characters-container">
-  <button type="button" class="modal-characters-close-btn">
-    <svg class="modal-characters-close-btn-icon" width="10" height="10">
-      <use href="../img/sprite.svg#icon-close-btn"></use>
-    </svg>
-  </button>
+      e => `
   <div class="modal-characters-gallery">
     <img
       src="${e.thumbnail.path}/portrait_uncanny.${e.thumbnail.extension}"
@@ -72,11 +65,11 @@ export async function openModalCharacters(charactersId) {
       <p class="modal-characters-info-date">${
         monthNames[new Date(e.modified).getMonth()]
       } ${new Date(e.modified).getDate()}, ${new Date(
-          e.modified
-        ).getFullYear()}</p>
+        e.modified
+      ).getFullYear()}</p>
     </div>
     <p class="modal-characters-info-descr">
-      ${e.description}
+      ${e.description || 'Description missing'}
     </p>
     <div class="modal-characters-info-comics-container">
       <h2 class="modal-characters-info-comics-header">List of comics</h2>
@@ -86,15 +79,29 @@ export async function openModalCharacters(charactersId) {
       </div>
     </div>
   </div>
-</div>
-</div>
 `
     )
     .join('');
-  modalDiv.innerHTML = markUp;
+  modalDiv.innerHTML = closeIcon + markUp;
+  modal.classList.add('modal-active');
+  modal.classList.add('animate__animated', 'animate__fadeIn');
+
   const closeBtn = document.querySelector('.modal-characters-close-btn');
-  closeBtn.addEventListener('click', e => modalDiv.remove());
+  closeBtn.addEventListener('click', closeModal);
+  window.addEventListener('keydown', event => {
+    if (event.code === 'Escape') closeModal();
+  });
+  const backdrop = document.querySelector('.backdrop-modal');
+  backdrop.addEventListener('click', event => {
+    if (event.target === event.currentTarget) closeModal();
+  });
   makeSlider(charactersId);
+
+  function closeModal() {
+    modal.classList.remove('animate__animated', 'animate__fadeIn');
+    modal.classList.remove('modal-active');
+    body.classList.remove('modal-open');
+  }
 }
 
 async function makeSlider(characterId) {
@@ -113,7 +120,12 @@ async function makeSlider(characterId) {
     const button = document.createElement('button');
     button.type = 'button';
     button.classList.add('modal-characters-info-comics-button');
-    button.addEventListener('click', () => openModal(e.id));
+    button.addEventListener('click', () => {
+      modal.classList.add('secon-modal-active');
+      const secondModal = document.querySelector('.modal-comics-container');
+      openModal(e.id);
+      secondModal.style.display = 'flex';
+    });
 
     const image = document.createElement('img');
     image.src = `${e.thumbnail.path}/standard_amazing.${e.thumbnail.extension}`;
@@ -126,14 +138,17 @@ async function makeSlider(characterId) {
 
     const author = document.createElement('p');
     author.classList.add('modal-characters-info-comics-author');
-    author.textContent = e.creators.items[0].name;
+    author.textContent = e.creators.items[0]?.name;
 
     button.appendChild(image);
     item.appendChild(button);
     item.appendChild(title);
     item.appendChild(author);
 
+    // showAnimation(modal);
+    // setClosed(false)
     list.appendChild(item);
+    // button.removeEventListener();
   });
 }
 

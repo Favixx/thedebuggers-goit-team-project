@@ -21,22 +21,24 @@ export const keys = {
             private:'c6c470899aecedfc1c5215fc7096b67431ebdc43'
         },
         {
-            public:'a8eb5267d3554d948feb51d4d5baa392',
-            private:'b29d496a1b59d6f335fd297e737331f03b528d90'
-        },
-        {
-            public:'6402ff7fd33e14d5d962ffb5be5b6a20',
-            private:'abfb2c2a185bd8dac77f8985adf490b350fa6d5b'
-        },
+            public:'414d2b9c97e644b2f86a965c34d5b1a4',
+            private:'4c0a37363b1998b7d594006101a7f89325d99ab1'
+        }
     ],
-    keyID: 0,
+    keyIsLoaded: false,
+    LOCAL_KEY: 'keyId',
+    keyID: localStorage.getItem('keyId') ? (Number(localStorage.getItem('keyId')) > 5) ? 0 : Number(localStorage.getItem('keyId')) : 0,
     getNextKey(){
-        if(this.keyID === this.KEYS.length) {
+        if (this.keyIsLoaded) return null;
+        if(this.keyID >= this.KEYS.length) {
             this.keyID = 0;
+            localStorage.setItem(this.LOCAL_KEY, this.keyID)
             return null;
         }
         this.keyID += 1;
-        return this.KEYS[this.keyID]
+        localStorage.setItem(this.LOCAL_KEY, this.keyID)
+        this.keyIsLoaded = true;
+        return true;
     },
     getPublicKey(){
         return this.KEYS[this.keyID].public

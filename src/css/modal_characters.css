@@ -2,26 +2,25 @@ body {
   position: relative;
 }
 
-.backdrop-modal {
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(46, 47, 66, 0.5);
-  position: fixed;
-  z-index: 11;
-  top: 0;
-  left: 0;
+.modal-open {
+  overflow: hidden;
 }
 
 .modal-characters-container {
+  opacity: 1;
+  overflow: auto;
+  visibility: visible;
+  pointer-events: all;
   z-index: 12;
-  max-width: 335px;
+  max-width: 350px;
+  margin: auto;
   background-color: #0c0b0b;
-  margin: 0 auto;
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   padding: 40px 20px;
+  height: auto;
+  top: 50%;
+  transform: translate(0, max(-50%, -50vh));
+  transition: opacity 500ms ease-in-out 50ms;
 }
 
 .modal-characters-close-btn {
@@ -58,7 +57,8 @@ body {
   background-color: #171717;
   padding: 32px 16px;
   border-radius: 8px;
-  overflow: hidden;
+  width: 100%;
+  /* overflow: hidden; */
 }
 
 .modal-characters-info-header-container {
@@ -138,7 +138,9 @@ body {
 
 @media screen and (min-width: 767.98px) {
   .modal-characters-container {
+    padding: 64px 32px;
     max-width: 600px;
+    border-radius: 8px;
   }
   .modal-characters-close-btn {
     top: 16px;
@@ -201,11 +203,13 @@ body {
 
 @media screen and (min-width: 1439.98px) {
   .modal-characters-container {
+    overflow: auto;
     max-width: 1000px;
     display: flex;
-    justify-content: space-between;
     gap: 16px;
-    padding: 64px 32px;
+
+    /* height: 661px; */
+    /* transform: translate(-50%, -50%) scale(1); */
   }
   .modal-characters-gallery {
     display: block;
@@ -234,3 +238,14 @@ body {
     display: flex;
   }
 }
+.secon-modal-active .modal-characters-container {
+  padding: 0;
+  height: 0;
+  opacity: 0;
+  /* overflow: hidden; */
+  visibility: hidden;
+  pointer-events: none;
+  overflow: auto;
+  width: 0;
+  }
+ 

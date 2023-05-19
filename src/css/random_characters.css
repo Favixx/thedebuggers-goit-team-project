@@ -57,6 +57,18 @@
   margin-top: 32px;
 }
 
+.random-item-btn:hover h2,
+.random-item-btn:hover p {
+  color: rgb(187, 187, 255);
+  transition: color 350ms linear;
+}
+
+.random-item-btn:focus h2,
+.random-item-btn:focus p {
+  color: rgb(187, 187, 255);
+  transition: color 350ms linear;
+}
+
 .active > p,
 .active > h2 {
   color: #4b50ad;
@@ -90,11 +102,13 @@
   border-radius: 250px;
   position: absolute;
   right: 20px;
+  transition: border-color 750ms linear, color 750ms linear;
 }
 
 .random-characters-link:hover,
 .random-characters-link:focus {
   color: #4b50ad;
+  border-color: #4b50ad;
 }
 
 @media screen and (min-width: 767.98px) {

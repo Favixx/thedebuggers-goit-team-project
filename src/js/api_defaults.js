@@ -1,11 +1,11 @@
 import { keys } from './keys';
 import axios from 'axios';
 import md5 from 'md5';
+import Notiflix from 'notiflix';
 export default class MarvelAPI {
   PUBLIC_KEY = keys.getPublicKey();
   PRIVATE_KEY = keys.getPrivateKey();
   constructor() {
-    // this.changeKey();
     this.marvel = axios.create({
       baseURL: 'https://gateway.marvel.com/v1/public/',
       params: {
@@ -20,15 +20,18 @@ export default class MarvelAPI {
       const { data, status, statusText } = await this.marvel.get(endPoint, {
         params,
       });
-      if (status !== 200) console.log(status, statusText);
-      if (status === 429 && this.changeKey()) return await this.getData(endPoint, params);
+      if (status !== 200) {
+        return
+      }
+      if (status === 429 && keys.getNextKey()) alert('Перезавантажте сторінку для отримання нового ключа') 
       this.totalResults = data.data.total;
       this.perPage = data.data.limit;
       this.currentPage = data.data.offset / data.data.limit + 1;
       this.totalPage = Math.ceil(this.totalResults / data.data.limit);
       return data.data.results;
     } catch (error) {
-      console.log(error.message);
+      if (error.response.status === 429 && keys.getNextKey()) alert('Перезавантажте сторінку для отримання нового ключа')
+      return
     }
   }
 
@@ -49,15 +52,20 @@ export default class MarvelAPI {
   }
 
   async getFiveCharacters(arr) {
+    try{
     const promises = arr.map(e => {
       const params = {
         offset: e,
         limit: 1,
       };
+      
       return this.getData('characters', params);
     });
     const data = await Promise.all(promises);
     return data.map(e => e[0]);
+  }catch{
+    Notiflix.Notify.failure("There is an error during fetching the data")
+  }
   }
 
   async getComicCreators(id) {
@@ -81,7 +89,6 @@ export default class MarvelAPI {
   async getCharactersByPage(pageNumber) {
     const params = this.params;
     params.offset = (pageNumber - 1) * this.perPage;
-    console.log('API', params, this.perPage);
     return await this.getData('characters', params);
   }
 
@@ -92,16 +99,5 @@ export default class MarvelAPI {
   setPerPage(perPage = 20) {
     this.perPage = perPage;
     this.marvel.defaults.params['limit'] = perPage;
-  }
-  changeKey(){
-    const newKeys = keys.getNextKey();
-    console.log("Chenged key to:", newKeys)
-    if (newKeys) {
-      this.PRIVATE_KEY = newKeys.private;
-      this.PUBLIC_KEY = newKeys.public;
-      return true;
-    } else {
-      return null;
-    }
   }
 }

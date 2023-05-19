@@ -1,27 +1,15 @@
-// import Swiper, { Navigation, Pagination, Scrollbar } from 'swiper';
-// // import Swiper and modules styles
-// import 'swiper/css';
-// import 'swiper/css/navigation';
 
-//const { Scrollbar } = require("swiper");
+import 'animate.css'
 
-// import 'swiper/css/pagination';
 import Swiper, { Scrollbar, Autoplay } from 'swiper';
 
-// import styles bundle
-//import 'swiper/css/bundle';
-// init Swiper:
 import 'swiper/css';
 import 'swiper/css/autoplay'
 import 'swiper/css/mousewheel'
 const swiper = new Swiper('.swiper', {
-  // configure Swiper to use modules
+ 
   modules: [Scrollbar, Autoplay, ],
-  //   pagination: {
-  //     el: '.swiper-pagination',
-  //     // clickable: true,
-  //     type: 'progressbar',
-  //   },
+
   scrollbar: {
     el: '.swiper-scrollbar',
     hide: false,
@@ -39,21 +27,20 @@ const swiper = new Swiper('.swiper', {
     }
   },
  
-  // Navigation arrows
+
 });
-// Ініціалізація Swiper слайдера
 swiper.on('scrollbarDragMove', ()=>{
 
   swiper.scrollbar.init()
 })
-//Обробник події ініціалізації слайдера
+
 swiper.on('init', function () {
-  updateScrollbarColor(); // Виклик функції для зміни кольору Scrollbar при ініціалізації
+  updateScrollbarColor(); 
 });
 
-// Обробник події зміни слайда
+
 swiper.on('slideChange', function () {
-  updateScrollbarColor(); // Виклик функції для зміни кольору Scrollbar при зміні слайда
+  updateScrollbarColor(); 
 });
 
 
