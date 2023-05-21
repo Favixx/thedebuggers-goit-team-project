@@ -88,19 +88,22 @@ export async function openModalCharacters(charactersId) {
 
   const closeBtn = document.querySelector('.modal-characters-close-btn');
   closeBtn.addEventListener('click', closeModal);
-  window.addEventListener('keydown', event => {
-    if (event.code === 'Escape') closeModal();
-  });
+  window.addEventListener('keydown', closeModal);
   const backdrop = document.querySelector('.backdrop-modal');
-  backdrop.addEventListener('click', event => {
-    if (event.target === event.currentTarget) closeModal();
-  });
+  backdrop.addEventListener('click', closeModal);
   makeSlider(charactersId);
 
-  function closeModal() {
-    modal.classList.remove('animate__animated', 'animate__fadeIn');
-    modal.classList.remove('modal-active');
-    body.classList.remove('modal-open');
+  function closeModal(event) {
+    if (event.target === event.currentTarget || 
+      event.code === 'Escape' || 
+      event.currentTarget === closeBtn) {
+        if (modal.classList.contains('second-modal-active')) return
+        modal.classList.remove('animate__animated', 'animate__fadeIn','modal-active');
+        body.classList.remove('modal-open');
+        backdrop.removeEventListener('click', closeModal);
+        window.removeEventListener('keydown', closeModal);
+        closeBtn.removeEventListener('click', closeModal);
+    }
   }
 }
 
@@ -121,10 +124,8 @@ async function makeSlider(characterId) {
     button.type = 'button';
     button.classList.add('modal-characters-info-comics-button');
     button.addEventListener('click', () => {
-      modal.classList.add('secon-modal-active');
-      const secondModal = document.querySelector('.modal-comics-container');
+      modal.classList.add('second-modal-active');
       openModal(e.id);
-      secondModal.style.display = 'flex';
     });
 
     const image = document.createElement('img');
@@ -145,10 +146,7 @@ async function makeSlider(characterId) {
     item.appendChild(title);
     item.appendChild(author);
 
-    // showAnimation(modal);
-    // setClosed(false)
     list.appendChild(item);
-    // button.removeEventListener();
   });
 }
 
