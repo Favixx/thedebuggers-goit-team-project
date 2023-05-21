@@ -1,6 +1,7 @@
 import MarvelAPI from './api_defaults';
 import 'animate.css';
 import { openModalCharacters } from './modal_characters';
+import { forEach } from 'lodash';
 const marvelAPI = new MarvelAPI();
 
 const modalWindow = document.querySelector('.backdrop-modal');
@@ -41,10 +42,12 @@ export async function OpenComicsModal(comicsID) {
   characterList.addEventListener('click', onClickCharacter);
   closeButton.addEventListener('click', closeModal);
   modalWindow.addEventListener('click', closeModal);
+  window.addEventListener('keydown', closeModal)
 
   function closeModal(event) {
     if (
       event === null ||
+      event.code === 'Escape' ||
       event.target === event.currentTarget ||
       event.target.closest('.modal-comics-close-btn') === closeButton
     ) {
@@ -53,8 +56,7 @@ export async function OpenComicsModal(comicsID) {
         'animate__fadeIn',
         false
       );
-      modalWindow.classList.remove('secon-modal-active');
-      modalContainer.style.display = 'none';
+      modalWindow.classList.remove('second-modal-active');
       closeButton.removeEventListener('click', closeModal);
       modalWindow.removeEventListener('click', closeModal);
       modalContainer.innerHTML = '';
@@ -85,39 +87,41 @@ function renderComicsCard(comicsData) {
   return `
       <div class="modal-comics-title-wrapper"> 
         <h2 class="modal-comics-title-main">${title}</h2>
-        <h3>${creators.items[3]?.name} | ${formatDate(modified)}</h3>
+        <p>${creators.items.find(e => e.role === 'writer')?.name} | ${formatDate(modified)}</p>
       </div>
       <p class="modal-comics-text">
         ${description || 'description missing'}
       </p>
       <ul class="modal-comics-filter-info">
-      <li class="modal-comics-filter-item">
-      <p class="modal-comics-filter">format</p>
-      <p class="modal-comics-filter-descr">${format}</p>
-      </li>
-      <li>
-      <p class="modal-comics-filter">year realeased</p>
-      <p class="modal-comics-filter-descr">${new Date(
-        dates.date
-      ).getFullYear()}</p>
-      </li>
-<li>
-<p class="modal-comics-filter">pages</p>
-<p class="modal-comics-filter-descr">${pageCount}</p>
-</li>
-<li>
-<p class="modal-comics-filter">price</p>
-<p class="modal-comics-filter-descr">${printPrice.price}$</p>
-  </li>
-</ul>`;
+        <li>
+          <p class="modal-comics-filter">format</p>
+          <p class="modal-comics-filter-descr">${format}</p>
+        </li>
+        <li>
+          <p class="modal-comics-filter">year realeased</p>
+          <p class="modal-comics-filter-descr">${new Date(
+            dates.date
+          ).getFullYear()}</p>
+        </li>
+        <li>
+          <p class="modal-comics-filter">pages</p>
+          <p class="modal-comics-filter-descr">${pageCount}</p>
+        </li>
+        <li>
+          <p class="modal-comics-filter">price</p>
+          <p class="modal-comics-filter-descr">${printPrice.price}$</p>
+        </li>
+      </ul>`;
 }
 
 function renderCreators(creators, array) {
+  const role = getCreatorsByRole(array);
   return creators
-    .map((el, index) => {
-      return `<li class="modal-comics-creators-li">
+    .map(el => {
+      if (role[el.fullName] !== 'writer') return ""
+      return `<li class="modal-comics-creators-item">
         <img class="comics-modal-author-portrait" src="${el.thumbnail.path}/standard_medium.${el.thumbnail.extension}" alt="portrait of ${el.fullName}" height="50" width="50" />
-        <div class="comics-modal-author-descr"><p class="modal-comics-author-role">${array[index].role}</p>
+        <div class="comics-modal-author-descr"><p class="modal-comics-author-role">${role[el.fullName]}</p>
           <p class="modal-comics-text">${el.fullName}</p></div>
     </li>`;
     })
@@ -126,8 +130,8 @@ function renderCreators(creators, array) {
 function renderCharacters(characters) {
   return characters
     .map(el => {
-      return `<li class="modal-window-character-item" data-id="${el.id}">
-      <a href="#">
+      return `<li class="modal-comics-character-item" data-id="${el.id}">
+      <a href="#" class="modal-comics-character-link">
         <img class="modal-comics-character-pict" src="${el.thumbnail.path}/standard_medium.${el.thumbnail.extension}" alt="title page of ${el.name}" height="60" width="60" />
         <p class="modal-comics-text">${el.name}</p>
       </a>
@@ -176,4 +180,11 @@ function formatDate(str) {
   return `${
     monthName[date.getMonth()]
   } ${date.getDate()}, ${date.getFullYear()}`;
+}
+function getCreatorsByRole(arr){
+  const creators = {}
+  arr.forEach(e => {
+    creators[e.name] = e.role;
+  })
+  return creators;
 }

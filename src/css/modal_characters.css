@@ -7,10 +7,6 @@ body {
 }
 
 .modal-characters-container {
-  opacity: 1;
-  overflow: auto;
-  visibility: visible;
-  pointer-events: all;
   z-index: 12;
   max-width: 350px;
   margin: auto;
@@ -207,9 +203,6 @@ body {
     max-width: 1000px;
     display: flex;
     gap: 16px;
-
-    /* height: 661px; */
-    /* transform: translate(-50%, -50%) scale(1); */
   }
   .modal-characters-gallery {
     display: block;
@@ -238,14 +231,7 @@ body {
     display: flex;
   }
 }
-.secon-modal-active .modal-characters-container {
-  padding: 0;
-  height: 0;
-  opacity: 0;
-  /* overflow: hidden; */
-  visibility: hidden;
-  pointer-events: none;
-  overflow: auto;
-  width: 0;
-  }
+.second-modal-active .modal-characters-container {
+  display: none;
+}
  
