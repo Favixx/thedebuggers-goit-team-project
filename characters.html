@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/thedebuggers-goit-team-project/favicon.svg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    
+    <title>Characters</title>
+    <script type="module" crossorigin src="/thedebuggers-goit-team-project/assets/characters-098fbce6.js"></script>
+    <link rel="modulepreload" crossorigin href="/thedebuggers-goit-team-project/assets/header_search-72cd2721.js">
+    <link rel="stylesheet" href="/thedebuggers-goit-team-project/assets/header_search-79668c30.css">
+    <link rel="stylesheet" href="/thedebuggers-goit-team-project/assets/characters-86037c26.css">
+  </head>
+
+  <body>
+    <header class="header">
+<div class="container">
+    <a href="./index.html" class="logo">
+        <svg class="header-logo-svg"><use href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-logo"></use></svg>
+    </a>
+        <form action="./characters.html" autocomplete="off" class="header_search">
+            <svg class="search-header-icon" id="header-search"><use href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-search"></use></svg>
+            <input id="myInput" type="text" placeholder="search" class="search-header">
+            <ul class="autocomplete-list">
+            </ul>
+        </form>
+
+</div>
+</header>
+
+    <main>
+    <section class="hero-charactares">
+  <div class="container container-hero-characters">
+    <p class="sub-title-characters">Web-based platform</p>
+    <h1 class="main-title-characters">Characters</h1>
+    <p class="description-title-characters">
+      With over 70,000 characters in the Marvel Multiverse, this is the most
+      complete public listing in existence.
+    </p>
+    <a href="./index.html" class="home-button-character">back home</a>
+  </div>
+</section>
+
+    <section class="searchandsort">
+  <form class="searchandsort-container container">
+    <label class="searchandsort-label comics"
+      >Comics
+      <button class="search-svg-comics-button">
+        <svg class="search-svg-comics" width="15" height="15">
+        <use
+          class="search-icon"
+          href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-search"
+          aria-label="Search Icon"
+        >
+      </use>
+      </svg>
+    </button>
+      <input
+        id="comics"
+        class="searchandsort-input"
+        type="text"
+        placeholder="Enter text"
+      />
+    </label>
+    <label class="searchandsort-label name"
+      >Name Starts With
+      <button class="search-svg-name-button"><svg class="search-svg-name" width="15" height="15">
+        <use
+          class="search-icon"
+          href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-search"
+          aria-label="Search Icon"
+        ></use>
+      </svg></button>
+      <input
+        id="name-input"
+        class="searchandsort-input"
+        type="text"
+        placeholder="Enter text"
+      />
+    </label>
+    <label class="searchandsort-label order"
+      >Order By
+      <svg class="select-svg" width="12" height="12">
+      <use
+          class="select-icon"
+          href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-shevron"
+          aria-label="Shevron Down Icon"
+        ></use>
+      </svg>
+      <select id="select" class="searchandsort-input" type="select">
+        <option value="name">Name</option>
+        <option value="modified">Modified</option>
+      </select>
+    </label>
+    <label class="searchandsort-label date"
+      >Date <input id="date" class="searchandsort-input date" type="text" placeholder="mm/dd/yyyy"/>
+      <svg class="date-svg" width="12" height="12">
+        <use
+            class="select-icon"
+            href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-shevron"
+            aria-label="Shevron Down Icon"
+          ></use>
+        </svg>
+    </label>
+  </form>
+
+
+    
+<div class="container">
+  <ul class="characters-gallery"></ul>
+  <div class="pagination invisible">
+ <ul></ul>
+</div>
+</div>
+</section>
+  </main>
+    <footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+        <a href="./index.html">
+          <svg class="header-logo-svg"><use href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-logo"></use></svg>
+        </a>
+        <a href="./characters.html" class="text-footer">Characters</a>
+      <ul class="footer-social-list">
+        <li>
+          <a
+            href="https://facebook.com/"
+            class="social-list-link-footer footer-link-face"
+            aria-label="link to twitter"
+            rel="noopener noreferer"
+            target="_blank"
+          >
+            <svg class="social-list-icon-footer footer-icon-face" width="14" height="14">
+              <use href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-facebook"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+          href="https://instagram.com/"
+            class="social-list-link-footer footer-link-inst"
+            aria-label="link to instagram"
+            rel="noopener noreferer"
+            target="_blank"
+          >
+            <svg class="social-list-icon-footer footer-icon-inst" width="14" height="14">
+              <use href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-instagram"></use>
+            </svg>
+          </a>
+        </li>
+        <li>
+          <a
+          href="https://twitter.com/"
+            class="social-list-link-footer footer-link-twit"
+            aria-label="link to twitter"
+            rel="noopener noreferer"
+            target="_blank"
+          >
+            <svg class="social-list-icon-footer footer-icon-twit" width="14" height="14">
+              <use href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-twitter"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <a  href= 'https://privacy.thewaltdisneycompany.com/en/current-privacy-policy/' class="footer-bottom-text"  rel="noopener noreferer"
+            target="_blank" aria-label="privacy-policy">Privacy Policy Public Offering Agreement </a>
+  </div>
+</footer>
+
+    
+    <div class="backdrop-modal" id="modal">
+  <div class="modal-comics-container container">
+    <button type="button" class="modal-comics-close-btn" modal-close>
+      <svg class="comics-modal-close-icon" width="12" height="12">
+        <use href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-close-btn"></use>
+      </svg>
+    </button>
+  </div>
+  <div class="modal-characters-container">
+    <button type="button" class="modal-characters-close-btn">
+      <svg class="comics-modal-close-icon" width="12" height="12">
+        <use href="/thedebuggers-goit-team-project/assets/sprite-067a696f.svg#icon-close-btn"></use>
+      </svg>
+    </button>
+  </div>
+</div>
+
+    
+    
+    
+    
+    <!-- <script type="module" src="./js/modal_comics.js"></script> -->
+  </body>
+</html>
